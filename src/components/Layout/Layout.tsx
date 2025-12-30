@@ -7,7 +7,7 @@ import styles from './Layout.module.css';
 export function Layout() {
   return (
     <div className={styles.layout}>
-      <div className={styles.controls}>
+      <div className={`${styles.controls} layout-controls`}>
         <FontFamilySelector />
         <div className={styles.controlsDivider} />
         <FontSizeControl />

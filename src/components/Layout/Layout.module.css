@@ -28,7 +28,14 @@
 @media (max-width: 768px) {
   .controls {
     bottom: var(--space-4);
-    right: var(--space-4);
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Hide Layout controls on story pages - MobileStoryToolbar handles them */
+  :global(body.story-page) .controls {
+    display: none;
   }
 }
 

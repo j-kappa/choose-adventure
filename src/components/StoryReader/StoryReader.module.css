@@ -280,9 +280,21 @@
 @media (max-width: 768px) {
   .header {
     padding: var(--space-3) var(--space-4);
+    justify-content: center;
   }
 
   .storyTitle {
+    position: static;
+    transform: none;
+    max-width: none;
+  }
+
+  /* Hide header buttons on mobile - they're in the bottom toolbar */
+  .headerButton {
+    display: none;
+  }
+
+  .headerActions {
     display: none;
   }
 
@@ -292,6 +304,7 @@
 
   .main {
     padding: var(--space-6) var(--space-4);
+    padding-bottom: 6rem; /* Space for fixed toolbar */
   }
 
   .paragraph {

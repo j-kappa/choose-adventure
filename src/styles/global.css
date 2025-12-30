@@ -151,3 +151,10 @@ img {
   border: 0;
 }
 
+/* Hide Layout controls on story pages on mobile */
+@media (max-width: 768px) {
+  body.story-page .layout-controls {
+    display: none !important;
+  }
+}
+

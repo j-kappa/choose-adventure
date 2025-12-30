@@ -4,6 +4,7 @@ import { useStory } from '../../hooks/useStory';
 import { fetchStory } from '../../utils/storyLoader';
 import { Passage } from './Passage';
 import { ChoiceButton } from './ChoiceButton';
+import { MobileStoryToolbar } from '../MobileStoryToolbar';
 import styles from './StoryReader.module.css';
 
 export function StoryReader() {
@@ -73,6 +74,14 @@ export function StoryReader() {
       reset();
     };
   }, [storyId, loadStory, reset]);
+
+  // Add body class for mobile toolbar visibility
+  useEffect(() => {
+    document.body.classList.add('story-page');
+    return () => {
+      document.body.classList.remove('story-page');
+    };
+  }, []);
 
   if (loading) {
     return (
@@ -193,6 +202,12 @@ export function StoryReader() {
           )}
         </article>
       </main>
+
+      <MobileStoryToolbar
+        canGoBack={canGoBack}
+        onBack={goBack}
+        onRestart={restart}
+      />
     </div>
   );
 }
