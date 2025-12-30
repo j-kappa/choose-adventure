@@ -39,6 +39,16 @@
   z-index: 200;
 }
 
+@media (max-width: 768px) {
+  .dropdown {
+    position: fixed;
+    bottom: 4.5rem;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+}
+
 .section {
   display: flex;
   flex-direction: column;
