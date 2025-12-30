@@ -155,28 +155,11 @@
   border-top: 1px solid var(--color-border);
 }
 
-.choiceButton {
+.choiceRow {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-4);
-  width: 100%;
-  padding: var(--space-4) var(--space-5);
-  text-align: left;
-  background: var(--color-bg-subtle);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-base);
-  color: var(--color-text);
-  transition: 
-    background-color var(--transition-fast),
-    border-color var(--transition-fast),
-    transform var(--transition-fast);
+  gap: var(--space-3);
   animation: fadeInUp var(--transition-slow) ease-out both;
-}
-
-.choiceButton:hover {
-  background: var(--color-accent-subtle);
-  border-color: var(--color-accent);
-  transform: translateX(4px);
 }
 
 .choiceNumber {
@@ -186,19 +169,39 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-border);
-  border-radius: var(--radius-base);
+  margin-top: var(--space-2);
+  font-family: var(--font-ui);
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--color-text-muted);
+  background: var(--color-border);
+  border-radius: 50%;
   transition: 
-    background-color var(--transition-fast),
-    color var(--transition-fast);
+    color var(--transition-fast),
+    background-color var(--transition-fast);
 }
 
-.choiceButton:hover .choiceNumber {
-  background: var(--color-accent);
+.choiceRow:hover .choiceNumber {
   color: white;
+  background: var(--color-accent);
+}
+
+.choiceButton {
+  flex: 1;
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  color: var(--color-text);
+  transition: 
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.choiceButton:hover {
+  background: var(--color-accent-subtle);
+  border-color: var(--color-accent);
 }
 
 .choiceText {

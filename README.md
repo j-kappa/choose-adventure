@@ -175,10 +175,16 @@ choose-adventure/
 
 Contributions welcome! Whether it's:
 
-- **Stories** — Write and share adventures
+- **Stories** — Write and share adventures (see [CONTRIBUTING.md](CONTRIBUTING.md))
 - **Features** — Improve the engine
 - **Design** — Enhance the UI/UX
 - **Documentation** — Help others get started
+
+### Writing Stories
+
+Want to contribute a story? Check out:
+- [CONTRIBUTING.md](CONTRIBUTING.md) — Full guide to writing and submitting stories
+- [docs/story-format.md](docs/story-format.md) — Technical specification for the JSON format
 
 ## License
 

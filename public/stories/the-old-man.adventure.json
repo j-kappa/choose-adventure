@@ -1,0 +1,377 @@
+{
+  "id": "the-old-man",
+  "title": "The Man on the Bench",
+  "author": "Adventure Engine",
+  "description": "A chance encounter with a kind old man in the park. But some people aren't what they seem.",
+  "version": "1.0",
+  "initialState": {
+    "acceptedCandy": false,
+    "sawPhoto": false,
+    "foundNewspaper": false,
+    "trustedHim": false,
+    "calledPolice": false
+  },
+  "start": "park_entrance",
+  "passages": {
+    "park_entrance": {
+      "text": "It's a beautiful autumn afternoon. Golden leaves drift lazily across the path as you enter Millbrook Park. You've walked this route a hundred times before—it's a shortcut to your apartment.\n\nToday, something catches your eye. An old man sits alone on the bench by the fountain, feeding pigeons from a paper bag. He looks up as you approach and smiles warmly.\n\n\"Lovely day, isn't it?\" His voice is gentle, grandfatherly. \"Would you like to sit for a moment? The birds are particularly friendly today.\"",
+      "choices": [
+        {
+          "text": "Sit down and chat with him",
+          "goto": "sit_with_him"
+        },
+        {
+          "text": "Politely decline and keep walking",
+          "goto": "walk_past"
+        },
+        {
+          "text": "Stop but remain standing",
+          "goto": "stand_nearby"
+        }
+      ]
+    },
+    "sit_with_him": {
+      "text": "You settle onto the bench beside him. Up close, you notice his hands—weathered but steady, scattering seeds with practiced precision.\n\n\"I come here every day,\" he says. \"Same time, same bench. The routine keeps me going since Martha passed.\" He reaches into his coat pocket and produces a small tin. \"Butterscotch? My wife used to make them. Store-bought now, but still sweet.\"\n\nHis eyes are kind, crinkling at the corners. But something about the way he watches you feels... intent.",
+      "choices": [
+        {
+          "text": "Accept the candy",
+          "goto": "accept_candy",
+          "setState": { "acceptedCandy": true }
+        },
+        {
+          "text": "Politely decline the candy",
+          "goto": "decline_candy"
+        },
+        {
+          "text": "Ask about his wife",
+          "goto": "ask_about_wife"
+        }
+      ]
+    },
+    "walk_past": {
+      "text": "\"Of course, of course,\" he says, still smiling. \"Everyone's in such a hurry these days.\"\n\nYou nod and continue walking. But something makes you glance back. The old man isn't looking at the pigeons anymore. He's watching you. The smile is gone.\n\nA chill runs down your spine that has nothing to do with the autumn breeze.\n\nAs you round the corner, you nearly trip over a discarded newspaper. The headline catches your eye: \"MILLBROOK STRANGLER: POLICE SEEK NEW LEADS IN COLD CASE.\"",
+      "choices": [
+        {
+          "text": "Pick up the newspaper and read more",
+          "goto": "read_newspaper",
+          "setState": { "foundNewspaper": true }
+        },
+        {
+          "text": "Keep walking—it's just a coincidence",
+          "goto": "ignore_newspaper"
+        }
+      ]
+    },
+    "stand_nearby": {
+      "text": "You stop a few feet away, hands in your pockets. The old man doesn't seem bothered by your distance.\n\n\"Smart,\" he says quietly, almost to himself. \"Cautious. That's good. Not everyone is so careful.\"\n\nHe turns back to the pigeons, but his words hang in the air. Was that a compliment? A warning?\n\nA gust of wind catches a photograph from his coat pocket. It flutters to the ground near your feet—a faded picture of a young woman you don't recognize.",
+      "choices": [
+        {
+          "text": "Pick up the photo and return it",
+          "goto": "return_photo",
+          "setState": { "sawPhoto": true }
+        },
+        {
+          "text": "Pretend you didn't notice",
+          "goto": "ignore_photo"
+        }
+      ]
+    },
+    "accept_candy": {
+      "text": "You take a butterscotch from the tin. It tastes fine—sweet, slightly medicinal like all butterscotch.\n\n\"There's a good soul,\" he says, pleased. \"So few people trust strangers anymore. Though I suppose they have their reasons.\"\n\nHe's quiet for a moment, watching a pigeon peck at his feet.\n\n\"You remind me of someone,\" he says suddenly. \"Someone from a long time ago. She used to walk through this park too. Every day, same time. Until she didn't.\"\n\nHis voice has changed. Harder now. The kindness feels like a mask slipping.",
+      "choices": [
+        {
+          "text": "Ask who he's talking about",
+          "goto": "ask_who"
+        },
+        {
+          "text": "Make an excuse to leave",
+          "goto": "try_to_leave"
+        }
+      ]
+    },
+    "decline_candy": {
+      "text": "\"No thank you,\" you say. \"Watching my sugar.\"\n\nHe nods slowly, closing the tin with a soft click. \"Wise. You never know what people put in things these days.\"\n\nThe comment is casual, but his eyes hold yours a beat too long.\n\n\"Tell me,\" he says, \"do you live nearby? I feel like I've seen you before. Walking through the park in the evenings, perhaps?\"",
+      "choices": [
+        {
+          "text": "Lie about where you live",
+          "goto": "lie_about_home"
+        },
+        {
+          "text": "Tell him you need to go",
+          "goto": "try_to_leave"
+        },
+        {
+          "text": "Ask why he wants to know",
+          "goto": "question_him"
+        }
+      ]
+    },
+    "ask_about_wife": {
+      "text": "\"How long ago did Martha pass?\"\n\nHis face softens—or seems to. \"Thirty-seven years this November. Cancer. She was the love of my life.\"\n\nHe pulls out a worn leather wallet and shows you a photograph. A pretty young woman in 1960s fashion smiles at the camera.\n\n\"She was beautiful,\" you say.\n\nBut as he turns the photo, you glimpse another behind it. A different woman. And another. At least four photographs, all young women, none of them the same.\n\n\"My girls,\" he murmurs, noticing your gaze. \"All my girls.\"",
+      "choices": [
+        {
+          "text": "Ask about the other photographs",
+          "goto": "ask_about_photos",
+          "setState": { "sawPhoto": true }
+        },
+        {
+          "text": "Stand up immediately",
+          "goto": "stand_up_scared"
+        }
+      ]
+    },
+    "read_newspaper": {
+      "text": "You pick up the paper. The article is from last week.\n\n\"The Millbrook Strangler, responsible for at least five deaths in the 1980s, was never caught. All victims were young women who frequented Millbrook Park. Police have received an anonymous tip suggesting the killer may still be alive and living in the area.\n\nA source close to the investigation stated: 'We believe he's been hiding in plain sight for decades. He likely appears completely normal—charming, even.'\"\n\nYour blood runs cold. You look back toward the fountain.\n\nThe old man is gone. But his paper bag of seeds remains on the bench, along with something else—a tin of butterscotch candies.",
+      "choices": [
+        {
+          "text": "Call the police",
+          "goto": "call_police",
+          "setState": { "calledPolice": true }
+        },
+        {
+          "text": "Go back to investigate the bench",
+          "goto": "investigate_bench"
+        },
+        {
+          "text": "Get out of the park immediately",
+          "goto": "flee_park"
+        }
+      ]
+    },
+    "ignore_newspaper": {
+      "text": "It's just a newspaper. Probably weeks old. You keep walking.\n\nBut that night, you can't sleep. The old man's face keeps appearing in your dreams. His smile. His eyes.\n\nThe next morning, you take a different route to work. And the morning after that. You tell yourself it's nothing.\n\nThree weeks later, you see the news. A young woman has gone missing. Last seen in Millbrook Park.\n\nYou never go back to that park again. But sometimes, in crowds, you think you see him watching.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "return_photo": {
+      "text": "You bend down and pick up the photograph. The woman is young, perhaps twenty, with dark hair and a cautious smile. On the back, in faded handwriting: \"Sarah, 1987.\"\n\n\"Ah, thank you.\" The old man takes it gently, almost reverently. \"My niece. She... passed away. A long time ago.\"\n\nBut his hands are trembling now. And you notice something else—the edge of another photograph peeking from his pocket. Different woman. Different handwriting.\n\n\"Such a tragedy,\" he whispers. \"All of them. Such tragedies.\"",
+      "choices": [
+        {
+          "text": "Ask what he means by 'all of them'",
+          "goto": "ask_about_photos"
+        },
+        {
+          "text": "Back away slowly",
+          "goto": "back_away"
+        }
+      ]
+    },
+    "ignore_photo": {
+      "text": "You pretend not to see the photograph, keeping your eyes fixed on the pigeons.\n\nThe old man notices it himself after a moment. He bends slowly, picks it up, and tucks it away without a word.\n\nWhen he straightens, his expression has changed. Colder. More calculating.\n\n\"You're observant,\" he says. \"Most people would have picked it up. Handed it back. Made small talk.\"\n\nHe stands, brushing crumbs from his coat.\n\n\"But you're not most people, are you?\"",
+      "choices": [
+        {
+          "text": "Stand your ground",
+          "goto": "stand_ground"
+        },
+        {
+          "text": "Walk away quickly",
+          "goto": "walk_away_fast"
+        }
+      ]
+    },
+    "ask_who": {
+      "text": "\"Who are you talking about?\"\n\nThe old man's smile returns, but it doesn't reach his eyes.\n\n\"Oh, just someone I used to know. A long time ago. She was about your age, actually. Same hair. Same way of walking.\"\n\nHe reaches into his pocket and pulls out that worn leather wallet. This time, he shows you a photograph deliberately.\n\n\"Her name was Catherine. She walked through this park every evening. Until the night she didn't come home.\"\n\nHis voice drops to a whisper. \"They never found her, you know. Never found any of them.\"",
+      "choices": [
+        {
+          "text": "Run",
+          "goto": "run_away"
+        },
+        {
+          "text": "Demand to know what he's confessing to",
+          "goto": "confront_him"
+        }
+      ]
+    },
+    "try_to_leave": {
+      "text": "\"I really should get going,\" you say, standing up.\n\n\"Of course.\" He doesn't move. \"But before you go—\" He reaches into his pocket. You tense.\n\nHe produces a card. Plain white, with a phone number handwritten on it.\n\n\"In case you ever want to chat. I'm always here. Same bench, same time.\"\n\nYou take the card automatically. His fingers brush yours—cold, despite the mild weather.\n\n\"Take care,\" he says. \"Be safe. The park can be dangerous after dark.\"",
+      "choices": [
+        {
+          "text": "Take the card and leave quickly",
+          "goto": "leave_with_card"
+        },
+        {
+          "text": "Drop the card and run",
+          "goto": "run_away"
+        }
+      ]
+    },
+    "ask_about_photos": {
+      "text": "\"Who are they? All those photographs?\"\n\nThe old man goes very still. For a long moment, only the cooing of pigeons breaks the silence.\n\n\"You're curious,\" he says finally. \"That's dangerous.\"\n\nHe closes the wallet slowly and tucks it away.\n\n\"They were women I knew. A long time ago. Before the world learned to be afraid of men like me.\" His voice is distant, remembering. \"Some people called me a monster. Others never called anyone again.\"\n\nHe looks at you directly, and you see it now—something cold and empty behind his eyes.\n\n\"I'm old now. Harmless. Isn't that what you're thinking?\"",
+      "choices": [
+        {
+          "text": "Pretend to stay calm and slowly back away",
+          "goto": "calm_retreat"
+        },
+        {
+          "text": "Take out your phone to call for help",
+          "goto": "phone_for_help"
+        }
+      ]
+    },
+    "stand_up_scared": {
+      "text": "You stand abruptly, heart pounding.\n\n\"Leaving so soon?\" The old man doesn't look surprised. \"Most people do, once they start to understand.\"\n\nHe doesn't try to stop you. He just sits there, surrounded by pigeons, watching you retreat.\n\n\"Take care,\" he calls after you. \"And maybe take a different route home tonight. The park isn't safe after dark.\"\n\nYou don't look back. You walk as fast as you can without running. But his words follow you out of the park.\n\nWas that a confession? A warning? Or a threat?",
+      "choices": [
+        {
+          "text": "Go straight to the police",
+          "goto": "call_police",
+          "setState": { "calledPolice": true }
+        },
+        {
+          "text": "Try to forget it ever happened",
+          "goto": "try_to_forget"
+        }
+      ]
+    },
+    "call_police": {
+      "text": "Your hands shake as you dial 911.\n\nThe operator is skeptical at first—an old man in the park? Feeding pigeons?—but when you mention the Millbrook Strangler article, her tone changes.\n\n\"Stay where you are. Officers are on their way.\"\n\nTwenty minutes later, you're giving a statement. An hour after that, they find him—still on the bench, as if he'd been waiting.\n\nThe investigation takes months. They find things in his basement. Photographs. Jewelry. Things that belonged to women who disappeared decades ago.\n\nHe never confesses. But he never denies it either.\n\nYou testify at the trial. When they lead him away, he catches your eye and smiles—that same warm, grandfatherly smile.\n\n\"Thank you,\" he mouths. \"I was getting tired of waiting.\"",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "investigate_bench": {
+      "text": "Against every instinct, you walk back to the bench.\n\nThe paper bag is empty except for a few seeds. But the tin of butterscotch—you open it carefully.\n\nInside, beneath the candies, is a folded piece of paper. A list of names. Women's names. Twelve of them.\n\nThe last entry is recent. Fresh ink.\n\nIt's a physical description. Your height. Your hair color. Your route through the park.\n\nYou run.",
+      "choices": [
+        {
+          "text": "Go directly to the police with the evidence",
+          "goto": "police_with_evidence"
+        },
+        {
+          "text": "Flee the city entirely",
+          "goto": "flee_city"
+        }
+      ]
+    },
+    "flee_park": {
+      "text": "You don't look back. You don't stop until you're home, door locked, heart racing.\n\nFor weeks, you take different routes. You look over your shoulder. You jump at shadows.\n\nBut nothing happens. No old man appears at your door. No sinister notes arrive in the mail.\n\nEventually, life returns to normal. You almost convince yourself it was nothing—just a lonely old man, a creepy coincidence.\n\nThen, one evening, you find a tin of butterscotch on your doorstep.\n\nThere's no note. Just the candies. And when you look up and down the street, you see nothing.\n\nBut you feel eyes watching. You always feel eyes watching now.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "confront_him": {
+      "text": "\"What did you do to them?\"\n\nThe directness seems to surprise him. Then he laughs—a dry, papery sound.\n\n\"Brave. Stupid, but brave.\" He stands slowly. \"Do you really want to know? The police asked me the same thing, once. They couldn't prove anything.\"\n\nHe steps closer. You don't back away.\n\n\"I gave them peace,\" he whispers. \"The same peace I'll find, someday, when someone finally has the courage to stop me.\"\n\nHe presses something into your hand—a butterscotch—and walks away. You watch until he disappears around the corner.\n\nIn your palm, the candy is warm. Beneath it, a slip of paper: an address.",
+      "choices": [
+        {
+          "text": "Take the address to the police",
+          "goto": "police_with_evidence"
+        },
+        {
+          "text": "Go to the address yourself",
+          "goto": "go_to_address"
+        }
+      ]
+    },
+    "run_away": {
+      "text": "You run.\n\nYou don't look back. You run until the park is far behind you, until your lungs burn and your legs ache.\n\nYou never go back to that park. You never see the old man again.\n\nBut sometimes, late at night, you wonder. Was he telling the truth? Was he really a killer? Or just a lonely old man with a dark sense of humor?\n\nYou'll never know. And maybe that's for the best.\n\nSome doors, once opened, can never be closed again.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "calm_retreat": {
+      "text": "You force yourself to breathe. To smile.\n\n\"I should go,\" you say evenly. \"It was nice meeting you.\"\n\n\"Was it?\" He tilts his head. \"You know what I am now. Or what I was. Does that change things?\"\n\nYou take a step back. Then another.\n\n\"I'm too old for this now,\" he says, almost wistfully. \"Too tired. But I wanted someone to know. Before I'm gone. I wanted someone to remember them.\"\n\nHe pulls out the photographs—all of them—and lays them on the bench.\n\n\"Tell them,\" he says. \"Tell them where to find me. I'm ready.\"",
+      "choices": [
+        {
+          "text": "Call the police",
+          "goto": "call_police",
+          "setState": { "calledPolice": true }
+        }
+      ]
+    },
+    "phone_for_help": {
+      "text": "You pull out your phone, hands shaking.\n\n\"Calling for help?\" The old man doesn't seem concerned. \"Go ahead. I've been waiting forty years for someone to have the courage.\"\n\nHe doesn't run. Doesn't try to stop you. He just sits there, feeding the pigeons, while you dial 911.\n\n\"They'll want proof,\" he says calmly. \"Tell them to look in my garden. Under the roses. Martha loved roses.\"\n\nThe operator picks up. You give them everything—the old man, the photographs, his confession.\n\nWhen the police arrive, he's still sitting there. Smiling.\n\n\"Thank you,\" he tells you as they lead him away. \"For finally setting them free.\"",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "police_with_evidence": {
+      "text": "The police don't believe you at first. But the list changes everything.\n\nThe names match cold cases going back forty years. The address leads to a small house with a garden full of roses.\n\nUnder the roses, they find what he left behind.\n\nThe trial is national news. You testify, your voice steady despite the cameras. The old man watches you the entire time, that same gentle smile on his face.\n\n\"Guilty on twelve counts,\" the judge announces.\n\nAs they lead him away, he catches your eye.\n\n\"Thank you,\" he mouths. And despite everything, he looks... relieved.\n\nTwelve families finally get to bury their daughters. Because you stopped to look.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "flee_city": {
+      "text": "You pack a bag that night. You don't tell anyone where you're going.\n\nYou drive until dawn, then keep driving. New city. New name. New life.\n\nBut you can never outrun what you know.\n\nYears later, you see his face on the news. He died in his sleep, they say. A kind old man who fed pigeons in the park. The neighborhood is devastated.\n\nNo one ever found the evidence. No one ever knew.\n\nExcept you. And now you'll carry that weight forever—the women who might have been found, the families who never got closure.\n\nBecause you chose to run.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "go_to_address": {
+      "text": "The address leads to a small house at the edge of town. Roses in the garden. Lace curtains in the windows.\n\nThe door is unlocked.\n\nInside, you find a shrine. Photographs covering every wall. Women's faces, dozens of them. Newspaper clippings. Personal items.\n\nAnd a notebook, open on the table. His handwriting:\n\n\"If you're reading this, you made the choice I couldn't. You came alone. Either to stop me, or to understand me.\"\n\nYou hear footsteps behind you. The floor creaks.\n\n\"I wondered if it would be you,\" the old man says. \"I hoped it would be.\"\n\nYou turn to face him, and in his hands—",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "try_to_forget": {
+      "text": "You tell yourself it was nothing. An old man with a morbid sense of humor. A coincidence.\n\nLife goes on. You take a different route to work. You avoid the park.\n\nMonths pass. You almost forget.\n\nThen you see the obituary. \"Local man, 87, dies peacefully at home. No surviving family. Memorial service at Millbrook Park.\"\n\nYou don't go. But you read the comments online. \"Such a sweet man.\" \"Always had time for a chat.\" \"Fed the pigeons every day.\"\n\nNo one knows. No one will ever know.\n\nExcept you. And you chose silence.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "leave_with_card": {
+      "text": "You take the card and walk away, forcing yourself not to run.\n\nThat night, you stare at the number. Your thumb hovers over the call button a dozen times.\n\nYou never dial. But you never throw the card away either.\n\nYears later, after he's long dead, after the house is demolished and the park renamed, you still have it. That plain white card with its handwritten number.\n\nA reminder of the day you almost understood something terrible. And chose not to look.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "question_him": {
+      "text": "\"Why do you want to know where I live?\"\n\nThe question hangs in the air. The old man's smile flickers—just for a moment.\n\n\"Suspicious one, aren't you?\" He chuckles, but it sounds forced now. \"Can't an old man make conversation anymore?\"\n\nHe stands slowly, gathering his bag of seeds.\n\n\"You're smart,\" he says. \"Smarter than most. Most of them just... trusted me.\"\n\nHe walks away without another word. But he leaves something behind on the bench. A single photograph, face-down.\n\nYou don't want to look. But you have to.",
+      "choices": [
+        {
+          "text": "Turn over the photograph",
+          "goto": "turn_over_photo"
+        },
+        {
+          "text": "Leave it and call the police",
+          "goto": "call_police",
+          "setState": { "calledPolice": true }
+        }
+      ]
+    },
+    "turn_over_photo": {
+      "text": "You turn the photograph over.\n\nIt's you.\n\nTaken from a distance, through the park trees. Yesterday, maybe the day before. You're walking, headphones in, oblivious.\n\nOn the back, in that same faded handwriting: your name. Your address. Your daily schedule.\n\nThe old man is gone. But he knows everything about you.\n\nAnd now you know about him.",
+      "choices": [
+        {
+          "text": "Take the photo straight to the police",
+          "goto": "police_with_evidence"
+        },
+        {
+          "text": "Move away immediately",
+          "goto": "flee_city"
+        }
+      ]
+    },
+    "lie_about_home": {
+      "text": "\"I'm just visiting,\" you lie smoothly. \"Staying with friends across town.\"\n\n\"Ah.\" He nods, but something shifts in his expression. \"That's a shame. I thought perhaps we might be neighbors.\"\n\nHe reaches into his coat—slowly, deliberately—and produces a smartphone. Incongruous for such an old-fashioned man.\n\n\"Would you like to see something?\" he asks. Before you can respond, he shows you the screen.\n\nIt's a photograph of your apartment building. Your window, specifically. Taken at night, when the lights were on.\n\n\"I like to know my neighbors,\" he says softly. \"Even the ones who lie.\"",
+      "choices": [
+        {
+          "text": "Grab the phone as evidence",
+          "goto": "grab_phone"
+        },
+        {
+          "text": "Run and don't look back",
+          "goto": "run_away"
+        }
+      ]
+    },
+    "grab_phone": {
+      "text": "You snatch the phone from his hands before he can react.\n\n\"Hey—\" His voice sharpens, the grandfatherly warmth gone.\n\nYou run. He doesn't chase you—he can't, he's too old—but you hear him laughing behind you.\n\n\"Clever girl,\" he calls. \"Cleverer than the others.\"\n\nThe phone is full of photographs. Women. Dozens of them. Some you recognize from missing persons reports.\n\nYou take it to the police. It's enough to get a warrant.\n\nIn his basement, they find what's left of his collection. And under the roses in his garden, they find the others.\n\nYou helped end a forty-year nightmare. But you'll never walk through a park the same way again.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "stand_ground": {
+      "text": "\"What do you want from me?\"\n\nThe old man studies you for a long moment. Then he sighs.\n\n\"Nothing anymore. I just wanted to see if there were still people who paid attention. Who trusted their instincts instead of their politeness.\"\n\nHe turns to leave, then pauses.\n\n\"You're going to look me up after this, aren't you? Search the newspapers. Try to figure out who I am.\"\n\nHe smiles, but it doesn't reach his eyes.\n\n\"Good luck. I've had a lot of practice at being invisible.\"",
+      "choices": [
+        {
+          "text": "Research him at the library",
+          "goto": "read_newspaper",
+          "setState": { "foundNewspaper": true }
+        },
+        {
+          "text": "Let it go and move on",
+          "goto": "try_to_forget"
+        }
+      ]
+    },
+    "walk_away_fast": {
+      "text": "You turn and walk away as fast as you can without breaking into a run.\n\n\"Smart,\" the old man calls after you. \"Very smart. That's what saved you, you know. Caution.\"\n\nYou don't look back. You don't slow down until you're on a crowded street, surrounded by people and noise and normalcy.\n\nBut his words echo in your mind. \"That's what saved you.\"\n\nSaved you from what?\n\nYou never find out. And maybe that's the luckiest thing that ever happened to you.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "back_away": {
+      "text": "You step back. Then again. Then you're walking, then running.\n\nThe old man doesn't follow. He just sits there, photographs in his lap, watching you go.\n\n\"Tell someone,\" he calls after you. \"Please. Tell someone.\"\n\nYou do. You go straight to the police.\n\nThey're skeptical at first, but they investigate. And what they find in his house is enough to reopen a dozen cold cases.\n\nHe wanted to be caught, in the end. He was tired of carrying the weight.\n\nBut the women in those photographs will never come home. Some doors, once opened, reveal only darkness.",
+      "isEnding": true,
+      "endingType": "good"
+    }
+  }
+}
+

@@ -9,14 +9,18 @@ interface ChoiceButtonProps {
 
 export function ChoiceButton({ choice, index, onClick }: ChoiceButtonProps) {
   return (
-    <button
-      className={styles.choiceButton}
-      onClick={onClick}
+    <div 
+      className={styles.choiceRow}
       style={{ animationDelay: `${index * 100}ms` }}
     >
       <span className={styles.choiceNumber}>{index + 1}</span>
-      <span className={styles.choiceText}>{choice.text}</span>
-    </button>
+      <button
+        className={styles.choiceButton}
+        onClick={onClick}
+      >
+        <span className={styles.choiceText}>{choice.text}</span>
+      </button>
+    </div>
   );
 }
 

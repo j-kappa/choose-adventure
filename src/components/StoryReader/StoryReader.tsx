@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useStory } from '../../hooks/useStory';
 import { fetchStory } from '../../utils/storyLoader';
@@ -25,6 +25,28 @@ export function StoryReader() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const availableChoices = getAvailableChoices();
+
+  // Keyboard shortcuts for choices
+  const handleKeyPress = useCallback((event: KeyboardEvent) => {
+    // Ignore if user is typing in an input
+    if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+      return;
+    }
+
+    const key = event.key;
+    const choiceIndex = parseInt(key, 10) - 1;
+
+    if (choiceIndex >= 0 && choiceIndex < availableChoices.length && !isEnding) {
+      makeChoice(availableChoices[choiceIndex]);
+    }
+  }, [availableChoices, makeChoice, isEnding]);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [handleKeyPress]);
 
   useEffect(() => {
     async function load() {
@@ -76,8 +98,6 @@ export function StoryReader() {
       </div>
     );
   }
-
-  const availableChoices = getAvailableChoices();
 
   const handleBackToLibrary = () => {
     navigate('/');

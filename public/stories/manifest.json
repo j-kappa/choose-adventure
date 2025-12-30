@@ -13,6 +13,13 @@
       "author": "Adventure Engine",
       "description": "A Russian asset wants out. You have 48 hours to extract them from Moscow before the FSB closes in.",
       "file": "the-defector.adventure.json"
+    },
+    {
+      "id": "the-old-man",
+      "title": "The Man on the Bench",
+      "author": "Adventure Engine",
+      "description": "A chance encounter with a kind old man in the park. But some people aren't what they seem.",
+      "file": "the-old-man.adventure.json"
     }
   ]
 }
