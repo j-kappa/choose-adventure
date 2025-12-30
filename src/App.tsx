@@ -6,6 +6,7 @@ import { FontFamilyProvider } from './context/FontFamilyContext';
 import { Layout } from './components/Layout';
 import { StoryLibrary } from './components/StoryLibrary';
 import { StoryReader } from './components/StoryReader';
+import { Terms } from './components/Terms';
 
 import './styles/global.css';
 
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/" element={<Layout />}>
                   <Route index element={<StoryLibrary />} />
                   <Route path="story/:storyId" element={<StoryReader />} />
+                  <Route path="terms" element={<Terms />} />
                 </Route>
               </Routes>
             </BrowserRouter>

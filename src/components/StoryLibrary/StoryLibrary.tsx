@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import type { StoryManifestEntry } from '../../types/story';
 import { getAvailableStories } from '../../utils/storyLoader';
 import { StoryCard } from './StoryCard';
+import { Footer } from '../Footer';
 import styles from './StoryLibrary.module.css';
 
 export function StoryLibrary() {
   const [stories, setStories] = useState<StoryManifestEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     async function loadStories() {
@@ -23,6 +25,17 @@ export function StoryLibrary() {
 
     loadStories();
   }, []);
+
+  const filteredStories = useMemo(() => {
+    if (!searchQuery.trim()) return stories;
+    
+    const query = searchQuery.toLowerCase();
+    return stories.filter(story => 
+      story.title.toLowerCase().includes(query) ||
+      story.description.toLowerCase().includes(query) ||
+      story.author.toLowerCase().includes(query)
+    );
+  }, [stories, searchQuery]);
 
   if (loading) {
     return (
@@ -53,6 +66,18 @@ export function StoryLibrary() {
         <p className={styles.subtitle}>
           Select a story to begin your journey
         </p>
+        {stories.length > 0 && (
+          <div className={styles.searchContainer}>
+            <input
+              type="text"
+              className={styles.searchInput}
+              placeholder="Search stories..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              aria-label="Search stories"
+            />
+          </div>
+        )}
       </header>
 
       {stories.length === 0 ? (
@@ -62,13 +87,20 @@ export function StoryLibrary() {
             Add story files to the <code>/public/stories/</code> directory.
           </p>
         </div>
+      ) : filteredStories.length === 0 ? (
+        <div className={styles.noResults}>
+          <p>No stories found</p>
+          <p>Try a different search term</p>
+        </div>
       ) : (
         <div className={styles.grid}>
-          {stories.map(story => (
-            <StoryCard key={story.id} story={story} />
+          {filteredStories.map((story, index) => (
+            <StoryCard key={story.id} story={story} index={index} />
           ))}
         </div>
       )}
+
+      <Footer />
     </div>
   );
 }

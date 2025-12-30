@@ -4,11 +4,16 @@ import styles from './StoryLibrary.module.css';
 
 interface StoryCardProps {
   story: StoryManifestEntry;
+  index?: number;
 }
 
-export function StoryCard({ story }: StoryCardProps) {
+export function StoryCard({ story, index = 0 }: StoryCardProps) {
   return (
-    <Link to={`/story/${story.id}`} className={styles.card}>
+    <Link 
+      to={`/story/${story.id}`} 
+      className={styles.card}
+      style={{ '--animation-order': index } as React.CSSProperties}
+    >
       <article className={styles.cardContent}>
         {story.cover && (
           <div className={styles.cardCover}>
