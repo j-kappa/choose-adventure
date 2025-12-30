@@ -41,6 +41,7 @@ export function StoryReader() {
 
     if (choiceIndex >= 0 && choiceIndex < availableChoices.length && !isEnding) {
       makeChoice(availableChoices[choiceIndex]);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [availableChoices, makeChoice, isEnding]);
 
@@ -186,7 +187,10 @@ export function StoryReader() {
                   key={`${choice.goto}-${index}`}
                   choice={choice}
                   index={index}
-                  onClick={() => makeChoice(choice)}
+                  onClick={() => {
+                    makeChoice(choice);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
                 />
               ))}
             </div>
