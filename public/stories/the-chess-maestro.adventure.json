@@ -1,0 +1,439 @@
+{
+  "id": "the-chess-maestro",
+  "title": "The Chess Maestro",
+  "author": "Adventure Engine",
+  "description": "Viktor Lenkov is the world's greatest chess player. But his real game is played in the shadows—where every move could be his last.",
+  "version": "1.0",
+  "initialState": {
+    "hasCodebook": false,
+    "trustsNadia": false,
+    "knowsAboutMole": false,
+    "savedContact": false,
+    "coverIntact": true,
+    "hasDeadDrop": false,
+    "kgbSuspects": false
+  },
+  "start": "tournament_eve",
+  "passages": {
+    "tournament_eve": {
+      "text": "Vienna, 1962. The chandeliers of the Hotel Imperial cast golden light across the marble lobby. You are Viktor Lenkov—Soviet chess grandmaster, three-time world champion, and the most celebrated player of your generation.\n\nYou are also Agent ROOK, working for the CIA.\n\nTomorrow begins the World Chess Championship against the American, Robert Fischer. The eyes of two superpowers will be watching. But tonight, you have other business.\n\nYour handler, a man you know only as \"The Bishop,\" sent word through the usual channels: a dead drop at midnight, coordinates hidden in a chess problem published in this morning's Wiener Zeitung.\n\nYou decoded it an hour ago. The location is a bookshop in the Jewish Quarter—three blocks from here.\n\nBut something feels wrong. Two men in grey overcoats have been nursing coffees in the lobby for three hours. KGB? Austrian intelligence? Or just chess enthusiasts hoping for an autograph?",
+      "choices": [
+        {
+          "text": "Leave through the service entrance",
+          "goto": "service_exit"
+        },
+        {
+          "text": "Approach the men directly—test their reaction",
+          "goto": "approach_men"
+        },
+        {
+          "text": "Wait until midnight and use the crowds as cover",
+          "goto": "wait_crowds"
+        }
+      ]
+    },
+    "service_exit": {
+      "text": "You take the staff elevator to the basement, nodding to a confused porter as you pass through the kitchen. The service entrance opens onto a narrow alley smelling of garbage and rain.\n\nVienna at night. Cobblestones slick with moisture. The distant sound of a string quartet from some cafe. You walk quickly, keeping to the shadows.\n\nThe bookshop is dark when you arrive—closed hours ago. But the side door is unlocked, as promised. Inside, the smell of old paper and dust. Shelves stretching into darkness.\n\nThe dead drop is behind a copy of Dostoevsky's \"The Idiot\"—appropriate, you think. Inside the hollowed book, you find a microfilm canister and a note in The Bishop's cramped handwriting:\n\n\"ROOK—Critical intel. Mole in Vienna station. Trust no one. Memorize and destroy.\"\n\nYour blood runs cold. A mole. That would explain the men in the lobby. That would explain a lot of things.",
+      "choices": [
+        {
+          "text": "Study the microfilm immediately",
+          "goto": "study_microfilm",
+          "setState": { "hasCodebook": true, "knowsAboutMole": true }
+        },
+        {
+          "text": "Pocket it and leave—you've been here too long",
+          "goto": "pocket_leave",
+          "setState": { "hasDeadDrop": true }
+        }
+      ]
+    },
+    "approach_men": {
+      "text": "Chess has taught you that sometimes the best defense is offense. You walk directly to their table, your most charming Soviet smile in place.\n\n\"Gentlemen. You've been watching me all evening. Would you like an autograph?\"\n\nThey exchange glances. One reaches into his coat—your hand drifts toward the fountain pen in your pocket, the one with the hidden blade—but he produces only a small notebook.\n\n\"Herr Lenkov! We are such fans. My son, he studies your games every night.\"\n\nAustrian chess enthusiasts. Just fans. You sign their notebooks with a flourish, pose for a photograph, and excuse yourself.\n\nBut as you turn away, you catch something: the second man's watch. A Vostok Komandirskie—Soviet military issue. No Austrian civilian would own one.\n\nThey're not fans. They're watchers. And now they know you noticed.",
+      "choices": [
+        {
+          "text": "Continue as if you noticed nothing",
+          "goto": "play_dumb"
+        },
+        {
+          "text": "Abort the dead drop—too risky",
+          "goto": "abort_drop"
+        },
+        {
+          "text": "Lose them in the streets, then proceed",
+          "goto": "lose_tail"
+        }
+      ]
+    },
+    "wait_crowds": {
+      "text": "Patience. The first virtue of chess.\n\nYou return to your room and wait. At eleven-thirty, you descend to the lobby. It's transformed—post-opera crowds fill the space, champagne flowing, laughter echoing off the marble.\n\nThe men in grey coats are still there, but they can't follow you through this chaos without being obvious. You slip out with a group of Italian tourists, letting their animated conversation cover your exit.\n\nThe streets are busy enough. You take a circuitous route—doubling back twice, stopping to admire a shop window while watching reflections. Clean.\n\nThe bookshop is waiting. Inside, you find the dead drop exactly where it should be: a microfilm canister hidden in a hollowed Dostoevsky novel.\n\nThe note inside makes your stomach drop:\n\n\"ROOK—Mole in Vienna station. Your cover may be compromised. Proceed with extreme caution.\"",
+      "choices": [
+        {
+          "text": "Take the microfilm and analyze it at the hotel",
+          "goto": "analyze_hotel",
+          "setState": { "hasDeadDrop": true, "knowsAboutMole": true }
+        },
+        {
+          "text": "Memorize the note and destroy everything",
+          "goto": "memorize_destroy",
+          "setState": { "knowsAboutMole": true }
+        }
+      ]
+    },
+    "study_microfilm": {
+      "text": "You find the bookshop's back office—a desk, a reading lamp, a magnifying glass. Perfect.\n\nThe microfilm contains photographs of documents. Soviet troop movements along the Czech border. Names of KGB officers in Western Europe. And something else: a list of suspected CIA assets in the Eastern Bloc.\n\nYour codename is on the list. ROOK. With a red question mark beside it.\n\nSomeone suspects you. Not confirmed—not yet—but suspected. That's why the watchers. That's why the feeling of eyes on your back.\n\nThe mole isn't just leaking information. The mole is hunting you.\n\nYou memorize what you can and burn the microfilm in an ashtray. The smoke rises like a ghost.",
+      "choices": [
+        {
+          "text": "Return to the hotel and prepare for tomorrow's match",
+          "goto": "return_hotel"
+        },
+        {
+          "text": "Contact your emergency extraction plan",
+          "goto": "emergency_extract"
+        }
+      ]
+    },
+    "pocket_leave": {
+      "text": "Every instinct screams at you to leave. You pocket the canister and slip back into the night.\n\nYou're two blocks from the hotel when you see her: a woman in a red coat, standing beneath a streetlamp. She's reading a newspaper—at midnight, in the rain.\n\n\"Maestro,\" she says as you approach. Russian accent. \"You play white tomorrow, yes?\"\n\n\"I do.\"\n\n\"Interesting opening, the Sicilian Defense. So many variations.\" She folds the newspaper. \"So many ways to lose.\"\n\nA threat? A warning? You can't tell. She walks away before you can respond, her heels clicking on wet cobblestones.\n\nThe newspaper she left behind contains a chess problem you've never seen. And hidden in the notation—another code. Another message.\n\n\"The knight is in danger. Protect the king.\"",
+      "choices": [
+        {
+          "text": "Follow the woman",
+          "goto": "follow_woman"
+        },
+        {
+          "text": "Ignore her and return to the hotel",
+          "goto": "return_hotel"
+        }
+      ]
+    },
+    "play_dumb": {
+      "text": "You smile, wave, and walk to the elevator as if nothing happened. Let them think you're oblivious.\n\nBut your mind races. Soviet watchers, here in Vienna. They're not following you because of chess. They're following you because someone talked.\n\nThe mole.\n\nYou retrieve the dead drop at midnight, moving quickly, professionally. The microfilm contains devastating intelligence—but also a warning: your cover is hanging by a thread.\n\nTomorrow, you'll sit across from Fischer and play the most important chess match of your career. But the real game is happening in the shadows. And you're not sure which side is winning.",
+      "choices": [
+        {
+          "text": "Focus on the chess match—maintain your cover",
+          "goto": "match_day",
+          "setState": { "hasDeadDrop": true, "knowsAboutMole": true }
+        },
+        {
+          "text": "Investigate the mole before it's too late",
+          "goto": "investigate_mole",
+          "setState": { "hasDeadDrop": true, "knowsAboutMole": true }
+        }
+      ]
+    },
+    "abort_drop": {
+      "text": "Too dangerous. The Bishop will understand.\n\nYou return to your room and spend the night analyzing Fischer's games instead. The American is brilliant—aggressive, unpredictable, capable of moves that seem insane until they're genius.\n\nMuch like espionage, really.\n\nIn the morning, you receive a message slipped under your door: a chess problem torn from a newspaper. The Bishop's emergency signal.\n\n\"ROOK—Why didn't you retrieve? Critical. Meet alternate location: Café Central, noon. Come alone.\"\n\nBut your match against Fischer begins at two. Missing the tournament would raise questions. And the Soviet delegation is already watching you like hawks.",
+      "choices": [
+        {
+          "text": "Go to Café Central—intelligence comes first",
+          "goto": "cafe_central"
+        },
+        {
+          "text": "Send a message that you'll meet after the match",
+          "goto": "delay_meeting"
+        }
+      ]
+    },
+    "lose_tail": {
+      "text": "You know this city. You spent three months here in '58, memorizing every alley, every shortcut, every escape route.\n\nYou walk casually toward the opera house, then duck into a side street. Double back through a courtyard. Climb a fire escape to a rooftop, cross to the next building, descend through an unlocked service door.\n\nBy the time you reach the bookshop, you're certain you're clean. The watchers are probably still circling the opera house.\n\nThe dead drop is waiting. Microfilm. A note about a mole. And something else: a photograph of a woman you recognize.\n\nNadia Kovalenko. Soviet chess journalist. She's been covering the tournament for Pravda.\n\nThe note says: \"She's one of ours. Make contact. She'll explain everything.\"",
+      "choices": [
+        {
+          "text": "Seek out Nadia tomorrow",
+          "goto": "find_nadia",
+          "setState": { "hasDeadDrop": true, "knowsAboutMole": true }
+        },
+        {
+          "text": "This could be a trap—proceed carefully",
+          "goto": "proceed_carefully",
+          "setState": { "hasDeadDrop": true, "knowsAboutMole": true }
+        }
+      ]
+    },
+    "follow_woman": {
+      "text": "You follow at a distance, keeping to the shadows. She moves confidently, not checking behind her—either she doesn't care if you follow, or she wants you to.\n\nShe enters a small cafe near the Danube. You wait five minutes, then enter yourself.\n\nShe's sitting at a back table, two cups of coffee already ordered. \"Maestro. Please, sit.\"\n\n\"Who are you?\"\n\n\"A friend. Or an enemy. It depends on what you do next.\" She slides a photograph across the table. \"Recognize him?\"\n\nColonel Dmitri Volkov. Your KGB handler. The man who thinks you're a loyal Soviet agent.\n\n\"He knows about you,\" she says. \"Not everything—but enough. He's here in Vienna. He's watching.\"\n\n\"And you?\"\n\n\"I'm the one trying to keep you alive.\" She stands. \"The match tomorrow. Lose the first game. It will buy you time.\"\n\nShe's gone before you can respond.",
+      "choices": [
+        {
+          "text": "Consider throwing the first game",
+          "goto": "consider_throwing"
+        },
+        {
+          "text": "Play to win—you won't be manipulated",
+          "goto": "play_to_win"
+        }
+      ]
+    },
+    "analyze_hotel": {
+      "text": "You return to the hotel, microfilm hidden in your sock, and lock yourself in the bathroom. The tiny frames contain more than you expected.\n\nSoviet military positions. NATO response plans. And a personnel file: your own.\n\n\"Viktor Lenkov. Suspected Western asset. Under investigation. Recommendation: terminate with extreme prejudice.\"\n\nYour hands tremble. They don't just suspect—they're planning to kill you. The only question is when.\n\nThe tournament. It has to be during the tournament. Maximum embarrassment for the Americans if their secret agent dies on camera. Maximum propaganda value.\n\nYou have maybe forty-eight hours to find the mole, complete your mission, and escape. And you have to do it while playing the best chess of your life.",
+      "choices": [
+        {
+          "text": "Contact your emergency extraction",
+          "goto": "emergency_extract"
+        },
+        {
+          "text": "Find the mole first—they're the real threat",
+          "goto": "find_mole",
+          "setState": { "hasCodebook": true }
+        }
+      ]
+    },
+    "memorize_destroy": {
+      "text": "Leave no evidence. The first rule.\n\nYou read the note three times, committing every word to memory. Then you burn it, grinding the ashes into the bookshop's dusty floor.\n\nThe microfilm goes in your pocket—too valuable to destroy, too dangerous to leave behind. You'll find a way to transmit its contents later.\n\nOn the walk back, you notice something: a light in a third-floor window of the building across from your hotel. A camera flash? A signal?\n\nYou're being photographed. Documented. Someone is building a file.\n\nThe mole isn't just betraying agents. The mole is setting a trap. And you just walked into it.",
+      "choices": [
+        {
+          "text": "Change hotels immediately",
+          "goto": "change_hotels"
+        },
+        {
+          "text": "Stay and feed them false information",
+          "goto": "feed_false_info"
+        }
+      ]
+    },
+    "return_hotel": {
+      "text": "You return to the Hotel Imperial and spend a sleepless night staring at the ceiling. Tomorrow, you'll play Fischer. The world will watch. And somewhere in the crowd, enemies will be waiting.\n\nAt dawn, you order coffee and review your opening preparations. The Sicilian Defense. The Ruy Lopez. The patterns calm your mind, the way they always have.\n\nA knock at the door. \"Herr Lenkov? A message for you.\"\n\nThe bellhop hands you an envelope. Inside, a single chess piece: a black rook.\n\nAnd a note in English: \"We know who you are. Play well today. It may be your last game.\"",
+      "choices": [
+        {
+          "text": "Proceed to the match as planned",
+          "goto": "match_day"
+        },
+        {
+          "text": "Try to identify the sender",
+          "goto": "identify_sender"
+        }
+      ]
+    },
+    "emergency_extract": {
+      "text": "The emergency protocol is simple: a coded message to the American embassy, a car waiting at a predetermined location, a flight to safety.\n\nBut it means abandoning everything. Your cover. Your country. Your entire life.\n\nYou think of your mother in Leningrad, your sister in Kiev. If you defect, they'll suffer. The KGB always punishes families.\n\nBut if you stay, you die.\n\nYou send the signal. Three hours later, a man in a tan jacket approaches you in a park.\n\n\"Mr. Lenkov. Nice day for a walk.\"\n\n\"I prefer the rain.\"\n\n\"Then we should go somewhere dry.\"\n\nThe embassy car is waiting. You're inside before you can second-guess yourself. Vienna disappears behind you.\n\nYou'll never play competitive chess again. You'll never see your homeland. But you'll live.\n\nSometimes that's the only victory that matters.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "match_day": {
+      "text": "The Musikverein's concert hall has been transformed into an arena. Two thousand spectators fill the seats. Camera flashes like lightning. The world's press, gathered to witness history.\n\nRobert Fischer sits across from you—young, intense, already a legend. He shakes your hand without smiling.\n\n\"Good luck, Maestro.\"\n\n\"And to you.\"\n\nThe clock starts. White moves first. You reach for your king's pawn, the most classical of openings.\n\nBut your mind isn't on the game. Somewhere in this audience is a mole. Somewhere, enemies are watching. And the note in your pocket—\"It may be your last game\"—burns like a coal.\n\nFischer plays e5. The Sicilian Defense. Of course.\n\nYou see movement in the crowd. A woman in a red coat. The same one from last night.\n\nShe's holding a newspaper. And even from here, you can read the headline:\n\n\"SOVIET CHESS CHAMPION: SPY?\"",
+      "choices": [
+        {
+          "text": "Continue the match—don't let them see you rattled",
+          "goto": "continue_match",
+          "setState": { "coverIntact": false }
+        },
+        {
+          "text": "Feign illness and abort",
+          "goto": "feign_illness"
+        }
+      ]
+    },
+    "investigate_mole": {
+      "text": "You spend the night not sleeping but hunting.\n\nThe Vienna CIA station has four officers. One of them is feeding information to the Soviets. You run through what you know:\n\nHarrison—the station chief. Twenty years of service. Above suspicion?\n\nMueller—the handler. Former Wehrmacht, recruited after the war. Bitter about something.\n\nKowalski—communications. Young, ambitious. Access to everything.\n\nAnd The Bishop himself—your direct contact. You've never seen his face. Only his handwriting.\n\nThe microfilm suggests the leak started six months ago. What changed six months ago?\n\nThen you remember: Mueller's wife died. He started drinking. He needed money.\n\nMueller. It has to be Mueller.",
+      "choices": [
+        {
+          "text": "Confront Mueller directly",
+          "goto": "confront_mueller"
+        },
+        {
+          "text": "Report your suspicions through channels",
+          "goto": "report_suspicions"
+        },
+        {
+          "text": "Set a trap to confirm",
+          "goto": "set_trap"
+        }
+      ]
+    },
+    "find_nadia": {
+      "text": "You find her in the press room the next morning, typing furiously on a portable Olivetti.\n\n\"Miss Kovalenko. I enjoyed your article on the Yugoslav Candidates Tournament.\"\n\nShe looks up. Dark eyes, sharp and calculating. \"Maestro. I'm flattered you read Pravda.\"\n\n\"I read everything.\" You lower your voice. \"The Bishop sends his regards.\"\n\nHer typing doesn't falter, but you see the tension in her shoulders. \"Ah. So you're the one.\"\n\n\"We should talk. Somewhere private.\"\n\n\"The botanical gardens. Tonight at ten. Come alone.\"\n\nShe returns to her typing without another word. You're dismissed.\n\nBut can you trust her? The Bishop vouched for her—but the Bishop isn't here. And in this game, trusting the wrong person means death.",
+      "choices": [
+        {
+          "text": "Go to the gardens—trust the intelligence",
+          "goto": "gardens_meeting",
+          "setState": { "trustsNadia": true }
+        },
+        {
+          "text": "Go, but bring insurance",
+          "goto": "gardens_armed"
+        }
+      ]
+    },
+    "proceed_carefully": {
+      "text": "You don't trust the photograph. You don't trust the note. You don't trust anything anymore.\n\nThe next day, you watch Nadia Kovalenko from across the press room. She seems ordinary—a journalist doing her job, asking questions, scribbling notes.\n\nBut there's something in the way she moves. Too confident. Too aware of her surroundings. She's not just a journalist.\n\nDuring the lunch break, you see her slip a note to one of the Austrian security guards. The guard reads it, nods, and walks away.\n\n\"Maestro?\" Fischer's voice. \"They're calling us back.\"\n\n\"Coming.\"\n\nYou make a decision. Tonight, after the match, you'll follow Nadia Kovalenko. You'll find out whose side she's really on.",
+      "choices": [
+        {
+          "text": "Follow Nadia after the match",
+          "goto": "follow_nadia"
+        },
+        {
+          "text": "Approach her directly during the break",
+          "goto": "approach_nadia"
+        }
+      ]
+    },
+    "consider_throwing": {
+      "text": "Lose the first game. Buy yourself time.\n\nThe logic is sound. A loss would ease KGB suspicions—why would a spy deliberately lose? It would make you look like a loyal Soviet who simply had a bad day.\n\nBut Fischer is watching. And you're a chess player before you're a spy. Every instinct rebels against the idea of losing on purpose.\n\nYou sit across from the American genius and think about the life you've led. The lies. The codes. The fear that never goes away.\n\nIs survival worth your honor?",
+      "choices": [
+        {
+          "text": "Yes—play to lose",
+          "goto": "throw_game"
+        },
+        {
+          "text": "No—play to win, whatever the cost",
+          "goto": "play_to_win"
+        }
+      ]
+    },
+    "play_to_win": {
+      "text": "You are Viktor Lenkov. World champion. You have dedicated your life to this game. You will not throw it away.\n\nThe match begins. Fischer plays aggressively—e4, the King's Gambit, a wild attacking style that catches many players off guard.\n\nBut you are not many players.\n\nYou counter with precision, each move a statement. The crowd falls silent. Even the photographers stop flashing. This is chess at its highest level—two minds in combat, no room for error.\n\nBy move forty-two, Fischer extends his hand. \"I resign.\"\n\nThe crowd erupts. You've won the first game. You've proven yourself.\n\nBut as you stand to acknowledge the applause, you see Nadia Kovalenko in the crowd. She's not clapping. She's holding up a photograph—a photograph of you entering the bookshop last night.\n\nYour cover is blown. And the game has just begun.",
+      "choices": [
+        {
+          "text": "Leave immediately—the extraction protocol",
+          "goto": "emergency_extract"
+        },
+        {
+          "text": "Find Nadia—she's the key to everything",
+          "goto": "confront_nadia"
+        }
+      ]
+    },
+    "throw_game": {
+      "text": "You make deliberate errors—subtle ones, the kind only a grandmaster would recognize as intentional. A knight moved too early. A bishop left undefended. A queen sacrifice that serves no strategic purpose.\n\nFischer's eyes narrow. He knows something is wrong. But he takes the win.\n\n\"Good game,\" he says, shaking your hand. His voice is cold. He suspects.\n\nIn the press conference afterward, the Soviet delegation praises your sportsmanship, your graciousness in defeat. Colonel Volkov watches from the back of the room, nodding.\n\nThe ruse worked. For now.\n\nBut you've lost more than a chess game. You've lost a piece of yourself. And you're not sure you can get it back.",
+      "choices": [
+        {
+          "text": "Continue the charade—win the next games legitimately",
+          "goto": "redemption_match"
+        },
+        {
+          "text": "Reach out to Nadia—you need allies",
+          "goto": "reach_nadia",
+          "setState": { "trustsNadia": true }
+        }
+      ]
+    },
+    "gardens_meeting": {
+      "text": "The botanical gardens at night are a maze of shadows and moonlight. You find Nadia waiting by the orchid house, a cigarette glowing in her hand.\n\n\"You came.\"\n\n\"I came.\"\n\n\"Do you trust me?\"\n\n\"I trust The Bishop.\"\n\nShe laughs—a short, bitter sound. \"The Bishop is dead, Maestro. Killed three days ago in Berlin. The mole got to him first.\"\n\nYour world tilts. The Bishop—your lifeline—gone.\n\n\"I'm your new handler,\" Nadia continues. \"I know it's not ideal. But we don't have time for introductions. The KGB is moving tomorrow. They're going to arrest you during the third game. Maximum publicity. Maximum humiliation.\"\n\n\"How do you know?\"\n\n\"Because I'm the one who was supposed to deliver you.\" She drops her cigarette, grinds it out. \"I'm KGB, Viktor. Or I was. Now I'm offering you something better: a way out.\"",
+      "choices": [
+        {
+          "text": "Trust her—you have no other choice",
+          "goto": "trust_nadia",
+          "setState": { "savedContact": true }
+        },
+        {
+          "text": "This is a trap—run",
+          "goto": "run_from_gardens"
+        }
+      ]
+    },
+    "trust_nadia": {
+      "text": "You look at her for a long moment. KGB. The enemy. But also, perhaps, the only person who can save you.\n\n\"What's the way out?\"\n\n\"The American embassy. I have contacts. They'll take us both—you as an asset, me as a defector. We disappear. New names, new lives.\"\n\n\"And the match?\"\n\n\"Forget the match.\" She grabs your arm. \"There won't be a match. Tomorrow morning, Colonel Volkov will announce that you've had a nervous breakdown. They'll take you to a car. You'll never be seen again.\"\n\nYou believe her. The pieces fit.\n\n\"Okay,\" you say. \"What's the plan?\"\n\nThree hours later, you're in the basement of the American embassy, drinking bitter coffee while diplomats argue about your fate. Nadia sits beside you, her hand in yours.\n\nYou'll never play competitive chess again. You'll never see Moscow. But you're alive. And for the first time in years, you're free.\n\nThe greatest game you ever played wasn't on a board. It was in the shadows. And you won.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "run_from_gardens": {
+      "text": "You run. Through the orchid house, past the tropical palms, into the night. Nadia calls after you, but you don't stop.\n\nTrap. It has to be a trap. The KGB doesn't defect. The KGB destroys.\n\nYou make it to the street, hail a taxi, demand the American embassy. The driver looks at you strangely but complies.\n\nAt the embassy gates, you identify yourself. They don't believe you at first—why would the Soviet chess champion be defecting at midnight?—but eventually, someone makes a phone call, and you're escorted inside.\n\nIt takes three days to debrief. By then, Nadia Kovalenko has vanished. The Soviets claim you've had a nervous breakdown. Fischer wins the championship by forfeit.\n\nYou spend the rest of your life in Virginia, teaching chess to children, wondering if Nadia was telling the truth. Wondering if you made the right choice.\n\nSome games have no good endings. Only survivable ones.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "confront_mueller": {
+      "text": "You find Mueller in a bar near the Prater—exactly where a guilty man would drink. He looks up as you approach, and you see the fear in his eyes.\n\n\"Lenkov. What are you doing here?\"\n\n\"You know what I'm doing.\"\n\nHis hand moves toward his pocket. You're faster—your fountain pen at his throat before he can draw.\n\n\"The microfilm,\" you say quietly. \"The list of assets. That was you.\"\n\n\"You don't understand. They have my daughter. They took her to Berlin. If I don't—\"\n\n\"Give me names.\"\n\nHe does. Colonel Volkov—you knew that. But also someone else. Someone inside the tournament. Someone you never suspected.\n\n\"Nadia Kovalenko,\" he whispers. \"The journalist. She's Volkov's handler. She's the one running the operation.\"\n\nEverything clicks into place.",
+      "choices": [
+        {
+          "text": "Neutralize Nadia before she can act",
+          "goto": "neutralize_nadia"
+        },
+        {
+          "text": "Turn her—use her connection to destroy Volkov",
+          "goto": "turn_nadia"
+        }
+      ]
+    },
+    "set_trap": {
+      "text": "You feed each officer different information. A different time, a different location, a different detail about your movements.\n\nThen you wait.\n\nThe next day, you mention to Mueller that you'll be at the Café Central at three. To Kowalski, you say the Prater at four. To Harrison, the opera house at five.\n\nAt three o'clock, you're not at the café. You're watching from across the street.\n\nA black car pulls up. Two men in grey overcoats emerge. They enter the café, look around, leave frustrated.\n\nMueller. The trap caught Mueller.\n\nYou have your mole. Now you just need to decide what to do with him.",
+      "choices": [
+        {
+          "text": "Report him to the Americans",
+          "goto": "report_mole"
+        },
+        {
+          "text": "Use him to feed false intelligence to the Soviets",
+          "goto": "double_agent"
+        }
+      ]
+    },
+    "confront_nadia": {
+      "text": "You find her backstage, slipping on her coat to leave.\n\n\"The photograph,\" you say. \"Where did you get it?\"\n\nShe turns slowly. \"Maestro. I wondered when you'd find me.\"\n\n\"Who are you working for?\"\n\n\"Does it matter?\" She tilts her head. \"You played brilliantly today. Fischer never had a chance.\"\n\n\"Answer the question.\"\n\n\"I work for the same people you work for.\" She steps closer. \"The Bishop sent me. To protect you. And to tell you: the mole is eliminated. You're safe.\"\n\n\"Eliminated?\"\n\n\"Mueller won't be reporting to anyone anymore.\" Her eyes are cold. \"I did what was necessary. Now you can focus on what matters: winning the championship. Proving that Viktor Lenkov is exactly who he claims to be.\"\n\nShe hands you the photograph. \"A souvenir. Burn it when you're done.\"\n\nAnd she's gone.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "continue_match": {
+      "text": "You take a breath. Then another. The headline screams from the newspaper, but no one else seems to have noticed. Yet.\n\nYou play. Not your best chess—your hands are shaking, your mind divided—but good enough. Fischer makes a mistake in the endgame. You pounce.\n\n\"Checkmate in three,\" you announce.\n\nFischer studies the board, then nods. \"Well played, Maestro.\"\n\nYou've won. But as you shake his hand, you see Colonel Volkov pushing through the crowd. His face is thunder.\n\nThe woman in the red coat has vanished.\n\n\"Comrade Lenkov,\" Volkov says. \"A word, please. In private.\"\n\nThis is it. The end of the game.",
+      "choices": [
+        {
+          "text": "Go with him—face whatever comes",
+          "goto": "face_volkov"
+        },
+        {
+          "text": "Create a distraction and run",
+          "goto": "distraction_run"
+        }
+      ]
+    },
+    "face_volkov": {
+      "text": "You follow Volkov to a private room. Two KGB officers wait inside. The door closes.\n\n\"You were photographed last night,\" Volkov says. \"Entering a known CIA dead drop location.\"\n\n\"I was looking for a book. I'm a cultured man.\"\n\n\"Don't insult my intelligence.\" He lights a cigarette. \"I've suspected you for months. Now I have proof.\"\n\nYou say nothing. There's nothing to say.\n\n\"But here's the interesting part.\" He blows smoke. \"I don't care. You're the best chess player in the world. The motherland needs you. So we're going to make a deal.\"\n\n\"What kind of deal?\"\n\n\"You win this championship. You return to Moscow a hero. And you tell me everything you've told the Americans.\" He smiles. \"Double agent. Better for everyone.\"\n\nThe choice hangs in the air. Betray one master for another. Or refuse, and die in a Vienna back room.",
+      "choices": [
+        {
+          "text": "Accept the deal—survival first",
+          "goto": "accept_deal"
+        },
+        {
+          "text": "Refuse—some things matter more than survival",
+          "goto": "refuse_deal"
+        }
+      ]
+    },
+    "accept_deal": {
+      "text": "You accept. What choice do you have?\n\nThe championship continues. You win—brilliantly, decisively, the greatest chess of your career. The Soviet delegation celebrates. The world celebrates.\n\nYou return to Moscow a hero. Medals. Parades. Your picture on postage stamps.\n\nAnd every month, you meet with Volkov. You tell him what the Americans asked you. You tell him about the dead drops, the code phrases, the intelligence you gathered.\n\nYou're a triple agent now. Playing three games at once—Soviet, American, and your own. Trusting no one. Trusted by no one.\n\nYou play chess until 1975. You win two more world championships. And then, quietly, you retire.\n\nThe game was never about chess. It was about survival. And in that game, Viktor Lenkov was never defeated.\n\nBut he was never free.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "refuse_deal": {
+      "text": "\"No.\"\n\nVolkov's eyebrows rise. \"No?\"\n\n\"I won't betray them. I won't betray anyone else.\" You stand straighter. \"Do what you want. I'm done playing games.\"\n\nSilence. The guards' hands move toward their weapons.\n\nThen Volkov laughs. A genuine laugh, surprising in its warmth.\n\n\"You know,\" he says, \"I almost believe you. The great Viktor Lenkov—too noble for espionage. What a story.\" He waves his hand. \"Get out.\"\n\n\"What?\"\n\n\"I said get out. Win your chess match. Go back to America, or stay here, I don't care. You're not worth the paperwork.\"\n\nYou don't understand. But you don't wait to find out. You leave, expecting a bullet in your back at any moment.\n\nIt never comes.\n\nYears later, you learn the truth: Volkov was a double agent himself. CIA, like you. He let you go because you were on the same side.\n\nThe game was always more complicated than you knew. But in the end, you won.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "distraction_run": {
+      "text": "You grab a camera from a nearby photographer and throw it at the nearest window. Glass shatters. People scream.\n\nIn the chaos, you run.\n\nThrough the concert hall, past the stunned audience, out a side door into the Vienna streets. You hear shouts behind you—Volkov's men—but you're faster. You know this city.\n\nThe American embassy is six blocks away. You make it in four minutes.\n\nAt the gates, you gasp out the emergency code phrase. They let you in.\n\nBy nightfall, you're on a plane to Washington. Viktor Lenkov is dead—defected, they'll say. Disgraced. A traitor to the Soviet Union.\n\nBut you're alive. And somewhere, in a new apartment with a new name, you set up a chessboard and play against yourself.\n\nThe game goes on. It always does.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "cafe_central": {
+      "text": "You arrive at Café Central at noon. The Bishop—or whoever sent the message—is supposed to be here.\n\nBut instead, you find Nadia Kovalenko, sitting alone with two cups of coffee.\n\n\"You came,\" she says. \"I wasn't sure you would.\"\n\n\"Where's The Bishop?\"\n\n\"There is no Bishop. Not anymore.\" She slides a folder across the table. \"He was killed last week. The mole got to him. I'm your new contact.\"\n\nYou don't open the folder. \"How do I know you're telling the truth?\"\n\n\"You don't.\" She meets your eyes. \"But I'm the only chance you have. The KGB is moving tonight. If you want to survive, you need to trust me.\"\n\nThe café buzzes around you. Ordinary people living ordinary lives. You've never felt further from ordinary.\n\n\"Tell me what to do,\" you say.\n\nShe smiles. \"First, you need to lose the championship. Then, we run.\"",
+      "choices": [
+        {
+          "text": "Agree to her plan",
+          "goto": "agree_plan",
+          "setState": { "trustsNadia": true }
+        },
+        {
+          "text": "Refuse—there must be another way",
+          "goto": "refuse_plan"
+        }
+      ]
+    },
+    "agree_plan": {
+      "text": "You lose to Fischer the next day. A brilliant sacrifice—queen for nothing, or so it seems. The crowd gasps. The Soviet delegation rages.\n\nBut by midnight, you're gone. Nadia's contacts smuggle you across the Austrian border into Switzerland, then to Paris, then to New York.\n\nViktor Lenkov disappears. In his place, a man named Victor Lennon teaches chess at a small club in Brooklyn. He's quiet. Keeps to himself. Plays beautiful games against anyone who'll sit across from him.\n\nSometimes, late at night, he thinks about Vienna. About Nadia—who vanished after the border crossing, probably back into the shadows where she belongs. About the game that never ended, the war that's still being fought in secret rooms around the world.\n\nHe made it out. That's what matters.\n\nCheckmate.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "refuse_plan": {
+      "text": "\"No,\" you say. \"I won't throw the match. And I won't run.\"\n\nNadia's face hardens. \"Then you'll die. Tonight.\"\n\n\"Maybe.\" You stand. \"But I'll die as Viktor Lenkov. World champion. Not as a coward who ran.\"\n\nYou return to the tournament. You play Fischer. You play the greatest chess of your life.\n\nAnd you win.\n\nThat night, the KGB comes for you. They're good—but you're better. You've been preparing for this for years.\n\nThe details don't matter. What matters is this: when dawn breaks over Vienna, Viktor Lenkov is on a plane to Washington. The Soviet delegation is in chaos. And the world is watching.\n\nYou defect publicly, spectacularly, in front of cameras and reporters. You tell them everything—the espionage, the dead drops, the double life.\n\nYou become a symbol. Freedom defeating tyranny. The chess maestro who played the greatest game of all.\n\nAnd somewhere, in the shadows, Nadia Kovalenko raises a glass.\n\n\"Well played, Maestro,\" she whispers. \"Well played.\"",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "redemption_match": {
+      "text": "You win the next three games. Brilliantly. Devastatingly. Fischer has no answer for your attacks.\n\nBy the fifth game, the world championship is decided. Viktor Lenkov retains his title. The Soviet Union celebrates. Colonel Volkov shakes your hand and calls you a hero of the motherland.\n\nYou smile and accept the praise. Inside, something is hollow.\n\nBut you're alive. You're free—at least, as free as any spy can be. And somewhere in the mess of lies and secrets, you've managed to keep one thing pure: your chess.\n\nThe game goes on. It always does.\n\nAnd Viktor Lenkov—world champion, spy, survivor—plays it better than anyone.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "double_agent": {
+      "text": "You approach Mueller the next day, casually, as if nothing happened.\n\n\"I know what you did,\" you say quietly. \"But I'm not going to report you.\"\n\nHis face goes white. \"What do you want?\"\n\n\"Help me. Feed the Soviets false intelligence. We can turn this into an advantage.\"\n\nIt's a dangerous game—playing both sides against each other, with Mueller as your unwilling partner. But it works. For months, the KGB receives careful disinformation, just plausible enough to believe.\n\nBy the time they realize the truth, you're long gone. Defected to the West with enough intelligence to justify a comfortable retirement.\n\nViktor Lenkov lives out his days in California, teaching chess to grandchildren he never thought he'd have. Sometimes he thinks about Mueller—arrested, executed, a pawn sacrificed for the greater game.\n\nWar is ugly. Espionage is worse.\n\nBut the chess, at least, was beautiful.",
+      "isEnding": true,
+      "endingType": "neutral"
+    }
+  }
+}
+

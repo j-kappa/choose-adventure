@@ -34,6 +34,13 @@
       "author": "Adventure Engine",
       "description": "After her mother's passing, Eleanor returns to tend the garden one last time. But among the roses, she finds letters that were never meant to be discovered.",
       "file": "the-garden.adventure.json"
+    },
+    {
+      "id": "the-chess-maestro",
+      "title": "The Chess Maestro",
+      "author": "Adventure Engine",
+      "description": "Viktor Lenkov is the world's greatest chess player. But his real game is played in the shadows—where every move could be his last.",
+      "file": "the-chess-maestro.adventure.json"
     }
   ]
 }
