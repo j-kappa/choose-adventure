@@ -221,7 +221,7 @@
 .endingLabel {
   font-family: var(--font-story);
   font-size: var(--text-3xl);
-  font-weight: 600;
+  font-weight: 400;
   font-style: italic;
   color: var(--color-text);
   margin-bottom: var(--space-8);
