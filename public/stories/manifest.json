@@ -27,6 +27,13 @@
       "author": "Adventure Engine",
       "description": "Your ship intercepts a distress call from a vessel that disappeared 200 years ago. You're the only one close enough to respond.",
       "file": "the-last-signal.adventure.json"
+    },
+    {
+      "id": "the-garden",
+      "title": "The Garden of Letters",
+      "author": "Adventure Engine",
+      "description": "After her mother's passing, Eleanor returns to tend the garden one last time. But among the roses, she finds letters that were never meant to be discovered.",
+      "file": "the-garden.adventure.json"
     }
   ]
 }

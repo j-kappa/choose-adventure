@@ -1,0 +1,315 @@
+{
+  "id": "the-garden",
+  "title": "The Garden of Letters",
+  "author": "Adventure Engine",
+  "description": "After her mother's passing, Eleanor returns to tend the garden one last time. But among the roses, she finds letters that were never meant to be discovered.",
+  "version": "1.0",
+  "initialState": {
+    "foundFirstLetter": false,
+    "foundSecondLetter": false,
+    "foundThirdLetter": false,
+    "dugUnderRose": false,
+    "readDiary": false,
+    "forgave": false,
+    "understandsNow": false
+  },
+  "start": "arrival",
+  "passages": {
+    "arrival": {
+      "text": "The garden gate creaks as you push it open—the same sound it's made for forty years. You're Eleanor, and you're sixty-two years old, standing in your mother's garden for the first time since her funeral three weeks ago.\n\nThe roses are overgrown. The vegetable beds have gone to seed. Your mother would have hated this—she who could never stand disorder, who spent every morning of her life among these flowers.\n\n\"Just clean it out,\" your brother said on the phone. \"Sell the house. You don't need the memories.\"\n\nBut he never understood. He never knew the hours you spent here as a child, learning the names of every flower. He never saw how your mother smiled—really smiled—only when her hands were in the soil.\n\nThe spring wind carries the scent of lilacs. Somewhere, a bird is singing.",
+      "choices": [
+        {
+          "text": "Start with the rose garden—her favorite",
+          "goto": "rose_garden"
+        },
+        {
+          "text": "Check the old potting shed first",
+          "goto": "potting_shed"
+        },
+        {
+          "text": "Sit on the bench and just remember for a while",
+          "goto": "the_bench"
+        }
+      ]
+    },
+    "rose_garden": {
+      "text": "The rose garden was always her sanctuary. Thirty-seven varieties at last count—each one planted with purpose, each one named.\n\n\"The red ones are for passion,\" she'd say. \"The white for remembrance. The yellow...\" She'd always pause at the yellow roses, her voice trailing off. \"The yellow are for secrets.\"\n\nYou kneel beside the Peace roses—her favorites—and begin pulling weeds. Your hands find their old rhythm. Pull, shake, toss. Pull, shake, toss.\n\nThen your fingers brush something that isn't a weed. Paper, wrapped in plastic, buried shallow beneath the mulch.\n\nYour heart stops.\n\nIt's an envelope. Weathered but intact. And written on the front, in your mother's careful handwriting:\n\n\"For Eleanor. When I'm gone.\"",
+      "choices": [
+        {
+          "text": "Open the letter immediately",
+          "goto": "first_letter",
+          "setState": { "foundFirstLetter": true }
+        },
+        {
+          "text": "Put it in your pocket and keep working",
+          "goto": "delay_letter"
+        }
+      ]
+    },
+    "potting_shed": {
+      "text": "The potting shed smells of earth and old wood and something sweeter—dried lavender, hanging from the rafters the way it always did.\n\nYour mother's tools are still arranged on their hooks, each one cleaned and oiled. Her gloves sit on the workbench, fingers curled as if she just set them down. A half-empty bag of bone meal. A trowel with a worn wooden handle.\n\nOn the shelf, behind the terra cotta pots, you notice something you've never seen before: a tin box, painted with faded roses.\n\nYou reach for it. Inside, you find a small leather diary and three envelopes, each one numbered. Each one bearing your mother's handwriting:\n\n\"For Eleanor. When I'm gone.\"",
+      "choices": [
+        {
+          "text": "Read the diary first",
+          "goto": "read_diary",
+          "setState": { "readDiary": true }
+        },
+        {
+          "text": "Open the first envelope",
+          "goto": "first_letter",
+          "setState": { "foundFirstLetter": true }
+        },
+        {
+          "text": "Put everything back—you're not ready",
+          "goto": "not_ready"
+        }
+      ]
+    },
+    "the_bench": {
+      "text": "The wooden bench is weathered but solid—your father built it the year you were born. You remember sitting here with your mother on summer evenings, watching the fireflies rise from the flower beds like scattered stars.\n\n\"Why do you love the garden so much?\" you asked her once.\n\nShe was quiet for a long time. Then: \"Because gardens keep secrets. You plant something, and it grows in its own time. It doesn't rush. It doesn't judge. It just... waits.\"\n\nYou didn't understand then. You were seventeen and impatient with everything.\n\nNow you're sixty-two, and you think maybe you're beginning to.\n\nAs you sit, you notice something tucked into the slats of the bench. An envelope, protected by the wood. Your mother's handwriting on the front:\n\n\"For Eleanor. When I'm gone.\"",
+      "choices": [
+        {
+          "text": "Open the letter",
+          "goto": "first_letter",
+          "setState": { "foundFirstLetter": true }
+        },
+        {
+          "text": "Go to the rose garden first—you need a moment",
+          "goto": "rose_garden"
+        }
+      ]
+    },
+    "first_letter": {
+      "text": "Your hands tremble as you unfold the paper.\n\n\"My dearest Eleanor,\n\nIf you're reading this, I'm gone. And there are things I need to tell you—things I should have said when I was alive, but never found the courage.\n\nYou've always wondered why I was the way I was. Reserved. Careful. Why I couldn't say 'I love you' as easily as other mothers. Why I held you at arm's length even when you were small.\n\nIt wasn't because I didn't love you. God, Eleanor—I loved you so much it terrified me.\n\nThere's a second letter. Look beneath the yellow roses—the ones I could never explain. They'll tell you why.\n\nYour mother\"\n\nYour vision blurs. You read the letter again. And again. The yellow roses sway in the breeze, keeping their secrets a little longer.",
+      "choices": [
+        {
+          "text": "Go to the yellow roses immediately",
+          "goto": "yellow_roses"
+        },
+        {
+          "text": "Take a moment to compose yourself",
+          "goto": "compose_yourself"
+        }
+      ]
+    },
+    "delay_letter": {
+      "text": "You slip the envelope into your jacket pocket, close to your heart. Not yet. You're not ready.\n\nYou work through the morning, pulling weeds, cutting back dead growth. The familiar labor soothes you. Your mother taught you this: when words fail, work. When grief overwhelms, dig.\n\nBut the envelope burns against your chest. You can almost hear your mother's voice: \"Don't put off until tomorrow what should be done today.\"\n\nBy noon, you can't wait any longer.",
+      "choices": [
+        {
+          "text": "Open the letter",
+          "goto": "first_letter",
+          "setState": { "foundFirstLetter": true }
+        }
+      ]
+    },
+    "read_diary": {
+      "text": "The diary is old—older than you. The first entry is dated 1959. Your mother would have been twenty-three.\n\n\"April 14, 1959\n\nI held her today. Just for an hour. The nurses said I shouldn't—that it would make it harder. But how could I let her go without holding her once?\n\nShe has my eyes. Thomas's chin. She's perfect.\n\nThey're taking her tomorrow. To a good family, they say. A family that can give her everything I can't. I'm not married. I'm not ready. I'm not enough.\n\nI will never see her again.\n\nBut I will plant a rose for her. A yellow rose—for the secret I'll carry forever. And I will tend it every day of my life.\"\n\nYou read the entry three times before you understand.\n\nYour mother had another daughter. A daughter she gave away.",
+      "choices": [
+        {
+          "text": "Read more of the diary",
+          "goto": "more_diary"
+        },
+        {
+          "text": "Open the first envelope",
+          "goto": "first_letter_with_context",
+          "setState": { "foundFirstLetter": true, "understandsNow": true }
+        }
+      ]
+    },
+    "not_ready": {
+      "text": "You close the tin box and slide it back behind the pots. Your hands are shaking.\n\nSome secrets are meant to stay buried. Some doors are better left closed.\n\nBut even as you think it, you know you're lying to yourself. You came here for a reason. Your mother left these letters for a reason.\n\nShe wanted you to know.\n\nYou stand in the potting shed for a long time, listening to the wind in the trees. Then you reach for the box again.",
+      "choices": [
+        {
+          "text": "Open the first envelope",
+          "goto": "first_letter",
+          "setState": { "foundFirstLetter": true }
+        },
+        {
+          "text": "Read the diary first",
+          "goto": "read_diary",
+          "setState": { "readDiary": true }
+        }
+      ]
+    },
+    "more_diary": {
+      "text": "You turn the pages with trembling fingers. Years pass in the margins—1960, 1965, 1970.\n\n\"June 3, 1965\n\nI married Thomas today. He doesn't know about her. No one does. I buried the secret so deep I almost believe it myself. Almost.\n\nThe yellow rose is blooming.\"\n\n\"March 12, 1967\n\nEleanor was born today. Seven pounds, four ounces. She has my eyes—the same eyes as the one I gave away. When I look at her, I see both my daughters.\n\nI love her. But I'm afraid to love her too much. What if I lose her too?\"\n\n\"August 9, 1985\n\nEleanor asked me today why I never say I love you. I wanted to tell her the truth. That I'm afraid. That every time I love something, it gets taken away.\n\nBut I just smiled and changed the subject. I'm a coward.\"\n\nTears fall onto the pages. You understand now. All those years of distance—it was never about you. It was about her. About a wound that never healed.",
+      "choices": [
+        {
+          "text": "Open the envelopes—you need to know everything",
+          "goto": "first_letter_with_context",
+          "setState": { "foundFirstLetter": true, "understandsNow": true }
+        }
+      ]
+    },
+    "first_letter_with_context": {
+      "text": "With new understanding, you open the first envelope.\n\n\"My dearest Eleanor,\n\nIf you're reading this, I'm gone. And there are things I need to tell you.\n\nIn 1959, before I met your father, I had a daughter. I was young and alone and afraid, and I gave her up. They told me it was the right thing to do. Maybe it was. But I've carried that loss every day of my life.\n\nWhen you were born, I swore I would never let you go. But I was so afraid of losing you that I held you wrong—too tight in some ways, too loose in others. I didn't know how to love without fear.\n\nI'm sorry, Eleanor. For every 'I love you' I couldn't say. For every hug I held back. You deserved better.\n\nThere's more. Look beneath the yellow roses. The truth is waiting there.\n\nYour mother\"",
+      "choices": [
+        {
+          "text": "Go to the yellow roses",
+          "goto": "yellow_roses"
+        }
+      ]
+    },
+    "yellow_roses": {
+      "text": "The yellow roses stand in the corner of the garden—six bushes, ancient and gnarled. You've never thought to ask why they were there, separate from the others. Now you know.\n\nYou kneel in the soil and dig. Your trowel strikes something hard—another tin box, rusted at the edges but intact.\n\nInside, you find the second letter. And something else: a photograph.\n\nA baby girl in a white blanket. Your mother's handwriting on the back: \"Margaret Rose. Born April 13, 1959. My first daughter.\"\n\nYou stare at the photograph for a long time. Somewhere, you have a sister. Had a sister? You don't know if she's alive or dead, found or lost.\n\nWith trembling hands, you open the second letter.",
+      "choices": [
+        {
+          "text": "Read the second letter",
+          "goto": "second_letter",
+          "setState": { "foundSecondLetter": true, "dugUnderRose": true }
+        }
+      ]
+    },
+    "compose_yourself": {
+      "text": "You sit on the garden path, the letter in your lap, and let the tears come.\n\nAll those years. All those silences. You thought she didn't love you. You thought you weren't enough. And now, too late, you learn that she loved you so much she couldn't bear to say it.\n\nThe sun moves across the sky. A butterfly lands on a nearby flower. Life goes on, indifferent to grief.\n\nWhen you can breathe again, you stand. The yellow roses are waiting.",
+      "choices": [
+        {
+          "text": "Go to the yellow roses",
+          "goto": "yellow_roses"
+        }
+      ]
+    },
+    "second_letter": {
+      "text": "\"Dearest Eleanor,\n\nNow you know my secret. The one I carried for sixty years.\n\nI tried to find her. In 1985, when you were eighteen and asking questions I couldn't answer, I hired someone to search. He found her.\n\nHer name is Margaret Chen now. She lives in Portland. She's a teacher. She has two children—your nieces, Eleanor. Girls you've never met.\n\nI wrote to her. Just once. I told her I was sorry. I told her I never stopped thinking about her. I told her about you—about the sister she never knew she had.\n\nShe wrote back. The letter is in the potting shed, in the rose-painted box. I've read it a thousand times.\n\nBut I never wrote again. I was too ashamed. Too afraid. What right did I have to disrupt her life?\n\nI'm asking you to do what I couldn't. Find her. Tell her about me—not the perfect mother I tried to be, but the flawed, frightened woman I was. Tell her I'm sorry.\n\nAnd Eleanor—tell yourself the same thing. I'm sorry. For everything.\n\nThe third letter is beneath the Peace roses. It's the hardest one. But you need to read it.\n\nI love you. I always did.\n\nMom\"",
+      "choices": [
+        {
+          "text": "Find the third letter beneath the Peace roses",
+          "goto": "peace_roses"
+        },
+        {
+          "text": "Go to the potting shed to find Margaret's response",
+          "goto": "margaret_letter"
+        }
+      ]
+    },
+    "peace_roses": {
+      "text": "The Peace roses were always her pride—cream and pink, delicate and strong. She spent hours tending them, talking to them as if they could hear.\n\nYou dig carefully, afraid of damaging the roots. Six inches down, your trowel hits the box.\n\nThe third envelope is thicker than the others. Inside, you find the letter—and something that makes your breath catch.\n\nA pressed flower. A yellow rose, perfectly preserved. And a smaller envelope, addressed to you in a different handwriting.\n\nIt's from Margaret.",
+      "choices": [
+        {
+          "text": "Read your mother's third letter first",
+          "goto": "third_letter",
+          "setState": { "foundThirdLetter": true }
+        },
+        {
+          "text": "Read Margaret's letter first",
+          "goto": "margaret_direct"
+        }
+      ]
+    },
+    "margaret_letter": {
+      "text": "You return to the potting shed and find the rose-painted box. The letter from Margaret is there, worn at the edges from handling.\n\n\"Dear Mrs. Harrison,\n\nI don't know how to begin this letter. I've started it a hundred times.\n\nWhen I was twelve, my parents told me I was adopted. I spent years wondering about you—who you were, why you gave me away, whether you ever thought about me.\n\nNow I know.\n\nI'm not angry. I want you to know that. I had a good life. Good parents. A family who loved me. You made an impossible choice, and I think you made the right one.\n\nI have a sister. That's the part I can't stop thinking about. Eleanor. She's real. She exists. And I never knew.\n\nI'd like to meet her someday, if she's willing. Not to replace the family I have—but to add to it.\n\nThank you for finding me. Thank you for telling me the truth.\n\nMargaret\"\n\nA sister. You have a sister. And she wants to meet you.",
+      "choices": [
+        {
+          "text": "Find the third letter",
+          "goto": "peace_roses"
+        }
+      ]
+    },
+    "margaret_direct": {
+      "text": "Your hands shake as you open Margaret's envelope.\n\n\"Dear Eleanor,\n\nBy the time you read this, our mother will be gone. She sent me this letter last year—just in case, she said. She wanted me to have the chance to say goodbye.\n\nI never met her. I never will now. But I've met you, in a way. She told me everything about you in her letters—how proud she was, how much she loved you, how sorry she was that she could never say it.\n\nI'm sixty-five years old. I've had a good life. But there's always been a piece missing—a question I couldn't answer.\n\nNow I know I have a sister.\n\nI'd like to meet you, Eleanor. If you're willing. Not to replace anything—just to fill in the missing piece.\n\nI'm enclosing my phone number. Call me. Or don't. It's your choice.\n\nBut I hope you will.\n\nYour sister,\nMargaret\"\n\nA phone number is written at the bottom. Careful handwriting. Your sister's handwriting.",
+      "choices": [
+        {
+          "text": "Read your mother's third letter",
+          "goto": "third_letter",
+          "setState": { "foundThirdLetter": true }
+        }
+      ]
+    },
+    "third_letter": {
+      "text": "\"My darling Eleanor,\n\nThis is the last letter. The hardest one.\n\nI'm dying. The doctors gave me six months—that was four months ago. I've spent the time I have left writing these letters, planting them in the garden like seeds. Hoping they'll bloom into understanding.\n\nI want you to know that every day of my life, I thought about both my daughters. The one I gave away and the one I kept. I loved you both. I failed you both. In different ways, but the failure is the same.\n\nI was so afraid of loss that I forgot how to hold on.\n\nEleanor, I need you to do something for me. Not just find Margaret—but forgive me. Not because I deserve it, but because carrying anger is like carrying stones. It only weighs you down.\n\nAnd forgive yourself, too. For every time you thought you weren't enough. You were. You always were. I was just too broken to show you.\n\nThe garden is yours now. Tend it well. Let the flowers remind you that everything grows in its own time—including forgiveness. Including love.\n\nI'll be in the roses, Eleanor. In the morning light. In the scent of lilacs on a spring breeze. I'll be there.\n\nI love you. I love you. I love you.\n\nI should have said it more.\n\nMom\"\n\nThe letter ends. The garden is silent. And for the first time since she died, you feel her—really feel her—as close as breath, as real as grief, as present as the flowers swaying in the wind.",
+      "choices": [
+        {
+          "text": "Forgive her",
+          "goto": "forgiveness",
+          "setState": { "forgave": true }
+        },
+        {
+          "text": "You need more time",
+          "goto": "need_time"
+        }
+      ]
+    },
+    "need_time": {
+      "text": "Forgiveness isn't a switch you can flip. It's a garden you have to tend.\n\nYou sit in the soil among the Peace roses, the letters scattered around you. Your mother's words. Margaret's hope. Sixty years of secrets, finally unearthed.\n\nYou don't know how to feel. Grief and anger and love and loss—they're all tangled together like roots, impossible to separate.\n\nBut you know one thing: you're not ready to leave. Not yet.\n\nYou spend the rest of the day in the garden. Weeding. Pruning. Talking to the flowers the way your mother used to. By sunset, your hands are dirty and your back aches and something inside you has shifted.\n\nNot forgiveness. Not yet. But the beginning of it. The seed.",
+      "choices": [
+        {
+          "text": "Stay the night and think about calling Margaret",
+          "goto": "stay_night"
+        },
+        {
+          "text": "Go home—you need to process this",
+          "goto": "go_home"
+        }
+      ]
+    },
+    "forgiveness": {
+      "text": "\"I forgive you,\" you whisper to the roses. To the sky. To wherever she is now.\n\nThe words feel strange in your mouth. You've been angry for so long—angry at her silences, her distance, her inability to say the simple words you needed to hear.\n\nBut now you understand. She was never withholding love. She was afraid of it. Afraid that loving you would mean losing you, the way she lost Margaret. So she built walls, not knowing they would become a prison for both of you.\n\n\"I forgive you,\" you say again. And then, the harder words: \"I forgive myself.\"\n\nFor every time you doubted. For every fight. For the years you spent away, punishing her for crimes you didn't understand.\n\nThe sun is setting. The garden glows gold and pink, like the Peace roses. Somewhere, a bird is singing.\n\nYou take out your phone and look at Margaret's number.",
+      "choices": [
+        {
+          "text": "Call Margaret",
+          "goto": "call_margaret"
+        },
+        {
+          "text": "Not yet—but soon",
+          "goto": "soon"
+        }
+      ]
+    },
+    "stay_night": {
+      "text": "You sleep in your old room—the one with the window overlooking the garden. The sheets smell like lavender. Your mother's doing.\n\nIn the morning, you wake to birdsong and the soft light of dawn. You make coffee in her kitchen, using her old percolator, and carry the cup out to the garden.\n\nThe roses are heavy with dew. The lilacs are in full bloom. Everything is alive and growing, indifferent to grief.\n\nMargaret's phone number is still in your pocket.\n\nYou think about your mother—not the distant woman you knew, but the frightened girl she once was. Twenty-three and alone, giving away a piece of herself that she could never get back.\n\nYou think about Margaret—sixty-five years old, a teacher, a mother, waiting for a phone call from a sister she's never met.\n\nYou take out your phone.",
+      "choices": [
+        {
+          "text": "Call Margaret",
+          "goto": "call_margaret"
+        },
+        {
+          "text": "Wait a few more days",
+          "goto": "wait_days"
+        }
+      ]
+    },
+    "go_home": {
+      "text": "You drive home in silence, the letters on the seat beside you. Your brother calls—you let it go to voicemail. Your husband asks about the garden—you tell him you'll explain later.\n\nThat night, you can't sleep. You keep reading the letters. Your mother's confession. Margaret's hope. A family you never knew you had.\n\nThree days pass. You go back to the garden. And again the next week. Each time, you find yourself sitting among the yellow roses, talking to no one.\n\nOn the third visit, you finally admit the truth: you're not processing. You're stalling. You're afraid.\n\nMargaret's number is still in your wallet. It's time.",
+      "choices": [
+        {
+          "text": "Call Margaret",
+          "goto": "call_margaret"
+        }
+      ]
+    },
+    "call_margaret": {
+      "text": "Your hands shake as you dial. The phone rings once. Twice.\n\n\"Hello?\"\n\nHer voice is gentle. Warm. Nothing like you expected, and exactly what you needed.\n\n\"Margaret? This is... this is Eleanor. Your sister.\"\n\nSilence. Then a sound that might be a laugh or a sob—or both.\n\n\"Eleanor. Oh my God. You called. You actually called.\"\n\n\"I found the letters,\" you say. \"In the garden. Mom... she wanted us to meet.\"\n\n\"I know.\" Her voice cracks. \"She wrote to me. Right before she died. She said... she said she was sorry. That she hoped we'd find each other.\"\n\nYou're crying now. Both of you are.\n\n\"I have so many questions,\" Margaret says. \"About her. About you. About everything.\"\n\n\"Me too,\" you whisper. \"Can we... can we meet? In person?\"\n\n\"Yes,\" she says immediately. \"Yes. Please. Yes.\"",
+      "choices": [
+        {
+          "text": "Invite her to the garden",
+          "goto": "ending_garden"
+        },
+        {
+          "text": "Agree to meet in Portland",
+          "goto": "ending_portland"
+        }
+      ]
+    },
+    "soon": {
+      "text": "Not today. But soon.\n\nYou pocket the phone and spend the rest of the evening in the garden. You prune the roses. You water the lilacs. You sweep the stone path the way your mother did every Sunday morning.\n\nBy the time the stars come out, something has shifted inside you. The anger is still there—it doesn't disappear overnight. But it's quieter now. Smaller. Making room for something else.\n\nA week later, you call Margaret.\n\nTwo weeks after that, you meet her for the first time—a woman with your mother's eyes and your father's smile, who has waited sixty-five years for this moment.\n\nYou don't become best friends overnight. You're strangers, after all. But you're strangers who share something profound: the same garden, the same loss, the same secret finally brought into the light.\n\nAnd that's a beginning.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "wait_days": {
+      "text": "A few more days turn into a week. Then two.\n\nYou tell yourself you need time. But time doesn't heal anything—it just passes. The healing comes from action. From choice. From reaching out across the distance.\n\nOn a rainy Tuesday, you finally pick up the phone.\n\n\"Margaret? This is Eleanor. I'm sorry it took so long.\"\n\n\"You're here now,\" she says, and you can hear the smile in her voice. \"That's what matters.\"\n\nShe's right. You're here now. In the garden of letters, among the secrets and the roses. And for the first time in sixty-two years, you're not alone.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "ending_garden": {
+      "text": "\"Come here,\" you say. \"To the garden. It's... it's where she is, I think. It's where she left everything for us to find.\"\n\nTwo weeks later, Margaret Chen arrives at the garden gate—the same gate that's creaked for forty years. She's smaller than you imagined. Grayer. But her eyes are your mother's eyes, and when you see them, you start to cry.\n\nShe holds you. A stranger who is not a stranger. A sister you never knew you needed.\n\n\"She would have loved this,\" Margaret whispers. \"Both of us here. Together.\"\n\n\"I know.\"\n\nYou walk through the garden together—past the yellow roses, past the Peace roses, past the bench where you sat as a child. You tell her the stories. The names of the flowers. The way your mother talked to the plants as if they could hear.\n\nBy sunset, you've laughed and cried and sat in silence. By sunset, you've begun to fill in the missing pieces—both of you, together.\n\nThe garden blooms around you, keeping its final secret: that love, like roses, can grow from the darkest soil. That forgiveness, like flowers, takes time. And that sometimes, the best things in life are the ones we have to dig for.\n\nYour mother was right. Gardens keep secrets.\n\nBut sometimes, when you're ready, they give them back.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "ending_portland": {
+      "text": "You fly to Portland on a grey November morning. Margaret meets you at the airport—a stranger with familiar eyes, holding a bouquet of yellow roses.\n\n\"From Mom's garden,\" you explain as she stares. \"I brought cuttings. I thought... maybe you'd want to plant them.\"\n\nShe doesn't speak. She just cries. And then she hugs you—a stranger who is not a stranger, a sister found after sixty-five years.\n\nThat weekend, you meet her family. Her husband. Her children and grandchildren. Your nieces and nephews and great-nieces and great-nephews—a whole constellation of people you never knew existed.\n\n\"Tell me about her,\" Margaret says on your last night. \"Our mother. What was she really like?\"\n\nAnd you do. You tell her about the garden. The silences. The letters. The love that was always there, even when you couldn't see it.\n\n\"She was afraid,\" you say. \"Afraid of loving too much. Afraid of losing what she loved. But in the end... she found a way to say everything she couldn't say in life.\"\n\nMargaret plants the yellow roses in her backyard the next spring. You visit every year to help them bloom.\n\nAnd sometimes, on quiet evenings, when the light is gold and the roses are swaying in the breeze, you could swear you hear your mother's voice—soft and distant, finally at peace.\n\n\"I love you,\" she whispers. \"Both of you. Always.\"",
+      "isEnding": true,
+      "endingType": "good"
+    }
+  }
+}
+
