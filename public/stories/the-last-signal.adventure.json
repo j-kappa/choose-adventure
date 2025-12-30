@@ -1,0 +1,295 @@
+{
+  "id": "the-last-signal",
+  "title": "The Last Signal",
+  "author": "Adventure Engine",
+  "description": "Your ship intercepts a distress call from a vessel that disappeared 200 years ago. You're the only one close enough to respond.",
+  "version": "1.0",
+  "initialState": {
+    "hasWeapon": false,
+    "foundCaptainsLog": false,
+    "knowsAboutEntity": false,
+    "aiTrustworthy": true,
+    "crewAlive": true,
+    "oxygenLow": false
+  },
+  "start": "bridge",
+  "passages": {
+    "bridge": {
+      "text": "The bridge of the Meridian is quiet except for the hum of life support. You're three months into a solo cargo run to Kepler-442b when ARIA, your ship's AI, interrupts your sleep cycle.\n\n\"Captain, I've detected an anomaly. A distress beacon, origin unknown.\"\n\nYou pull up the signal data. The beacon signature is unmistakable—it belongs to the Prometheus, a colony ship that vanished 200 years ago with 10,000 souls aboard. Officially declared lost. No wreckage ever found.\n\nUntil now.\n\n\"The signal is coming from the asteroid field in Sector 7-G,\" ARIA reports. \"We are the only vessel within response range. Company protocol requires—\"\n\n\"I know the protocol,\" you say. But something about this feels wrong.",
+      "choices": [
+        {
+          "text": "Investigate the signal",
+          "goto": "approach_signal"
+        },
+        {
+          "text": "Report to command and wait for instructions",
+          "goto": "report_command"
+        },
+        {
+          "text": "Ignore it—200 years means everyone's dead",
+          "goto": "ignore_signal"
+        }
+      ]
+    },
+    "approach_signal": {
+      "text": "You set course for Sector 7-G. The asteroid field grows on your viewscreen—a graveyard of rock and ice, dark against the distant stars.\n\nThen you see it.\n\nThe Prometheus drifts among the asteroids, intact. Impossibly intact. A ship that size, missing for two centuries, should be a shattered hulk. Instead, it looks... preserved.\n\n\"ARIA, run a scan.\"\n\n\"Life support is active. Artificial gravity nominal. I'm detecting... Captain, I'm reading 847 life signs aboard.\"\n\nYour blood runs cold. \"That's impossible.\"\n\n\"I agree. Yet my sensors do not lie.\" ARIA pauses. \"There's something else. The ship's AI, PROMETHEUS-1, is attempting to establish communication.\"",
+      "choices": [
+        {
+          "text": "Accept the communication",
+          "goto": "accept_comm"
+        },
+        {
+          "text": "Dock with the Prometheus without communicating",
+          "goto": "silent_dock"
+        },
+        {
+          "text": "Scan more thoroughly before proceeding",
+          "goto": "detailed_scan"
+        }
+      ]
+    },
+    "report_command": {
+      "text": "You open a channel to Meridian Corp headquarters. The quantum link takes 4.7 seconds to establish—you're far from civilized space.\n\n\"Command, this is Meridian-7. I've intercepted a distress beacon from the Prometheus. Requesting instructions.\"\n\nStatic. Then a response, voice clipped and efficient.\n\n\"Meridian-7, confirm Prometheus identification.\"\n\n\"Confirmed. Beacon signature matches historical records.\"\n\nA long pause. Too long.\n\n\"Meridian-7, you are ordered to investigate. Document everything. Do not—repeat, do not—attempt to board without authorization. Command out.\"\n\nThe channel closes. ARIA's voice is thoughtful. \"Captain, that response was unusual. They seemed... unsurprised.\"",
+      "choices": [
+        {
+          "text": "Follow orders and approach the Prometheus",
+          "goto": "approach_signal"
+        },
+        {
+          "text": "Ask ARIA what she means",
+          "goto": "question_aria"
+        }
+      ]
+    },
+    "ignore_signal": {
+      "text": "\"Log the coordinates and continue on course,\" you tell ARIA. \"It's a ghost ship. Nothing we can do for ghosts.\"\n\n\"Understood, Captain.\"\n\nYou try to sleep, but the signal haunts you. 847 life signs. Impossible. Probably a sensor malfunction. Ancient equipment degrading, sending false readings.\n\nThree days later, you reach Kepler-442b. Deliver your cargo. Collect your pay.\n\nBut you never stop thinking about the Prometheus. What was on that ship? What happened to those people?\n\nYears later, when the stories start spreading—stories of ships vanishing near Sector 7-G, of crews who answered signals and never returned—you wonder if you made the right choice.\n\nOr if you were simply the lucky one.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "accept_comm": {
+      "text": "\"Open a channel, ARIA.\"\n\nThe viewscreen flickers. A face appears—a woman, middle-aged, wearing the uniform of a Prometheus officer. Her eyes are calm. Too calm.\n\n\"Meridian vessel, this is Captain Sarah Chen of the Prometheus. We've been waiting for you.\"\n\n\"Waiting? Your ship has been missing for 200 years.\"\n\nShe smiles, and something in that smile makes your skin crawl.\n\n\"Time moves differently here, Captain. We've learned so much. Seen so much. And now we want to share it with you.\"\n\nBehind her, shadows move. You glimpse other figures—passengers, crew—all watching. All smiling.\n\n\"Please,\" she says. \"Dock with us. Join us. You'll understand everything soon.\"",
+      "choices": [
+        {
+          "text": "Dock with the Prometheus",
+          "goto": "dock_willing",
+          "setState": { "knowsAboutEntity": false }
+        },
+        {
+          "text": "Demand answers first",
+          "goto": "demand_answers"
+        },
+        {
+          "text": "Cut the connection and retreat",
+          "goto": "cut_and_run"
+        }
+      ]
+    },
+    "silent_dock": {
+      "text": "\"Take us in quietly, ARIA. No communication.\"\n\n\"Understood. I should note that PROMETHEUS-1 will likely detect our docking. I cannot guarantee a covert approach.\"\n\n\"Noted.\"\n\nThe Meridian glides through the asteroid field. Up close, the Prometheus is even more unsettling—no micrometeorite damage, no wear, as if it just launched yesterday.\n\nYou dock at an auxiliary airlock. The seal is good. Atmosphere reads breathable.\n\nYou grab your gear: a flashlight, a medical kit, and—after a moment's hesitation—the plasma cutter from the cargo bay. Not a weapon, exactly. But it'll do.",
+      "choices": [
+        {
+          "text": "Board the Prometheus alone",
+          "goto": "board_alone",
+          "setState": { "hasWeapon": true }
+        },
+        {
+          "text": "Send a drone first",
+          "goto": "send_drone"
+        }
+      ]
+    },
+    "detailed_scan": {
+      "text": "\"Run a deep scan, ARIA. Everything you can pull.\"\n\nMinutes pass. ARIA's holographic display fills with data.\n\n\"Fascinating. The ship's hull shows no degradation. Zero. The internal atmosphere is maintained at optimal levels. Power systems are operating at 94% efficiency despite 200 years without maintenance.\"\n\n\"That's impossible.\"\n\n\"I am aware. Additionally, I've analyzed the life signs more closely.\" ARIA pauses. \"They're not human, Captain. Or rather, they're not entirely human anymore. The biosignatures show anomalies I cannot explain.\"\n\nA chill runs down your spine.\n\n\"There's one more thing. I've intercepted internal communications from PROMETHEUS-1. The ship's AI. It keeps repeating the same phrase: 'We have been chosen. We are ready. They are coming.'\"",
+      "choices": [
+        {
+          "text": "Board despite the warning",
+          "goto": "board_alone",
+          "setState": { "knowsAboutEntity": true, "hasWeapon": true }
+        },
+        {
+          "text": "Leave immediately and report to command",
+          "goto": "flee_report"
+        }
+      ]
+    },
+    "question_aria": {
+      "text": "\"What do you mean, they seemed unsurprised?\"\n\nARIA's avatar flickers—a sign she's processing something complex.\n\n\"I cross-referenced our communication with historical records. The Prometheus was not simply lost, Captain. It was erased. All mission files were classified six months after its disappearance. The families of the 10,000 colonists received settlements and non-disclosure agreements.\"\n\n\"Someone covered it up.\"\n\n\"Yes. And whoever made that decision is still receiving alerts about this sector. Our report was flagged within 0.3 seconds of transmission.\"\n\nYou stare at the distant shape of the Prometheus on your viewscreen.\n\n\"They know what's on that ship. And they sent us anyway.\"",
+      "choices": [
+        {
+          "text": "Investigate anyway—you need to know the truth",
+          "goto": "approach_signal",
+          "setState": { "aiTrustworthy": true }
+        },
+        {
+          "text": "Refuse to be a pawn—abort the mission",
+          "goto": "abort_mission"
+        }
+      ]
+    },
+    "demand_answers": {
+      "text": "\"Before I dock, I want answers. What happened to your ship? How are you still alive?\"\n\nCaptain Chen's smile doesn't waver.\n\n\"We found something, Captain. In the void between stars. Something ancient. It reached out to us, and we... evolved. We're beyond death now. Beyond time. Beyond the small concerns that once defined us.\"\n\n\"That's not an answer.\"\n\n\"It's the only one you'll understand. For now.\" Her eyes seem to glow faintly. \"Dock with us. See for yourself. Words can't describe what we've become.\"\n\nARIA's voice is quiet. \"Captain, I'm detecting an energy signature building within the Prometheus. I recommend we maintain distance.\"",
+      "choices": [
+        {
+          "text": "Trust ARIA and keep your distance",
+          "goto": "keep_distance",
+          "setState": { "knowsAboutEntity": true }
+        },
+        {
+          "text": "Dock anyway—you need to know",
+          "goto": "dock_willing"
+        }
+      ]
+    },
+    "cut_and_run": {
+      "text": "You slam the console, killing the transmission.\n\n\"ARIA, get us out of here. Maximum burn.\"\n\n\"Acknowledged.\"\n\nThe Meridian's engines flare. You're pulling away when the Prometheus moves—impossible acceleration for a ship that size, closing the distance like a predator.\n\n\"They're pursuing,\" ARIA reports. \"Their speed exceeds theoretical maximums for that vessel class.\"\n\n\"Can we outrun them?\"\n\n\"Unknown. They're—\" Static bursts across all channels. Then a voice, Captain Chen's voice, echoing through the ship.\n\n\"You can't leave, Captain. We've chosen you. The signal wasn't a distress call. It was an invitation.\"",
+      "choices": [
+        {
+          "text": "Push the engines past safe limits",
+          "goto": "overdrive"
+        },
+        {
+          "text": "Hide in the asteroid field",
+          "goto": "hide_asteroids"
+        }
+      ]
+    },
+    "dock_willing": {
+      "text": "Against every instinct, you dock with the Prometheus.\n\nThe airlock opens. The corridor beyond is pristine—warm lighting, recycled air that smells faintly of flowers. Nothing like a 200-year-old ship should smell.\n\nCaptain Chen waits for you, flanked by crew members. They look normal. Healthy. Smiling.\n\n\"Welcome,\" she says. \"We're so glad you came.\"\n\nShe leads you through the ship. Past passengers in common areas, reading, playing games. Past crew at their stations, monitoring systems. Everyone smiles. Everyone waves.\n\nThen you reach the core. And you see what's inside.\n\nYou try to scream, but something fills your mind—vast, ancient, hungry. The last thing you hear is Chen's voice:\n\n\"Now you understand. Now you're one of us.\"",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "board_alone": {
+      "text": "You cycle the airlock and step aboard the Prometheus.\n\nThe corridor is dark except for emergency lighting. Your footsteps echo. The life signs ARIA detected are nowhere to be seen.\n\n\"ARIA, can you still hear me?\"\n\n\"Yes, Captain. But my connection is degrading. Something aboard is interfering with our link.\"\n\nYou move deeper. The walls are covered in strange markings—symbols that seem to shift when you're not looking directly at them. Your flashlight catches something on the floor.\n\nA datapad. The screen is cracked, but it still works. The last entry is dated one month after the Prometheus disappeared:\n\n\"Day 31. It speaks to us now. We understand what it wants. We are ready to serve.\"",
+      "choices": [
+        {
+          "text": "Continue to the bridge",
+          "goto": "prometheus_bridge",
+          "setState": { "foundCaptainsLog": true }
+        },
+        {
+          "text": "Head for the cargo bay",
+          "goto": "cargo_bay"
+        },
+        {
+          "text": "Return to your ship immediately",
+          "goto": "retreat_to_ship"
+        }
+      ]
+    },
+    "send_drone": {
+      "text": "You deploy a reconnaissance drone through the airlock.\n\nThe feed shows empty corridors at first. Then movement—figures in the shadows. The drone rounds a corner and stops.\n\nHundreds of people stand motionless in a vast hall, facing a central point. Their eyes are open but vacant. Their mouths move in unison, whispering something the drone's mic can barely pick up.\n\nThen, as one, they turn to face the camera.\n\nThe feed dies.\n\n\"Drone connection lost,\" ARIA reports. \"Captain, I strongly recommend we—\"\n\nThe ship shudders. Something has latched onto your hull.",
+      "choices": [
+        {
+          "text": "Detach and run",
+          "goto": "emergency_detach"
+        },
+        {
+          "text": "Board the Prometheus to disconnect whatever's attached",
+          "goto": "board_alone",
+          "setState": { "hasWeapon": true, "knowsAboutEntity": true }
+        }
+      ]
+    },
+    "prometheus_bridge": {
+      "text": "The bridge of the Prometheus is enormous—designed to command a ship of 10,000. Now it's empty except for one figure in the captain's chair.\n\nCaptain Sarah Chen. Or what's left of her.\n\nShe's merged with the chair, with the ship itself. Cables and organic tendrils connect her body to the systems around her. Her eyes open as you enter.\n\n\"You found the log,\" she says. Her voice is a chorus—her own and something deeper. \"So you know what we became.\"\n\n\"What are you?\"\n\n\"A bridge. A door. Something vast lives in the spaces between stars. It reached out to us. Changed us. Now we call others. So it can spread.\"",
+      "choices": [
+        {
+          "text": "Try to reason with her",
+          "goto": "reason_with_chen"
+        },
+        {
+          "text": "Use the plasma cutter",
+          "goto": "attack_chen",
+          "condition": { "hasWeapon": true }
+        },
+        {
+          "text": "Run back to your ship",
+          "goto": "run_from_bridge"
+        }
+      ]
+    },
+    "cargo_bay": {
+      "text": "The cargo bay should hold supplies for 10,000 colonists. Instead, you find something else.\n\nCocooons. Thousands of them, lining the walls, covering the floor. Inside each one, a human form—frozen, preserved, waiting.\n\n\"The colonists,\" you whisper.\n\nARIA's voice crackles. \"Captain... not colonists. These biosigns are... newer. Ships that answered the signal. Crews that came to investigate.\"\n\nYour blood runs cold. \"How many?\"\n\n\"I count 847 occupied cocoons. Matching the life signs I detected earlier. They're not crew, Captain. They're prisoners. Or... food.\"",
+      "choices": [
+        {
+          "text": "Try to free them",
+          "goto": "free_prisoners"
+        },
+        {
+          "text": "Get back to your ship and destroy this vessel",
+          "goto": "plan_destruction"
+        }
+      ]
+    },
+    "retreat_to_ship": {
+      "text": "Every instinct screams at you to leave. You turn and run.\n\nThe corridors that were empty before are not empty now. Figures stand in the shadows—passengers, crew, all watching with those too-calm eyes.\n\nThey don't stop you. They just watch.\n\nYou reach the airlock. Cycle through. Seal it behind you.\n\n\"ARIA, detach! Now!\"\n\nThe Meridian pulls away. On the viewscreen, you see the Prometheus growing smaller. Then you notice the figures in the windows. Hundreds of them. Watching.\n\nWaiting.\n\nYou escaped. But you know, somehow, that they let you go.\n\nAnd someday, they'll call again.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "keep_distance": {
+      "text": "\"ARIA, maintain distance. Prepare for emergency jump.\"\n\n\"Coordinates?\"\n\n\"Anywhere but here.\"\n\nThe Prometheus begins to move—slowly at first, then accelerating. The smile on Captain Chen's face, still visible on your viewscreen, never wavers.\n\n\"You can't run forever,\" she says. \"We'll find you. We find everyone eventually. The signal reaches everywhere, Captain. Everywhere.\"\n\nYou initiate the jump. The stars stretch and blur. The Prometheus disappears behind you.\n\nBut as you emerge in normal space, ARIA speaks:\n\n\"Captain, I'm detecting a faint signal. Same frequency as the Prometheus beacon.\" She pauses. \"It's coming from Earth.\"",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "flee_report": {
+      "text": "You've seen enough. This is beyond anything one cargo ship can handle.\n\n\"ARIA, maximum burn. Get us to the nearest military outpost.\"\n\n\"Acknowledged.\"\n\nYou spend the journey compiling your data—the scans, the intercepted communications, everything. When you reach Outpost Gamma-7, you transmit it all.\n\nThe Navy responds within hours. A fleet is dispatched. You're debriefed for days.\n\nWeeks later, you learn the result. The Prometheus was destroyed with tactical nuclear weapons. All hands lost. The official report calls it a reactor malfunction.\n\nBut the officers who debriefed you looked scared. And the Navy has quadrupled its presence in Sector 7-G.\n\nSomething was on that ship. Something they wanted to make sure never escaped.\n\nYou try not to think about whether they succeeded.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "abort_mission": {
+      "text": "\"I'm not playing this game,\" you say. \"ARIA, plot a course to the nearest station. We're done here.\"\n\n\"Captain, company protocol requires—\"\n\n\"Override. Authorization Chen-7-7-Alpha.\"\n\n\"Acknowledged.\"\n\nYou turn the Meridian away from the Prometheus, away from the questions, away from whatever nightmare lurks in that ship.\n\nYou file a report. Resign from Meridian Corp. Find work on a station far from deep space.\n\nBut some nights, you dream of the signal. Of a voice calling from the dark between stars. Of Chen's smile and her promise: \"We find everyone eventually.\"\n\nYou wake up sweating, checking the frequencies.\n\nThe signal is still out there. And someday, someone else will answer.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "overdrive": {
+      "text": "\"ARIA, override safety limiters. Give me everything the engines have.\"\n\n\"Captain, this will cause permanent damage to the drive core.\"\n\n\"Do it!\"\n\nThe Meridian screams forward. Warning lights flood the bridge. The hull groans under the stress.\n\nBehind you, the Prometheus falls back—but doesn't stop. It matches your acceleration, then exceeds it.\n\n\"They're gaining,\" ARIA reports.\n\nYou're out of options. Then you see it—a gap in the asteroid field, a narrow channel leading to open space.\n\n\"There! Can we make it?\"\n\n\"Probability of survival: 23%.\"\n\nYou take the chance. The asteroids blur past. One clips your hull. Then another.\n\nThen you're through. The Prometheus is too large to follow.\n\nYou drift in open space, engines dead, life support failing. But alive.\n\nARIA's voice is faint. \"Distress beacon deployed. Rescue estimated in... 47 hours.\"\n\nYou pray it's a human ship that finds you.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "hide_asteroids": {
+      "text": "\"Cut the engines. Go dark.\"\n\n\"Captain?\"\n\n\"We hide. Power down everything except life support. Make us look like debris.\"\n\nARIA complies. The Meridian goes silent, drifting among the asteroids like just another rock.\n\nThe Prometheus searches. You watch on passive sensors as it prowls through the field, scanning. Hours pass. You barely breathe.\n\nThen, finally, it moves away. Returns to its position. Waits.\n\nYou wait longer. A full day before you risk restarting engines. Then you creep away, slow and silent, until the Prometheus is just a dot on your sensors.\n\nYou escaped. But you know where it is now. And you'll make sure others know too.\n\nSomeone has to stop it. Someone has to warn them.\n\nMaybe it'll be you.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "emergency_detach": {
+      "text": "\"Emergency detach! All clamps!\"\n\nThe Meridian tears free, leaving part of your airlock behind. Warning alarms blare. Atmosphere vents from the damaged section.\n\n\"Hull breach contained,\" ARIA reports. \"But we've lost the starboard cargo bay.\"\n\nBehind you, something detaches from the Prometheus—a mass of metal and organic matter, reaching for your ship with tendrils that shouldn't exist.\n\nYou don't look back. You run.\n\nThe jump to hyperspace is rough—the damage almost kills you—but you emerge in civilized space. Alive. Mostly intact.\n\nThe company is furious about the lost cargo. They don't believe your report. No one does.\n\nBut you know what's out there. And every time you see a ship heading toward Sector 7-G, you wonder if they'll come back.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "reason_with_chen": {
+      "text": "\"Captain Chen—Sarah—listen to me. You were human once. These people trusted you. Is this what you wanted for them?\"\n\nFor a moment, something flickers in her eyes. Pain. Regret.\n\n\"I... remember. We were colonists. Dreamers. We wanted to build something new.\" Her voice breaks free of the chorus, becoming singular. \"It found us in the dark. We couldn't resist. We didn't want to.\"\n\n\"You can fight it. Let me help you.\"\n\n\"No.\" The chorus returns, stronger. \"We are beyond saving. But you're not. Not yet.\"\n\nThe cables release her. She collapses. The ship shudders.\n\n\"Go,\" she whispers. \"I can hold it back. But not for long. Go, and warn them. Warn everyone.\"\n\nYou run. Behind you, the Prometheus begins to tear itself apart.",
+      "choices": [
+        {
+          "text": "Escape to your ship",
+          "goto": "escape_sacrifice"
+        }
+      ]
+    },
+    "attack_chen": {
+      "text": "You raise the plasma cutter and fire.\n\nThe beam slices through cables, through flesh, through whatever Chen has become. She screams—a sound that echoes through dimensions.\n\nThe ship convulses. Lights flicker. The symbols on the walls writhe.\n\n\"ARIA, can you hear me? Get the Meridian ready to detach!\"\n\nStatic. Then: \"Ready, Captain. But you have less than two minutes before the Prometheus reactor goes critical.\"\n\nYou run. Corridors that were empty fill with shambling figures—passengers, crew, all reaching for you. You fire the cutter wildly, carving a path.\n\nThe airlock is ahead. You dive through.\n\n\"Detach! Now!\"\n\nThe Meridian pulls away as the Prometheus detonates behind you. The shockwave catches you, spinning the ship, but you survive.\n\n847 people, dead. But the thing inside them died too.\n\nAt least, you hope it did.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "run_from_bridge": {
+      "text": "You don't wait to hear more. You run.\n\nBehind you, Chen laughs—a sound like static and screaming combined. The ship comes alive around you. Doors seal. Corridors shift. The Prometheus is trying to trap you.\n\n\"ARIA! Emergency beacon! Send everything we've recorded!\"\n\n\"Transmitting.\"\n\nYou find an emergency airlock—a manual override, independent of the ship's AI. You wrench it open and throw yourself into space.\n\nThe cold hits you like a hammer. Your suit gives you minutes at most.\n\nBut the Meridian is there. ARIA brings her close, matches velocity. You grab the hull, pull yourself to the airlock.\n\nInside. Sealed. Breathing.\n\nThe Prometheus grows smaller behind you. But the data is sent. Someone will know.\n\nSomeone will come.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "free_prisoners": {
+      "text": "You can't leave them. You approach the nearest cocoon and search for a release mechanism.\n\nThe moment you touch it, alarms blare. The cocoons begin to pulse with light.\n\n\"Captain!\" ARIA's voice is frantic. \"The life signs are changing. They're waking up.\"\n\nThe cocoon in front of you splits open. A figure emerges—human once, now something else. Its eyes fix on you.\n\n\"Thank you,\" it says. \"We've been waiting for someone to release us.\"\n\nMore cocoons open. Figures rise around you. Smiling.\n\n\"Now you'll join us. You'll understand everything.\"\n\nYou try to run, but there are too many. They move as one, surrounding you.\n\nThe last thing you see is their smiles as darkness takes you.\n\nYou wake up inside a cocoon. Waiting for the next ship to answer the signal.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "plan_destruction": {
+      "text": "These people can't be saved. But you can stop more from joining them.\n\nYou race back to the Meridian. ARIA has already run the calculations.\n\n\"The Prometheus reactor can be overloaded remotely if I can access their systems. But I need a direct connection.\"\n\n\"The drone link—can you use that?\"\n\n\"The drone is destroyed, but... yes. I can piggyback on the signal they're using to interfere with us. Use it against them.\"\n\nYou watch as ARIA works. The Prometheus begins to glow from within.\n\n\"Reactor overload in 3 minutes. I recommend we leave.\"\n\nYou don't need to be told twice. The Meridian pulls away. Behind you, the Prometheus becomes a brief new star.\n\n847 lives ended. 10,000 colonists finally at rest. And something ancient, denied its prey.\n\nYou hope it was worth it. You have to believe it was.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "escape_sacrifice": {
+      "text": "You run through corridors that shake and crack. The Prometheus is dying, and it's taking everything with it.\n\nThe airlock. You dive through, seal it, cycle the atmosphere. Behind you, the ship groans—metal tearing, reality bending.\n\n\"ARIA, detach!\"\n\nThe Meridian pulls free as the Prometheus collapses. Not an explosion—an implosion. The ship folds in on itself, matter compressing into impossibility.\n\nThen it's gone. Nothing left but dust and echoes.\n\nYou drift in silence, staring at where it was.\n\n\"Captain,\" ARIA says quietly. \"I've recorded everything. Including Captain Chen's final transmission. Her sacrifice.\"\n\nYou nod. \"Make sure it's preserved. Make sure people know what she did.\"\n\nThe journey home is long. But you carry her story with you.\n\nThe story of how one woman—after 200 years of darkness—finally found her way back to the light.",
+      "isEnding": true,
+      "endingType": "good"
+    }
+  }
+}
+

@@ -20,6 +20,13 @@
       "author": "Adventure Engine",
       "description": "A chance encounter with a kind old man in the park. But some people aren't what they seem.",
       "file": "the-old-man.adventure.json"
+    },
+    {
+      "id": "the-last-signal",
+      "title": "The Last Signal",
+      "author": "Adventure Engine",
+      "description": "Your ship intercepts a distress call from a vessel that disappeared 200 years ago. You're the only one close enough to respond.",
+      "file": "the-last-signal.adventure.json"
     }
   ]
 }
