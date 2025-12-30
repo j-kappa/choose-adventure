@@ -1,0 +1,264 @@
+{
+  "id": "the-lighthouse",
+  "title": "The Lighthouse",
+  "author": "Adventure Engine",
+  "description": "A mysterious light beckons from an abandoned shore. What secrets does the old lighthouse hold?",
+  "version": "1.0",
+  "initialState": {
+    "hasKey": false,
+    "hasLantern": false,
+    "lanternLit": false,
+    "metKeeper": false,
+    "knowsSecret": false
+  },
+  "start": "shore",
+  "passages": {
+    "shore": {
+      "text": "The storm has passed, leaving the shore scattered with debris. Before you stands an ancient lighthouse, its tower dark against the grey sky. The beam that once guided sailors home has been extinguished for years—or so you've heard.\n\nYet last night, you saw a light.\n\nWaves lap at your boots as you survey the scene. The lighthouse door is visible up a worn stone path. Scattered among the rocks and driftwood, something glints in the weak morning sun.",
+      "choices": [
+        {
+          "text": "Approach the lighthouse door",
+          "goto": "lighthouse_door"
+        },
+        {
+          "text": "Search the debris on the shore",
+          "goto": "search_debris"
+        },
+        {
+          "text": "Walk along the waterline",
+          "goto": "waterline"
+        }
+      ]
+    },
+    "search_debris": {
+      "text": "You pick your way carefully among the storm's leavings. Broken crates, tangled rope, the skeleton of an old fishing net. Your patience is rewarded when your fingers close around a cold metal object.\n\nA brass key, green with age but still solid. It bears a strange symbol—a lighthouse with a flame where the beacon should be.",
+      "choices": [
+        {
+          "text": "Pocket the key and head to the lighthouse",
+          "goto": "lighthouse_door",
+          "setState": { "hasKey": true }
+        },
+        {
+          "text": "Continue searching the debris",
+          "goto": "find_lantern"
+        }
+      ]
+    },
+    "find_lantern": {
+      "text": "Encouraged by your discovery, you continue sifting through the wreckage. Half-buried in sand, you find an old oil lantern. The glass is intact, and when you shake it, you hear liquid sloshing inside. It still has oil.\n\nThe lighthouse looms above you, waiting.",
+      "choices": [
+        {
+          "text": "Take the lantern and head to the lighthouse",
+          "goto": "lighthouse_door",
+          "setState": { "hasLantern": true }
+        }
+      ]
+    },
+    "waterline": {
+      "text": "You walk along the water's edge, letting the foam wash over your boots. The lighthouse casts a long shadow across the beach. As you round a cluster of rocks, you spot something unusual—a cave entrance, half-hidden by seaweed.\n\nThe tide is coming in. You won't be able to explore it for long.",
+      "choices": [
+        {
+          "text": "Enter the cave quickly",
+          "goto": "cave_entrance"
+        },
+        {
+          "text": "Return to the shore and approach the lighthouse",
+          "goto": "shore"
+        }
+      ]
+    },
+    "cave_entrance": {
+      "text": "The cave is dark and smells of salt and secrets. Water drips from somewhere deep within. You can barely see, but you can make out a passage leading further in.\n\nWithout light, going deeper would be foolish. The tide is already rising.",
+      "choices": [
+        {
+          "text": "Use your lantern to explore deeper",
+          "goto": "cave_deep",
+          "condition": { "hasLantern": true }
+        },
+        {
+          "text": "Leave while you still can",
+          "goto": "shore"
+        }
+      ]
+    },
+    "cave_deep": {
+      "text": "You light the lantern, and warm light fills the cave. The walls are covered in strange carvings—the same lighthouse symbol you saw on the key. And words, in a language you don't recognize.\n\nAt the back of the cave, carved into the stone wall, you find a message in English:\n\n\"The Keeper guards the flame. The flame guards the shore. Wake neither, if you value the world above the waves.\"\n\nThe tide tugs at your ankles. You must leave now.",
+      "choices": [
+        {
+          "text": "Hurry back to the shore",
+          "goto": "shore",
+          "setState": { "knowsSecret": true }
+        }
+      ]
+    },
+    "lighthouse_door": {
+      "text": "The lighthouse door is weathered oak, bound in iron that has long since rusted. A heavy lock holds it shut. The symbol on the lock matches the one on the key—if you have it.\n\nThrough the cracks, you hear something. Movement, perhaps. Or just the wind.",
+      "choices": [
+        {
+          "text": "Use the key to unlock the door",
+          "goto": "lighthouse_interior",
+          "condition": { "hasKey": true }
+        },
+        {
+          "text": "Try to force the door",
+          "goto": "force_door"
+        },
+        {
+          "text": "Return to the shore to search for a key",
+          "goto": "shore"
+        }
+      ]
+    },
+    "force_door": {
+      "text": "You throw your shoulder against the door. Once, twice, three times. The old wood groans but holds firm. The lock rattles mockingly.\n\nFrom within, you hear a voice—dry as dust, old as the stones themselves.\n\n\"The door opens for the key, and the key alone. Seek it where the sea returns what it has taken.\"",
+      "choices": [
+        {
+          "text": "Search the shore for the key",
+          "goto": "search_debris"
+        }
+      ]
+    },
+    "lighthouse_interior": {
+      "text": "The key turns with a grinding click. The door swings open, releasing a breath of air that smells of dust and time.\n\nThe interior is surprisingly well-preserved. A spiral staircase winds upward into darkness. To your left, a small living area with a cold fireplace. To your right, a door marked \"Keeper's Quarters.\"\n\nUpstairs, you hear footsteps.",
+      "choices": [
+        {
+          "text": "Climb the spiral staircase",
+          "goto": "spiral_stairs"
+        },
+        {
+          "text": "Investigate the Keeper's Quarters",
+          "goto": "keepers_quarters"
+        },
+        {
+          "text": "Examine the living area",
+          "goto": "living_area"
+        }
+      ]
+    },
+    "living_area": {
+      "text": "The living area is frozen in time. A book lies open on a chair, as if the reader merely stepped away for a moment. The fireplace is cold, but there's fresh wood stacked beside it—impossible, for an abandoned lighthouse.\n\nThe book is a journal. The last entry reads:\n\n\"The light must never go out. If it does, They will return. I am so tired, but I must keep watch. Someone will come. Someone must come.\"",
+      "choices": [
+        {
+          "text": "Climb the spiral staircase",
+          "goto": "spiral_stairs"
+        },
+        {
+          "text": "Check the Keeper's Quarters",
+          "goto": "keepers_quarters"
+        }
+      ]
+    },
+    "keepers_quarters": {
+      "text": "The door creaks open to reveal a small bedroom. The bed is made, but covered in years of dust. On the nightstand, a photograph shows a man in a lighthouse keeper's uniform, his eyes kind but weary.\n\nBeside the photograph, a note: \"If you've found this place, the flame has called you. You are the next Keeper. The choice is yours.\"",
+      "choices": [
+        {
+          "text": "Climb the spiral staircase to find answers",
+          "goto": "spiral_stairs"
+        }
+      ]
+    },
+    "spiral_stairs": {
+      "text": "You climb the worn stone steps, each one grooved by centuries of footsteps. The air grows colder as you ascend. Through narrow windows, you catch glimpses of the sea, grey and endless.\n\nAt the top, a trapdoor leads to the lamp room. Light flickers from above—impossible light, for there is no one here to tend it.\n\nOr so you thought.",
+      "choices": [
+        {
+          "text": "Open the trapdoor",
+          "goto": "lamp_room"
+        },
+        {
+          "text": "Descend and leave the lighthouse",
+          "goto": "leave_lighthouse"
+        }
+      ]
+    },
+    "lamp_room": {
+      "text": "You push open the trapdoor and climb into the lamp room. The great lens dominates the space, a marvel of glass and brass. And within it, a flame burns—pale blue, unlike any fire you've seen.\n\nBeside the flame stands a figure. The Keeper. He looks like the man in the photograph, but translucent, shimmering like heat haze. He turns to face you, and his ancient eyes hold both hope and sorrow.\n\n\"At last,\" he whispers. \"You've come.\"",
+      "choices": [
+        {
+          "text": "\"What are you? What is this place?\"",
+          "goto": "keeper_explains"
+        },
+        {
+          "text": "Mention what you learned in the cave",
+          "goto": "keeper_secret",
+          "condition": { "knowsSecret": true }
+        }
+      ]
+    },
+    "keeper_explains": {
+      "text": "The Keeper drifts closer, his form wavering like a candle flame in wind.\n\n\"I was like you once. A person who saw the light when others could not. This flame—it is not ordinary fire. It holds back the darkness that dwells beneath the waves. Ancient things, hungry things.\"\n\nHe gestures to the flame, which pulses as if aware of his attention.\n\n\"I have kept the light burning for three hundred years. My time is ending. Will you take my place?\"",
+      "choices": [
+        {
+          "text": "\"I'll do it. I'll become the next Keeper.\"",
+          "goto": "ending_accept",
+          "setState": { "metKeeper": true }
+        },
+        {
+          "text": "\"I can't. I have a life out there.\"",
+          "goto": "ending_refuse",
+          "setState": { "metKeeper": true }
+        },
+        {
+          "text": "\"What happens if the flame goes out?\"",
+          "goto": "flame_warning"
+        }
+      ]
+    },
+    "keeper_secret": {
+      "text": "\"I found carvings in the cave,\" you say. \"I know about the things beneath the waves.\"\n\nThe Keeper's expression shifts—surprise, then something like relief.\n\n\"Then you understand the weight of what I ask. Few have found the cave. Fewer still have read the warnings and still climbed these stairs.\" He studies you with new respect. \"You are brave, or foolish. Perhaps both. The best Keepers always were.\"\n\nThe flame burns brighter, as if in agreement.",
+      "choices": [
+        {
+          "text": "\"I understand. I'll take your place.\"",
+          "goto": "ending_accept_knowing"
+        },
+        {
+          "text": "\"I need time to think about this.\"",
+          "goto": "ending_uncertain"
+        }
+      ]
+    },
+    "flame_warning": {
+      "text": "The Keeper's face grows grave. \"If the flame dies, the barrier falls. They will rise—beings older than human memory, hungry for a world that has forgotten them.\"\n\nHe gestures toward the sea, and for a moment you see something in the depths. Movement. Shapes too large to be whales, too wrong to be natural.\n\n\"The choice is yours. But know this: the flame chose you. It guided you here. It would not have done so if you were not capable of bearing this burden.\"",
+      "choices": [
+        {
+          "text": "\"Then I have no choice. I'll stay.\"",
+          "goto": "ending_accept"
+        },
+        {
+          "text": "\"There must be another way.\"",
+          "goto": "ending_search"
+        }
+      ]
+    },
+    "leave_lighthouse": {
+      "text": "You descend the stairs and step back out into the grey morning. The lighthouse door closes behind you with a sound like a sigh.\n\nAs you walk back across the shore, you feel something watching from the lamp room above. The light still flickers—for now. But you wonder how much longer it can last without a Keeper.\n\nYou leave, but part of you never will. In your dreams, you will always see that pale blue flame.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "ending_accept": {
+      "text": "\"Very well,\" the Keeper says, and there is joy in his weary eyes. \"Place your hand upon the flame.\"\n\nYou reach out. The fire doesn't burn—it embraces you, filling you with warmth and purpose. You feel the weight of centuries settle upon your shoulders, but also the strength to bear it.\n\nThe old Keeper smiles as his form begins to fade. \"Thank you,\" he whispers. \"Guard the light. Guard the world.\"\n\nAs he vanishes, you understand: you are home now. This is where you were always meant to be.\n\nAnd the flame burns on.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "ending_accept_knowing": {
+      "text": "\"You know the truth and still accept,\" the Keeper says wonderingly. \"You are braver than I was.\"\n\nYou place your hand upon the flame. Knowledge floods into you—not just warmth, but understanding. You see the shapes beneath the waves and know their names. You see the long line of Keepers stretching back through history, and forward, into a future you will help protect.\n\nThe old Keeper fades with a peaceful smile. You take your place before the great lens.\n\nThe first ship of the evening appears on the horizon, and you guide it safely past the rocks. Your work has begun.\n\nThe light will never go out.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "ending_refuse": {
+      "text": "The Keeper nods slowly, his expression more sad than angry.\n\n\"I understand. The burden is great, and I cannot force it upon you.\" He turns back to the flame, his shoulders bent with exhaustion. \"Then I must wait for another.\"\n\nYou descend the stairs and leave the lighthouse. But as you walk away, you glance back. The light flickers—once, twice—then steadies.\n\nYears later, you sometimes wake at night and look toward the coast, wondering if the light still burns. Wondering if someone answered the call.\n\nWondering what happens when it goes out.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "ending_uncertain": {
+      "text": "\"Time is the one thing I cannot give,\" the Keeper says gently. \"But I understand. Go. Think. Return if you can.\"\n\nYou descend the stairs and step outside. The world seems different now—smaller somehow, less certain. You know what waits beneath the waves. You know what keeps it at bay.\n\nMonths pass. You try to return to normal life. But every night, in your dreams, you see the pale blue flame. Every storm, you wonder if this is the one that will extinguish it.\n\nOne day, you will return to the lighthouse.\n\nThe only question is whether you'll return in time.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "ending_search": {
+      "text": "\"Another way?\" The Keeper considers this. \"In three hundred years, I have never found one. But perhaps...\" He studies you carefully. \"Perhaps you are different. Perhaps you can find what I could not.\"\n\nHe teaches you what he knows—the history, the rituals, the names of the things below. Armed with knowledge, you leave the lighthouse, not as its Keeper, but as something new. A seeker.\n\nYour journey will take you to the ends of the earth, through libraries lost to time and temples beneath the sea. Others have tried and failed. But the flame chose you for a reason.\n\nSomewhere, there is an answer. You will find it.\n\nOr die trying.",
+      "isEnding": true,
+      "endingType": "good"
+    }
+  }
+}
+

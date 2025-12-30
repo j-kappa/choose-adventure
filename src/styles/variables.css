@@ -1,0 +1,101 @@
+/**
+ * CSS Custom Properties (Variables)
+ * Theme system for light and dark modes
+ */
+
+:root {
+  /* Typography */
+  --font-story: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-ui: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Font sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  
+  /* Story text - larger for readability */
+  --text-story: 1.375rem;
+  --text-story-mobile: 1.125rem;
+  --line-height-story: 1.8;
+  
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  
+  /* Layout */
+  --max-width-story: 42rem;
+  --max-width-library: 64rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-base: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  
+  /* Light mode colors (default) */
+  --color-bg: #FFFEF9;
+  --color-bg-subtle: #F8F7F2;
+  --color-bg-card: #FFFFFF;
+  --color-text: #1A1A1A;
+  --color-text-muted: #666666;
+  --color-text-subtle: #999999;
+  --color-accent: #B8860B;
+  --color-accent-hover: #9A7209;
+  --color-accent-subtle: rgba(184, 134, 11, 0.1);
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-strong: rgba(0, 0, 0, 0.15);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-base: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+  
+  /* Ending colors */
+  --color-ending-good: #2E7D32;
+  --color-ending-bad: #C62828;
+  --color-ending-neutral: #666666;
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+  --color-bg: #0D0D0F;
+  --color-bg-subtle: #141416;
+  --color-bg-card: #1A1A1E;
+  --color-text: #E8E6E1;
+  --color-text-muted: #A0A0A0;
+  --color-text-subtle: #707070;
+  --color-accent: #D4A84B;
+  --color-accent-hover: #E8BC5F;
+  --color-accent-subtle: rgba(212, 168, 75, 0.12);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.15);
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-base: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+  
+  --color-ending-good: #4CAF50;
+  --color-ending-bad: #EF5350;
+  --color-ending-neutral: #A0A0A0;
+}
+

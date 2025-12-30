@@ -1,0 +1,181 @@
+{
+  "id": "the-defector",
+  "title": "The Defector",
+  "author": "Adventure Engine",
+  "description": "A Russian asset wants out. You have 48 hours to extract them from Moscow before the FSB closes in.",
+  "version": "1.0",
+  "initialState": {
+    "hasForgedPassport": false,
+    "hasBurnerPhone": false,
+    "trustsKatya": false,
+    "knowsMole": false,
+    "coverBlown": false,
+    "extractionRoute": ""
+  },
+  "start": "safehouse",
+  "passages": {
+    "safehouse": {
+      "text": "The Moscow safehouse is cold. You've been here three hours, waiting.\n\nYour asset, codename CARDINAL, wants to defect. Twenty years inside Russian intelligence, and now they want out. The intel they're carrying could reshape the balance of power for a decade.\n\nBut something feels wrong. The meet was supposed to be at midnight. It's now 3 AM.\n\nYour secure phone buzzes. A text from Langley: \"CARDINAL compromised. FSB moving. Get out now.\"\n\nThen another buzz. Unknown number: \"Don't trust Langley. Come to Gorky Park. Alone. - K\"",
+      "choices": [
+        {
+          "text": "Follow Langley's orders and evacuate immediately",
+          "goto": "evacuate"
+        },
+        {
+          "text": "Go to Gorky Park to meet the unknown contact",
+          "goto": "gorky_park"
+        },
+        {
+          "text": "Stay and wait for CARDINAL",
+          "goto": "wait_cardinal"
+        }
+      ]
+    },
+    "evacuate": {
+      "text": "You grab your go-bag and slip out the back entrance. The streets are quiet—too quiet for Moscow at this hour.\n\nA black sedan is parked at the corner. Engine running. Your extraction vehicle.\n\nAs you approach, you notice the driver isn't familiar. Protocol says abort if the driver changes. But Langley said to get out now.\n\nThe rear window rolls down. A woman's voice: \"Get in. We don't have time.\"",
+      "choices": [
+        {
+          "text": "Get in the car",
+          "goto": "wrong_car"
+        },
+        {
+          "text": "Abort and disappear into the metro",
+          "goto": "metro_escape"
+        }
+      ]
+    },
+    "wrong_car": {
+      "text": "You slide into the back seat. The doors lock automatically.\n\nThe woman turns. She's FSB—you recognize her from the surveillance files. Colonel Natasha Volkov.\n\n\"The CIA's best,\" she says with a thin smile. \"You made this too easy.\"\n\nThe sedan pulls away. Your mission is over. You'll spend the next decade in a Russian prison, traded eventually for someone Moscow wants back.\n\nYou trusted the wrong people.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "metro_escape": {
+      "text": "Something's off. You trust your instincts and walk past the car, disappearing into a side street.\n\nBehind you, you hear doors slam. Footsteps. They're following.\n\nYou run. The metro entrance is two blocks away. You weave through alleys you memorized months ago, losing them in the maze of Soviet-era buildings.\n\nThe metro is nearly empty at this hour. You catch your breath on the platform, watching the tunnel for trains—and threats.",
+      "choices": [
+        {
+          "text": "Head to the American Embassy",
+          "goto": "embassy_approach"
+        },
+        {
+          "text": "Go to Gorky Park to find the unknown contact",
+          "goto": "gorky_park",
+          "setState": { "hasBurnerPhone": true }
+        }
+      ]
+    },
+    "gorky_park": {
+      "text": "Gorky Park at 4 AM. Snow falling. The Ferris wheel stands frozen against the grey sky.\n\nA woman in a dark coat approaches. Mid-thirties. Confident walk. She stops ten feet away.\n\n\"You came,\" she says in accented English. \"I'm Katya. I work with CARDINAL.\"\n\nShe studies your face. \"Langley has a mole. That's why CARDINAL missed the meet. The FSB knew the location before you did.\"\n\nShe holds out a USB drive. \"Everything you need is on here. The mole's identity. A safe extraction route. But you'll have to trust me.\"",
+      "choices": [
+        {
+          "text": "Take the USB drive and trust her",
+          "goto": "trust_katya",
+          "setState": { "trustsKatya": true }
+        },
+        {
+          "text": "Refuse the drive—this could be a trap",
+          "goto": "refuse_katya"
+        },
+        {
+          "text": "Demand proof of her identity first",
+          "goto": "verify_katya"
+        }
+      ]
+    },
+    "trust_katya": {
+      "text": "You take the drive. Katya nods.\n\n\"CARDINAL is hiding in an apartment in Zamoskvorechye. I'll take you there. But we need to move now—the FSB is searching the district.\"\n\nShe leads you through back streets, clearly knowing the area well. After twenty minutes, you reach an old apartment building.\n\n\"Third floor. Apartment 7. Knock three times, pause, then twice.\"\n\nShe presses a forged passport into your hands. \"For CARDINAL. Finnish businessman. The border crossing is in the file.\"\n\nThen she's gone.",
+      "choices": [
+        {
+          "text": "Go up to meet CARDINAL",
+          "goto": "meet_cardinal",
+          "setState": { "hasForgedPassport": true }
+        }
+      ]
+    },
+    "refuse_katya": {
+      "text": "\"I don't take gifts from strangers in Moscow,\" you say.\n\nKatya's expression hardens. \"Then CARDINAL dies. And so does any chance of exposing the mole in your agency.\"\n\nShe turns and walks away, disappearing into the snow.\n\nYou're alone. No asset. No intel. No way to know who in Langley sold you out.\n\nYou make it to the embassy by dawn. They extract you through diplomatic channels. But the mission is a failure, and somewhere in CIA headquarters, a traitor is still feeding secrets to Moscow.\n\nYou'll spend years wondering what was on that drive.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "verify_katya": {
+      "text": "\"Anyone can claim to work with CARDINAL,\" you say. \"Prove it.\"\n\nKatya doesn't flinch. \"CARDINAL's real name is Viktor Petrov. He has a daughter in St. Petersburg—Anna. He turned because she needs medical treatment the state won't provide. You've been funding it through a Swiss account ending in 7734.\"\n\nDetails only someone close would know.\n\n\"Satisfied?\" she asks.\n\nYou nod slowly. She hands you the USB drive.",
+      "choices": [
+        {
+          "text": "Take the drive and follow her",
+          "goto": "trust_katya",
+          "setState": { "trustsKatya": true, "knowsMole": true }
+        }
+      ]
+    },
+    "wait_cardinal": {
+      "text": "You decide to wait. CARDINAL has never missed a meet without reason. Something must have gone wrong.\n\nAn hour passes. Then another. Dawn light seeps through the blinds.\n\nAt 6 AM, you hear footsteps in the hall. Heavy. Multiple people. Not CARDINAL's light tread.\n\nThe door splinters inward. FSB tactical team. Masks. Automatic weapons.\n\n\"Hands! Now!\"\n\nYou're pushed to the floor, zip-tied. As they drag you out, you glimpse a familiar face in the hallway. Your handler from Langley. He won't meet your eyes.\n\nThe mole was in your own chain of command. And you walked right into the trap.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "embassy_approach": {
+      "text": "The American Embassy is fortress. Normally, that's reassuring. But if there's a mole in Langley, the embassy might not be safe either.\n\nYou approach from the east, watching for surveillance. Two cars parked with running engines. FSB, almost certainly.\n\nThe Marine guard at the gate recognizes you. \"Sir, you need to come inside immediately. There's a situation.\"\n\nSomething in his tone makes you hesitate.",
+      "choices": [
+        {
+          "text": "Go inside—the embassy is sovereign territory",
+          "goto": "embassy_inside"
+        },
+        {
+          "text": "Walk away and find another option",
+          "goto": "gorky_park"
+        }
+      ]
+    },
+    "embassy_inside": {
+      "text": "You enter the embassy. The station chief meets you in the secure room.\n\n\"CARDINAL is dead,\" he says flatly. \"FSB got to him two hours ago. We're extracting all non-essential personnel.\"\n\nHe slides a folder across the table. Your flight leaves in three hours.\n\n\"The mission's over. Go home.\"\n\nYou fly back to Washington. Debriefings. Paperwork. Eventually, a new assignment.\n\nBut you never learn who the mole was. And you never forget the unknown number that tried to warn you. Someone in Moscow was trying to help. You just didn't listen.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "meet_cardinal": {
+      "text": "You climb the stairs. Third floor. Apartment 7.\n\nThree knocks. Pause. Two knocks.\n\nThe door opens a crack. An eye peers out—tired, frightened. Then recognition.\n\n\"You came,\" Viktor Petrov whispers. \"I thought they'd gotten to you too.\"\n\nHe lets you in. The apartment is sparse. A suitcase by the door—he's ready to run.\n\n\"The Finnish border is our best option,\" he says. \"I have contacts there. But we need to leave now. The FSB is tightening the net.\"\n\nHe looks at you. \"There are two routes. Train to St. Petersburg, then overland. Or drive north through Karelia. The train is faster. The drive is safer.\"",
+      "choices": [
+        {
+          "text": "Take the train through St. Petersburg",
+          "goto": "train_route",
+          "setState": { "extractionRoute": "train" }
+        },
+        {
+          "text": "Drive north through Karelia",
+          "goto": "karelia_route",
+          "setState": { "extractionRoute": "drive" }
+        }
+      ]
+    },
+    "train_route": {
+      "text": "You opt for speed. The morning train to St. Petersburg leaves in two hours.\n\nViktor transforms with the forged passport. Finnish businessman. You're his American associate. The cover holds at the station—the guards barely glance at your papers.\n\nThe train pulls out of Moscow. You watch the city recede, waiting for the other shoe to drop.\n\nThree hours later, you reach St. Petersburg. No FSB. No complications. Almost too easy.\n\nAt the border crossing, Viktor's hands shake as he hands over his passport. The guard studies it. Studies him. Types something into a computer.\n\nMinutes pass. An eternity.",
+      "choices": [
+        {
+          "text": "Stay calm and wait",
+          "goto": "border_success"
+        },
+        {
+          "text": "Prepare to run if things go wrong",
+          "goto": "border_tense"
+        }
+      ]
+    },
+    "karelia_route": {
+      "text": "You choose the back roads. A contact provides a car—old, unremarkable, perfect.\n\nThe drive north is tense but uneventful. Twelve hours through frozen forests, avoiding main highways. Viktor sleeps in the passenger seat while you drive, waking only at checkpoints.\n\nThe forged passport works at two police stops. By nightfall, you're approaching the Finnish border at a remote crossing.\n\n\"I know the guard,\" Viktor says. \"He's been paid. We should be fine.\"\n\nThe crossing is a single booth in the middle of nowhere. One guard. He sees Viktor and nods almost imperceptibly.",
+      "choices": [
+        {
+          "text": "Drive through",
+          "goto": "border_success"
+        }
+      ]
+    },
+    "border_success": {
+      "text": "The guard stamps the passport and waves you through.\n\nYou cross into Finland. Free.\n\nViktor exhales—a sound like twenty years of fear leaving his body.\n\n\"It's over,\" he says. \"It's actually over.\"\n\nA CIA team meets you in Helsinki. Viktor is taken to a safehouse for debriefing. The intel he carries will take months to process, but already the analysts are excited. This is the biggest defection in a decade.\n\nBefore they separate you, Viktor shakes your hand.\n\n\"Thank you,\" he says. \"For believing in me when your own people didn't.\"\n\nYou never see him again. But three months later, a mole in Langley is quietly arrested. The information came from Viktor's files.\n\nThe mission was a success. Against all odds, you got him out.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "border_tense": {
+      "text": "Your hand drifts toward your coat. The guard's eyes flick to the movement.\n\nThen he stamps the passport and hands it back. \"Welcome to Finland.\"\n\nYou exhale. Viktor is already walking toward the car.\n\nFinland. Safety. The mission isn't over—there will be debriefings, intelligence analysis, months of work. But the hard part is done.\n\nViktor looks back at you from the car. There's something almost like a smile on his face.\n\n\"Thank you,\" he says. \"I wasn't sure anyone would come.\"\n\nNeither were you. But you did. And now the secrets he carries will change the balance of power for years to come.\n\nThe sun is rising over the Finnish forest. A new day. A successful extraction.",
+      "isEnding": true,
+      "endingType": "good"
+    }
+  }
+}
+

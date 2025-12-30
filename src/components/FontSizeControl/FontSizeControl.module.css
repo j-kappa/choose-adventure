@@ -1,0 +1,53 @@
+.control {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-text-muted);
+  background: transparent;
+  border-radius: var(--radius-base);
+  transition: 
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.button:hover:not(:disabled) {
+  color: var(--color-text);
+  background-color: var(--color-accent-subtle);
+}
+
+.button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.icon {
+  font-family: var(--font-story);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.minus,
+.plus {
+  position: absolute;
+  bottom: 0.25rem;
+  right: 0.25rem;
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.divider {
+  width: 1px;
+  height: 1.25rem;
+  background: var(--color-border);
+}
+

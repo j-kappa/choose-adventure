@@ -1,0 +1,19 @@
+{
+  "stories": [
+    {
+      "id": "the-lighthouse",
+      "title": "The Lighthouse",
+      "author": "Adventure Engine",
+      "description": "A mysterious light beckons from an abandoned shore. What secrets does the old lighthouse hold?",
+      "file": "the-lighthouse.adventure.json"
+    },
+    {
+      "id": "the-defector",
+      "title": "The Defector",
+      "author": "Adventure Engine",
+      "description": "A Russian asset wants out. You have 48 hours to extract them from Moscow before the FSB closes in.",
+      "file": "the-defector.adventure.json"
+    }
+  ]
+}
+
