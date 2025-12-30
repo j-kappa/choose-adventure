@@ -1,0 +1,441 @@
+{
+  "id": "the-aegean-falcon",
+  "title": "The Aegean Falcon",
+  "author": "Adventure Engine",
+  "description": "Captain Nikos Stavridis flies F-16s and Mirage 2000s for the Hellenic Air Force. When tensions escalate over the Aegean, every decision could mean war—or peace.",
+  "version": "1.0",
+  "initialState": {
+    "fuelCritical": false,
+    "missileArmed": false,
+    "wingmanAlive": true,
+    "identifiedAsThreat": false,
+    "hasPhotographicEvidence": false,
+    "radioContact": true,
+    "altitude": "high"
+  },
+  "start": "scramble",
+  "passages": {
+    "scramble": {
+      "text": "The klaxon tears through the ready room at Tanagra Air Base. 0547 hours. You're already reaching for your flight helmet before the words crackle through the speakers.\n\n\"SCRAMBLE! SCRAMBLE! Unknown contacts, bearing zero-nine-zero, angels twenty. All alert aircraft, scramble immediately!\"\n\nCaptain Nikos Stavridis. Twelve years in the Hellenic Air Force. Three thousand hours in the cockpit. You've done this dance a hundred times—the endless game of cat and mouse over the Aegean Sea.\n\nBut something in the controller's voice tells you today is different.\n\nYou sprint across the tarmac. Two aircraft wait on the flight line: your F-16C Block 52+, freshly armed, and the older Mirage 2000-5 that Lieutenant Kosta Papadopoulos will fly as your wingman.\n\n\"Falcon Lead, Falcon Two, what do we have?\" Kosta's voice comes through as you climb into the cockpit.\n\nThe crew chief hands you the mission card. Your blood runs cold.\n\nFour contacts. Not the usual pair. Four.",
+      "choices": [
+        {
+          "text": "Take off immediately—every second counts",
+          "goto": "immediate_takeoff"
+        },
+        {
+          "text": "Request more intel from the tower before launching",
+          "goto": "request_intel"
+        },
+        {
+          "text": "Switch to the Mirage—it's better for close-in dogfighting",
+          "goto": "choose_mirage"
+        }
+      ]
+    },
+    "immediate_takeoff": {
+      "text": "No time for questions. You strap in, run through the abbreviated checklist, and spool up the General Electric F110 engine. The F-16 screams to life.\n\n\"Falcon Lead, Tanagra Tower, cleared for immediate departure runway zero-niner. Godspeed.\"\n\nYou push the throttle past the detent into afterburner. The acceleration slams you back into the ejection seat as the Viper leaps forward. Rotation. Gear up. You're climbing through 10,000 feet before the runway disappears behind you.\n\nKosta forms up on your wing, his Mirage 2000 trailing blue flame.\n\n\"Falcon flight, Larissa Control. Bogeys now bearing zero-eight-five, range forty nautical miles, speed 450 knots, descending through angels eighteen. Identification unknown. Rules of engagement: weapons tight. Do not fire unless fired upon.\"\n\nWeapons tight. But four against two, if this goes hot...\n\nThe radar paints them clearly now. Four contacts in a loose finger-four formation. Professional. Military. The question is: whose military?",
+      "choices": [
+        {
+          "text": "Close to visual range for identification",
+          "goto": "visual_identification"
+        },
+        {
+          "text": "Attempt radio contact on guard frequency",
+          "goto": "radio_contact"
+        },
+        {
+          "text": "Stay at distance and have Kosta circle for a flanking position",
+          "goto": "tactical_positioning"
+        }
+      ]
+    },
+    "request_intel": {
+      "text": "You key the radio while running through your preflight. \"Tanagra Tower, Falcon Lead. Request additional information on contacts. Type? Origin? Have we hailed them?\"\n\nA pause. Then the tower commander's voice, tense.\n\n\"Falcon Lead, contacts are fast-movers, probable F-16s based on radar signature. They crossed the FIR boundary twelve minutes ago without filing a flight plan. Athens has attempted contact on guard frequency. No response.\"\n\nF-16s. That narrows it down. Turkey operates F-16s. So does Greece. But these aren't Greek.\n\n\"They're heading for the islands,\" the commander continues. \"Chios and Lesbos report visual sightings of military aircraft in the past hour. This may be a coordinated incursion.\"\n\nYour jaw tightens. The diplomatic situation has been deteriorating for weeks. Rhetoric about \"gray zones\" and disputed airspace. But this is the most aggressive move you've seen in years.\n\n\"Understood, Tower. Falcon flight is launching.\"\n\nYou strap in and start the engine, Kosta already taxiing beside you.",
+      "choices": [
+        {
+          "text": "Take off in your F-16",
+          "goto": "immediate_takeoff"
+        },
+        {
+          "text": "Switch to the Mirage for better maneuverability",
+          "goto": "choose_mirage"
+        }
+      ]
+    },
+    "choose_mirage": {
+      "text": "You hesitate at the F-16's ladder, then make a decision. \"Kosta, switch aircraft. You take the Viper, I'll fly the Mirage.\"\n\n\"Sir?\"\n\n\"If this goes close-in, the Mirage's delta wing will give us the edge. And someone needs to fly it who knows how to push it.\"\n\nKosta doesn't argue. You both swap, settling into unfamiliar-yet-familiar cockpits. The Mirage 2000-5's SNECMA engine whines to life, and you feel the airframe respond differently than the F-16—heavier on the controls, but more graceful in a turn.\n\nYou launch into the brightening sky, Kosta on your wing in the Block 52+.\n\n\"Falcon flight, Larissa Control. Contacts now at angels fifteen, range thirty-five miles. They've descended. Possible low-level ingress toward the islands.\"\n\nLow-level. Over disputed waters. This is a provocation.",
+      "choices": [
+        {
+          "text": "Intercept at high altitude—force them to look up at you",
+          "goto": "high_intercept"
+        },
+        {
+          "text": "Descend to match their altitude",
+          "goto": "low_intercept"
+        }
+      ]
+    },
+    "visual_identification": {
+      "text": "\"Falcon Two, follow my lead. We're going visual.\"\n\nYou push the throttle forward, closing the distance. The Aegean glitters below, scattered with islands like emeralds on blue silk. Somewhere down there, fishing boats and ferries go about their morning routines, unaware of the drama unfolding above.\n\nTen miles. Five miles. There.\n\nFour aircraft in formation. Gray paint schemes. The distinctive shape of F-16C Fighting Falcons. And on their tails, the red and white star-and-crescent.\n\nTurkish Air Force.\n\n\"Falcon Lead, confirm visual. Four Turkish F-16s, standard armament visible. AIM-9 Sidewinders, centerline tanks. No AIM-120s apparent.\"\n\nSmall mercy. No beyond-visual-range missiles. But those Sidewinders are still deadly.\n\nOne of the Turkish pilots notices you. His aircraft banks sharply, turning to face you. The others follow. Now it's two on four, nose to nose over international waters.\n\nYour radar warning receiver lights up. They're painting you.",
+      "choices": [
+        {
+          "text": "Hold your course—don't show aggression",
+          "goto": "hold_course"
+        },
+        {
+          "text": "Break hard and position for advantage",
+          "goto": "break_defensive"
+        },
+        {
+          "text": "Call for backup from Tanagra",
+          "goto": "call_backup"
+        }
+      ]
+    },
+    "radio_contact": {
+      "text": "\"Unknown aircraft bearing zero-eight-five from Tanagra, this is Hellenic Air Force Falcon Lead. You are approaching Greek airspace without clearance. Identify yourself and state your intentions. Transmitting on guard.\"\n\nStatic. The blue of the Aegean stretches below you, endless and indifferent.\n\nThen a voice, heavily accented but clear.\n\n\"Greek aircraft, this is Turkish Air Force Yıldırım flight. We are conducting routine patrol in international airspace. We do not recognize your so-called FIR boundary. Suggest you return to your base.\"\n\nRoutine patrol. Four aircraft. Descending toward Greek islands.\n\n\"Yıldırım flight, you are in violation of established flight information region protocols. Turn back immediately or you will be intercepted.\"\n\nA laugh crackles through the radio. \"Intercept us, then. We're not going anywhere.\"\n\nThe channel goes dead.",
+      "choices": [
+        {
+          "text": "Close to visual range",
+          "goto": "visual_identification"
+        },
+        {
+          "text": "Report the exchange and request instructions",
+          "goto": "report_exchange"
+        },
+        {
+          "text": "Shadow them without engaging",
+          "goto": "shadow_formation"
+        }
+      ]
+    },
+    "tactical_positioning": {
+      "text": "\"Falcon Two, break off. Come around bearing one-eight-zero, stay low. I'll keep their attention. We'll have them bracketed.\"\n\n\"Copy, Lead. Breaking.\"\n\nKosta's Mirage peels away, diving toward the wave tops. You maintain course, watching your radar as he disappears into the ground clutter.\n\nClassic pincers. If they focus on you, Kosta has their flank. If they turn to engage him, you'll be on their six.\n\nThe contacts notice your wingman's disappearance. Their formation tightens—they're not amateurs. One of them breaks off, diving after Kosta.\n\nThree on one now. Not ideal.\n\n\"Falcon Lead, Larissa Control. Be advised, Turkish flight has split. One bandit in pursuit of Falcon Two. Three bandits maintaining course toward you. ROE remains weapons tight.\"\n\nWeapons tight. Against three opponents who may or may not respect the same rules.",
+      "choices": [
+        {
+          "text": "Trust Kosta to handle his pursuer—focus on the three",
+          "goto": "focus_on_three"
+        },
+        {
+          "text": "Turn to help Kosta",
+          "goto": "help_wingman"
+        },
+        {
+          "text": "Attempt to disengage entirely",
+          "goto": "attempt_disengage"
+        }
+      ]
+    },
+    "high_intercept": {
+      "text": "\"Falcon Two, we're staying high. Let's own the vertical.\"\n\nYou climb through 25,000 feet, the Mirage's delta wing cutting through thinning air. The SNECMA M53 engine drinks fuel, but the altitude is worth it. Energy equals options.\n\nThe Turkish formation appears below—four gray shapes against the blue water. They see you too. One of them pulls up, climbing to meet you.\n\n\"Yıldırım Lead is ascending,\" Kosta reports. \"Others maintaining course.\"\n\nIt's a test. Their leader wants to see what you'll do. Classic chest-thumping, testing your resolve.\n\nHe climbs fast, that American engine giving him raw power your French-made Mirage can't match. But you have position. He's climbing into the sun, and you're already above him.\n\nYour HUD shows the range closing. Three miles. Two. One.\n\nHe levels off, just below you. Close enough to see the pilot's helmet through the canopy. He raises a hand. A wave? Or a challenge?",
+      "choices": [
+        {
+          "text": "Match his altitude—show you're not intimidated",
+          "goto": "match_altitude"
+        },
+        {
+          "text": "Stay above him—keep the advantage",
+          "goto": "keep_advantage"
+        },
+        {
+          "text": "Dive past him aggressively",
+          "goto": "aggressive_dive"
+        }
+      ]
+    },
+    "low_intercept": {
+      "text": "\"Taking us down, Falcon Two. Stay on my six.\"\n\nYou push the nose over, trading altitude for speed. The Aegean rushes up to meet you—50 feet, 30 feet, the altimeter spinning. Salt spray mists your canopy.\n\nAt this altitude, radar is useless. It's all eyeballs and instinct.\n\nYou spot them ahead—four gray shapes hugging the waves, heading for the cluster of islands on the horizon. Chios. Greek soil. Greek people.\n\n\"Falcon Lead, Larissa Control. Contacts are now over Greek territorial waters. Repeat, contacts are over Greek territorial waters. You are authorized to intercept and escort.\"\n\nEscort. Not engage. Not yet.\n\nYou close the distance. The Turkish flight notices you, and their formation begins to spread—making room to maneuver. The lead aircraft pulls up slightly, and you see the pilot's helmet turn toward you.\n\nChallenge accepted.",
+      "choices": [
+        {
+          "text": "Pull alongside their leader for a visual warning",
+          "goto": "visual_warning"
+        },
+        {
+          "text": "Cut across their formation to disrupt them",
+          "goto": "disrupt_formation"
+        },
+        {
+          "text": "Fall in behind them and shadow their approach",
+          "goto": "shadow_formation"
+        }
+      ]
+    },
+    "hold_course": {
+      "text": "Steady. You hold your heading, keeping your radar in search mode. No lock. No threat.\n\nThe Turkish lead aircraft slides closer. Close enough that you can see the kill markings painted on his fuselage—old ones, from training exercises. His hand moves. Pointing at you. Then at the sea below.\n\nGo away.\n\nYou respond with your own gesture. You point at him, then back toward Turkey.\n\nNo. You go.\n\nFor a long moment, two aircraft fly in formation—enemies in peacetime, warriors without a war. The tension is a physical thing, crackling between you like static electricity.\n\nThen he laughs. You can see it—his helmet moving, his shoulders shaking. He pulls up his hand: a thumbs up. Respect, if nothing else.\n\nHis flight turns. Not retreating—repositioning. They climb toward the northwest, toward the FIR boundary.\n\n\"Falcon Lead, Larissa Control. Contacts are egressing. Repeat, contacts are egressing Greek airspace. Maintain visual until they cross the boundary.\"\n\nYou breathe for the first time in minutes.",
+      "choices": [
+        {
+          "text": "Escort them to the boundary and return",
+          "goto": "escort_ending"
+        },
+        {
+          "text": "Shadow them at distance—they might be playing a trick",
+          "goto": "shadow_egress"
+        }
+      ]
+    },
+    "break_defensive": {
+      "text": "Instinct screams at you. Four on two, they've got the numbers. Time to even the odds.\n\n\"Falcon Two, BREAK LEFT!\"\n\nYou slam the stick right, pulling 7Gs as the F-16 whips around. The Turkish formation scatters—they weren't expecting aggression.\n\nYour radar warning receiver screams. Someone's got a lock.\n\n\"Falcon Lead, Spike! Bearing zero-seven-zero!\"\n\nA lock isn't a shot. Not yet. But in the tight confines of the Aegean, seconds matter.\n\nYou reverse hard, breaking the lock. Kosta is somewhere behind you, his Mirage dancing through the chaos. The Turkish fighters reform, but now they're defensive too—unsure of your intentions.\n\n\"Greek aircraft, stand down! We will defend ourselves!\" The Turkish leader's voice is sharp with anger—or fear.\n\n\"Then leave,\" you respond. \"This is Greek airspace. Leave now.\"\n\nSilence. Then the four Turkish jets turn, climbing away. Not running—withdrawing. There's a difference.",
+      "choices": [
+        {
+          "text": "Let them go—the message is sent",
+          "goto": "message_sent"
+        },
+        {
+          "text": "Pursue to ensure they actually leave",
+          "goto": "pursue_egress"
+        }
+      ]
+    },
+    "call_backup": {
+      "text": "\"Larissa Control, Falcon Lead. Request immediate backup. We are outnumbered two to one, Turkish F-16s confirmed, potential for escalation.\"\n\n\"Copy, Falcon Lead. Scrambling additional alert aircraft. ETA seven minutes.\"\n\nSeven minutes. An eternity in air combat.\n\nThe Turkish formation seems to sense your hesitation. They spread out, two climbing, two descending. Classic pincer.\n\n\"They're trying to bracket us,\" Kosta says. \"Should we disengage?\"\n\nYou check fuel. Forty percent. Enough for a fight, but not a long one.\n\nThe two high bandits are accelerating. Coming in hot. This isn't intimidation anymore—this is aggression.\n\nYour radar warning receiver screams again. Lock. From above.\n\n\"MISSILE LAUNCH! MISSILE LAUNCH! BREAK LEFT, FALCON TWO!\"",
+      "choices": [
+        {
+          "text": "Deploy countermeasures and break",
+          "goto": "countermeasures"
+        },
+        {
+          "text": "Dive for the deck—make them follow you into Greek airspace",
+          "goto": "dive_for_deck"
+        }
+      ]
+    },
+    "report_exchange": {
+      "text": "\"Larissa Control, Falcon Lead. Contact established with Turkish flight call sign Yıldırım. They claim routine patrol, do not recognize FIR boundaries, refuse to depart. Request guidance.\"\n\nA pause. When the controller responds, you can hear the stress in his voice.\n\n\"Falcon Lead, stand by. Escalating to HAF Command.\"\n\nYou orbit, watching the Turkish formation continue toward the islands. Every minute they get closer. Every minute, the situation grows more volatile.\n\nFinally, the radio crackles.\n\n\"Falcon Lead, Larissa Control. You are authorized to intercept and shadow. Use minimum force to protect Greek airspace. Diplomatic channels are being activated. Do not—repeat, do not—fire unless fired upon. Athens is watching.\"\n\nAthens. Politicians in air-conditioned rooms, watching dots on a screen. They're not the ones up here.\n\n\"Copy, Larissa. Moving to intercept.\"",
+      "choices": [
+        {
+          "text": "Close for visual identification",
+          "goto": "visual_identification"
+        },
+        {
+          "text": "Shadow from distance with weapons ready",
+          "goto": "shadow_armed"
+        }
+      ]
+    },
+    "shadow_formation": {
+      "text": "\"Falcon Two, we shadow. Keep distance, keep eyes. Don't give them an excuse.\"\n\nYou fall in behind the Turkish formation, two miles back. Close enough to react. Far enough to claim non-aggression if this becomes a diplomatic incident.\n\nThe game continues for twenty minutes. The Turkish jets probe toward Chios, then turn north toward Lesbos. Each time, you follow. Each time, they stop short of the twelve-mile territorial limit.\n\nThey're mapping your response time. Testing your ROE. Gathering intelligence.\n\n\"Falcon Lead, Larissa Control. Turkish flight is turning east. They appear to be egressing.\"\n\nYou watch the four gray shapes climb toward the morning sun, heading back toward Anatolia. No shots fired. No lives lost. Just another day over the Aegean.\n\nBut you know they'll be back. They always come back.",
+      "choices": [
+        {
+          "text": "Return to base—mission complete",
+          "goto": "routine_return"
+        },
+        {
+          "text": "Request permission to follow them to the boundary",
+          "goto": "follow_to_boundary"
+        }
+      ]
+    },
+    "focus_on_three": {
+      "text": "\"Falcon Two, you've got your dance partner. I'll handle the rest.\"\n\n\"Copy, Lead. Good luck.\"\n\nThree F-16s angle toward you. You're in a Viper too, but they've got numbers. Time to fly like you've never flown before.\n\nYou roll inverted and pull, diving toward the sea. The Turkish fighters follow, their formation spreading to cut off your escape. But you're not escaping—you're setting up.\n\nAt 500 feet, you reverse hard, pulling back into them. They weren't expecting that. The lead bandit overshoots, and suddenly you're behind him.\n\n\"FOX TWO! FOX TWO!\" you call—but you're simulating. Training override engaged. No actual launch.\n\nThe Turkish pilot knows he's dead. He breaks off, diving away. His wingmen scatter.\n\n\"Yıldırım flight, you have been defeated in simulated combat,\" you broadcast. \"Perhaps next time you will respect the boundary.\"\n\nSilence. Then, grudgingly: \"Well flown, Greek. We will meet again.\"\n\nThey turn for home. You've won this round.",
+      "choices": [
+        {
+          "text": "Check on Kosta before returning",
+          "goto": "check_wingman"
+        },
+        {
+          "text": "Return to base victorious",
+          "goto": "victory_return"
+        }
+      ]
+    },
+    "help_wingman": {
+      "text": "\"Falcon Two, I'm coming to you. Break left on my mark.\"\n\n\"Copy, Lead. He's on my six, I can't shake him!\"\n\nYou abandon the three bandits and dive toward Kosta's position. Your radar shows him low, near the water, with a Turkish F-16 closing fast.\n\n\"MARK! Break left NOW!\"\n\nKosta's Mirage snaps into a hard turn. The Turkish pilot, focused on his target, doesn't see you coming until your radar lights him up.\n\n\"Turkish aircraft, you are locked. Break off or I will engage.\"\n\nFor a heartbeat, nothing happens. Then the Turkish jet pulls up, climbing away from Kosta.\n\n\"This is Yıldırım Three. I am disengaging. But remember, Greek—we are watching.\"\n\n\"We're always watching too,\" you reply.\n\nKosta reforms on your wing. \"Thanks, Lead. He was good.\"\n\n\"They always are. Let's go home.\"",
+      "choices": [
+        {
+          "text": "Return to base together",
+          "goto": "wingman_saved"
+        }
+      ]
+    },
+    "attempt_disengage": {
+      "text": "This is getting too hot. You're outnumbered, outgunned, and operating under rules that tie your hands.\n\n\"Falcon Two, disengage. All aircraft, disengage. We're pulling back.\"\n\n\"Lead, they're still coming!\"\n\nYou drop chaff and flares, breaking hard for the Greek coast. Behind you, the Turkish formation seems to hesitate—then one of them accelerates, closing the distance.\n\n\"Falcon Lead, bandit on your six! Range one mile!\"\n\nHe's too close. You can't outrun him in a straight line. But you can outfly him.\n\nYou throw the Viper into a vertical climb, trading speed for altitude. The Turkish pilot follows—right into your trap. At the top of the climb, you hammer over and dive past him, reversing the positions.\n\n\"Break off,\" you command, your voice cold. \"I have tone. One more move and I launch.\"\n\nThe Turkish jet levels off. A long pause. Then he turns away, rejoining his flight.\n\nYou've bought time. But this isn't over.",
+      "choices": [
+        {
+          "text": "Return to base and debrief",
+          "goto": "tense_debrief"
+        },
+        {
+          "text": "Request reinforcements for another patrol",
+          "goto": "request_reinforcements"
+        }
+      ]
+    },
+    "match_altitude": {
+      "text": "You descend to his level, wingtip to wingtip. Two warriors, close enough to see each other's eyes.\n\nHe's older than you expected. Gray in his mustache. This isn't some hotshot—this is a veteran. Someone who's played this game as long as you have.\n\nYou both fly in silence, parallel courses, waiting for the other to blink.\n\nThen he gestures—pointing at his watch, then at the horizon. Time's up.\n\nHis flight reforms around him, and they turn east. Heading home.\n\n\"Larissa Control, Falcon Lead. Contacts are egressing. No weapons employed. Returning to base.\"\n\n\"Copy, Falcon Lead. Well done.\"\n\nWell done. You're not sure. You traded stares with a man who could be your friend in another life. Today, you were enemies. Tomorrow?\n\nTomorrow, you'll do it all again.",
+      "choices": [
+        {
+          "text": "Return to base",
+          "goto": "reflective_ending"
+        }
+      ]
+    },
+    "keep_advantage": {
+      "text": "You hold position, 3,000 feet above him. Let him look up. Let him feel the disadvantage.\n\n\"Yıldırım Lead, you are in a poor tactical position. Turn back now and this ends peacefully.\"\n\nNo response. But you see his helmet move, looking up at you. Calculating.\n\nHe knows. If this goes hot, you have the first shot. The sun behind you, the altitude advantage, the position. He'd have to climb into a fight he can't win.\n\nSlowly, his nose drops. He descends back toward his flight.\n\n\"All Yıldırım aircraft, form on me. We are returning to base.\"\n\nThe four Turkish jets reassemble and turn east. You watch them go, your heart pounding.\n\n\"Falcon Lead, Larissa Control. Excellent work. Contacts are egressing. You're cleared to return.\"\n\nExcellent work. You kept the peace by being ready for war. The oldest paradox in military aviation.",
+      "choices": [
+        {
+          "text": "Return to base",
+          "goto": "tactical_victory"
+        }
+      ]
+    },
+    "aggressive_dive": {
+      "text": "Enough games. You push the nose over and dive, passing within fifty meters of the Turkish lead's canopy.\n\nIt's aggressive. It's provocative. It sends a message.\n\nBut it also gives him an opening.\n\n\"FALCON LEAD, BANDIT ON YOUR SIX!\"\n\nHe's reversed onto you, taking advantage of your committed dive. Your RWR screams—he's got a lock.\n\n\"Turkish aircraft, break off! I am ordering you to break off!\"\n\nYou yank the stick back, pulling into the vertical. The Mirage groans under the G-forces. Your vision grays at the edges.\n\nA flash past your canopy. He fired. A warning shot? A miss? You'll never know.\n\nYou emerge above him, inverted, looking down through your canopy at his aircraft. The fight is over—you both know it. But blood has been drawn.\n\n\"This will be reported,\" you transmit.\n\n\"So will your dive,\" he responds.\n\nThe diplomatic fallout begins before you land.",
+      "choices": [
+        {
+          "text": "Return to base to face the consequences",
+          "goto": "incident_report"
+        }
+      ]
+    },
+    "visual_warning": {
+      "text": "You slide your Mirage alongside the Turkish leader's F-16, close enough to see the rivets on his fuselage. He looks over, face hidden behind his visor, and you raise your hand.\n\nStop. Turn back.\n\nHe shakes his head. Points forward. Toward Chios.\n\nYou reach down and arm your weapons. The radar locks. His RWR will be screaming.\n\nFor a long moment, you fly side by side, two men with the power to kill each other. Then, slowly, he raises his hand. Salutes.\n\nAnd his flight turns. All four of them, climbing away from the island, heading back toward Turkey.\n\n\"Falcon Lead, Larissa Control. Contacts egressing. Outstanding work.\"\n\nYou don't feel outstanding. You feel tired. But the islands are safe. For today.",
+      "choices": [
+        {
+          "text": "Return to base",
+          "goto": "professional_ending"
+        }
+      ]
+    },
+    "disrupt_formation": {
+      "text": "You punch the throttle and cut directly through their formation, afterburner blazing, close enough to rock their aircraft with your jetwash.\n\nThe Turkish fighters scatter. You've broken their cohesion, turned an organized force into chaos.\n\n\"What the hell are you doing?\" Kosta shouts.\n\n\"Making a point.\"\n\nTwo of them climb to regroup. The other two—including the lead—turn to pursue you. Your gamble has changed the odds: now it's two on two, if Kosta can handle the high pair.\n\n\"Falcon Two, take the climbers. I've got these two.\"\n\n\"Copy, Lead. You're insane.\"\n\nMaybe. But you're also winning. The two pursuing aircraft are focused on you, leaving Kosta free to engage. It's a classic furball now, four aircraft spiraling through the Aegean sky.\n\nNo shots fired. But the message is clear: don't come here.",
+      "choices": [
+        {
+          "text": "Break off and let them retreat with dignity",
+          "goto": "dignified_retreat"
+        },
+        {
+          "text": "Press the advantage",
+          "goto": "press_advantage"
+        }
+      ]
+    },
+    "countermeasures": {
+      "text": "\"FLARES! CHAFF! BREAK RIGHT!\"\n\nYou mash the countermeasures button, and the sky fills with burning magnesium and metallic confetti. The incoming missile—you see it now, a streak of white smoke—veers away, fooled by the decoys.\n\n\"Falcon Lead, Larissa Control. Did they fire on you?\"\n\n\"Affirmative! Hostile fire! We are defensive!\"\n\nThe rules have changed. Weapons tight just became weapons free.\n\nKosta is beside you, his Mirage untouched. The Turkish formation has scattered—they didn't expect anyone to actually shoot.\n\n\"Falcon flight, you are cleared to engage. Repeat, cleared to engage.\"\n\nYour thumb finds the weapons select. AIM-9M Sidewinder. Growl of the seeker. Lock.\n\n\"FOX TWO!\"\n\nThe missile leaps from your wingtip. It corkscrews toward the Turkish flight leader—but at the last moment, he dives, dispensing flares. The Sidewinder detonates harmlessly.\n\nBut the message is sent. Greece fights back.",
+      "choices": [
+        {
+          "text": "Re-engage and press the attack",
+          "goto": "full_engagement"
+        },
+        {
+          "text": "Hold position—one shot was enough of a message",
+          "goto": "one_shot_message"
+        }
+      ]
+    },
+    "dive_for_deck": {
+      "text": "You roll and dive, screaming toward the water. The Turkish missile follows—then loses track in the radar clutter of the wave tops.\n\n\"Falcon Two, on the deck! Follow me!\"\n\nYou skim the waves, salt spray on your canopy. The Turkish fighters hesitate, unwilling to follow into Greek territorial waters at such low altitude.\n\n\"Yıldırım flight, break off pursuit. We are over Greek waters.\"\n\nThe Turkish lead's voice is furious: \"They fired on us!\"\n\n\"Negative. We defended ourselves. You initiated.\"\n\nA tense pause. Then: \"Yıldırım flight, all aircraft return to base. This isn't over, Greek.\"\n\n\"No,\" you reply. \"It never is.\"\n\nYou watch them climb away, then check your instruments. Fuel is low. You've pushed the Mirage to its limits. But you're alive. Kosta's alive. And Greece didn't blink.",
+      "choices": [
+        {
+          "text": "Return to base",
+          "goto": "survived_engagement"
+        }
+      ]
+    },
+    "escort_ending": {
+      "text": "You follow the Turkish formation to the boundary, watching until they cross into undisputed airspace. Then you turn for home.\n\nThe debrief is long. The intelligence officers want every detail—timing, formations, communications. By the time you're finished, the sun is setting over Tanagra.\n\nKosta finds you on the flight line, staring at your F-16.\n\n\"Good day?\" he asks.\n\n\"Quiet day,\" you reply. \"That's the best kind.\"\n\n\"Until tomorrow.\"\n\n\"Until tomorrow.\"\n\nYou go home to your family. Your children ask about your day. \"Boring,\" you tell them. \"Just flying.\"\n\nThey don't need to know how close it came. They never do.\n\nBut tomorrow, when the klaxon sounds again, you'll be ready.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "shadow_egress": {
+      "text": "You follow them at distance, suspicious. These games have layers.\n\nAnd you're right. Twenty miles from the boundary, the Turkish formation suddenly turns—diving back toward Greek airspace.\n\n\"They're coming back!\" Kosta shouts.\n\n\"Falcon Lead to Larissa, contacts are re-engaging. Request backup immediately!\"\n\nBut you're ahead of them now. You've anticipated the move. While they were flying straight, you were preparing.\n\n\"Falcon Two, bracket right. I'll take lead. We're not running.\"\n\nThe two of you split, catching the Turkish formation in a pincer. They see it too late—they've flown into a trap.\n\n\"Yıldırım flight, you are surrounded. Break off now or we will engage.\"\n\nA long pause. Then, grudgingly, the Turkish lead acknowledges: \"We are returning to base. Well played, Greek.\"\n\nThis time, they actually leave.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "message_sent": {
+      "text": "You let them go. You've made your point.\n\nThe flight back to Tanagra is quiet. Kosta forms up on your wing, and you fly in silence, processing what happened.\n\nNo shots fired. No lives lost. But you came closer today than you have in years.\n\n\"Lead,\" Kosta says as you approach the runway, \"what happens next?\"\n\n\"Diplomatic protests. Strongly-worded letters. Maybe sanctions.\" You sigh. \"And then, in a week or a month, we'll do it all again.\"\n\n\"Seems pointless.\"\n\n\"Maybe. Or maybe it's the point. We keep showing up. They keep showing up. And as long as we're all showing up, no one's actually fighting.\"\n\nKosta considers this. \"I never thought of it that way.\"\n\n\"That's why I'm the flight lead,\" you say, and for the first time today, you smile.\n\nTomorrow, the dance continues.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "pursue_egress": {
+      "text": "\"Falcon Two, we're following them to the boundary. I want to make sure they're gone.\"\n\n\"Copy, Lead.\"\n\nYou escort the Turkish formation all the way to the edge of the FIR, watching as they cross into undisputed space. Only then do you break off.\n\n\"Larissa Control, Falcon Lead. Contacts have crossed the boundary. We're returning to base.\"\n\n\"Copy, Falcon Lead. Good work today. Command sends their compliments.\"\n\nCompliments. You almost got into a shooting war over a few miles of airspace, and command sends compliments.\n\nBut that's the job. You fly the missions. You hold the line. And you hope that somewhere, in a room you'll never see, diplomats are working to make sure the line doesn't move.\n\nTonight, you'll have dinner with your family. Tomorrow, you'll fly again.\n\nThe Aegean Falcon. Always watching. Always ready.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "routine_return": {
+      "text": "Just another day over the Aegean.\n\nYou land at Tanagra, taxi to your spot, shut down the engine. The crew chief meets you with a thumbs up.\n\n\"All good, Captain?\"\n\n\"All good. Standard intercept. No contact.\"\n\nThe debrief is brief. Nothing out of the ordinary. You go home, have dinner, watch television with your wife. The news mentions \"increased tensions in the Aegean\" but nothing specific.\n\nYou sleep well. You always do. A pilot who can't sleep doesn't last long.\n\nIn the morning, the phone rings. Scramble alert. Another incursion, another game of cat and mouse.\n\nYou grab your gear and head for the base. The dance continues.\n\nIt always continues.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "follow_to_boundary": {
+      "text": "\"Larissa Control, request permission to escort contacts to the FIR boundary.\"\n\n\"Granted, Falcon Lead. But no crossing.\"\n\n\"Understood.\"\n\nYou follow the Turkish formation across the Aegean, watching them until they cross into undisputed space. At the boundary, you rock your wings—a universal signal.\n\nSee you next time.\n\nOne of the Turkish pilots rocks back. Maybe a salute. Maybe a curse. Hard to tell at this distance.\n\nYou turn for home, fuel low, adrenaline fading. It's been a long morning.\n\nBut as you descend toward Tanagra, you feel something like satisfaction. You did your job. You protected your airspace. No shots fired, no lives lost.\n\nNot every victory involves weapons. Some victories are about presence. About resolve. About showing up, day after day, until the other side understands: we're not going anywhere.\n\nThe Aegean is Greek. Today, you proved it again.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "check_wingman": {
+      "text": "\"Falcon Two, status?\"\n\n\"I'm good, Lead. Shook him off in the low-level. He didn't want to play chicken with the cliffs.\"\n\nYou laugh. The tension breaks. \"Form up. Let's go home.\"\n\nThe flight back is easy. The Turkish jets are long gone, their pride wounded but their aircraft intact. You've won this engagement without firing a shot—the best kind of victory.\n\nAt the debrief, the intelligence officers are impressed. Four on two, and you dominated the fight.\n\n\"Excellent tactical awareness,\" the wing commander says. \"This is exactly how we train. Aggressive but controlled. You made them respect Greek airspace.\"\n\nYou accept the praise, but your mind is elsewhere. Kosta almost got caught today. Next time, it might not end so well.\n\nAfter the debrief, you find Kosta in the ready room.\n\n\"Buy you a beer?\" you ask.\n\n\"Make it three,\" he replies.\n\nYou drink together, not talking about what happened. Not needing to. You're both alive. That's enough.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "victory_return": {
+      "text": "You land at Tanagra to cheers. Word has spread—you took on four Turkish jets and made them turn tail.\n\nThe wing commander meets you on the flight line, grinning. \"That was textbook, Stavridis. Absolutely textbook.\"\n\nYou accept the handshakes and back-slaps, but you're already thinking about next time. The Turks won't forget this. They'll come back better prepared, more aggressive.\n\nThis is the game. Every victory is a lesson for both sides.\n\nThat night, the news reports \"an incident over the Aegean\" with no details. The diplomats are already spinning, downplaying, controlling the narrative.\n\nBut you know the truth. Today, Greek pilots reminded the world that this airspace is defended. That the Hellenic Air Force is not to be tested.\n\nYou raise a glass with your squadron mates. Tomorrow, the dance begins again.\n\nBut today, the Aegean Falcon flies victorious.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "wingman_saved": {
+      "text": "The flight home is quiet. Kosta stays close, his Mirage tucked neatly into formation.\n\n\"Thanks, Lead,\" he says finally. \"I owe you one.\"\n\n\"You owe me nothing. That's what wingmen do.\"\n\nYou land at Tanagra, debrief quickly, and head for the ready room. Kosta catches up with you outside.\n\n\"I was scared up there,\" he admits. \"He was good. Better than me.\"\n\n\"He wasn't better,\" you reply. \"He just had position. Next time, you'll have position. That's how it works.\"\n\nKosta nods slowly. \"I'll be ready.\"\n\n\"I know you will.\"\n\nYou clap him on the shoulder and head home. Another day survived. Another wingman protected.\n\nThe Aegean is full of dangers, but it's also full of warriors who have each other's backs. As long as that's true, Greece is safe.\n\nToday was close. Tomorrow might be closer. But you'll face it together.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "tense_debrief": {
+      "text": "The debrief is brutal.\n\n\"You disengaged while contacts were still in our airspace,\" the wing commander says, his voice cold. \"You allowed them to dictate the terms of the engagement.\"\n\n\"Sir, I was outnumbered three to one. ROE was weapons tight. I made a tactical withdrawal.\"\n\n\"You made a retreat.\"\n\nThe word stings. But you hold your ground.\n\n\"With respect, sir, I'm alive. My wingman is alive. No shots were fired, no international incident created. I followed protocol.\"\n\nThe commander stares at you for a long moment. Then he sighs.\n\n\"You're not wrong. But you're not right either.\" He stands. \"Get some rest. You're on alert again in eight hours.\"\n\nYou leave the debrief room, exhausted. Was it the right call? You'll never know for sure.\n\nBut you're alive to wonder about it. That counts for something.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "request_reinforcements": {
+      "text": "\"Larissa Control, Falcon Lead. Request reinforcement flight for extended patrol. Contacts may return.\"\n\n\"Copy, Falcon Lead. Stand by.\"\n\nYou orbit over the Aegean, waiting. Fuel burns. The sun climbs. Finally, two more blips appear on your radar—friendly.\n\n\"Falcon Lead, this is Eagle flight. Two F-16s joining on your position. What's the situation?\"\n\n\"Standard incursion, aggressive posture, broke off after near-engagement. I want to maintain presence.\"\n\n\"Copy. We'll take the south sector.\"\n\nFour Greek jets now patrol the Aegean. When the Turkish formation appears on radar again—and they do, an hour later—they see a very different picture.\n\n\"Yıldırım flight, this is Hellenic Air Force Falcon Lead. You are approaching Greek airspace. We have reinforced presence. Turn back now.\"\n\nThis time, they don't even argue. The four Turkish jets turn and disappear.\n\nNumbers matter. Resolve matters more.\n\nYou land at Tanagra, satisfied. Today, Greece showed strength.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "reflective_ending": {
+      "text": "You land at Tanagra as the sun reaches its peak. The debrief is routine—another intercept, another stare-down, another non-event.\n\nBut as you walk to your car, you pause. Look up at the sky.\n\nSomewhere up there, a Turkish pilot is doing the same thing. Thinking about the Greek in the Mirage who wouldn't back down. Wondering what would have happened if things had gone differently.\n\nYou've never met him. You probably never will. But in a strange way, you know him. You're both professionals, doing a job, caught in a situation neither of you created.\n\nTomorrow, you might face each other again. Or different pilots—the faces change, but the dance remains the same.\n\nThe Aegean is beautiful. It's also dangerous. And as long as that's true, pilots like you will be here, watching, waiting, ready.\n\nIt's not a glamorous life. But it's yours.\n\nYou go home to your family, and you don't tell them about the stare-down. Some things are between warriors only.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "tactical_victory": {
+      "text": "You land at Tanagra to subdued congratulations. The wing commander pulls you aside.\n\n\"That was masterfully handled, Captain. You used position instead of weapons. Exactly what we need in these situations.\"\n\n\"Thank you, sir. I just did my job.\"\n\n\"No.\" He shakes his head. \"You did more than that. Any pilot can fight. It takes a warrior to know when not to.\"\n\nYou accept the praise, but your mind is already on the next mission. The Turks won't forget today. They'll be back, better prepared, more determined.\n\nBut so will you.\n\nThat night, you sit on your balcony, watching the stars over Athens. Somewhere to the east, Turkish pilots are doing the same thing—reviewing the encounter, planning for next time.\n\nThe game never ends. But as long as pilots like you hold the line, the game doesn't become a war.\n\nAnd that, in the end, is victory enough.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "incident_report": {
+      "text": "The debrief is a nightmare.\n\nDiplomatic channels are already burning. Turkey claims you initiated the aggression. Greece claims they fired first. Both sides have radar tapes. Neither side agrees on what they show.\n\n\"You are grounded pending investigation,\" the wing commander says. His face is stone. \"This is now a matter for the Ministry of Defense.\"\n\n\"Sir, I—\"\n\n\"No explanations. Not yet. Get some rest. You'll be interviewed tomorrow.\"\n\nThe days that follow are long. Lawyers. Politicians. Cameras. You're briefly famous, then briefly infamous, then forgotten as the news cycle moves on.\n\nIn the end, the investigation is inconclusive. Both sides save face. You're returned to flight status with a letter in your file.\n\n\"Excessive aggression in a tactical situation.\"\n\nMaybe they're right. Maybe you pushed too hard. But in the moment, over the Aegean, it felt like the only choice.\n\nYou fly again. Carefully. The lesson learned.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "professional_ending": {
+      "text": "The flight home is smooth. Kosta forms up on your wing, and you fly in silence, each lost in thought.\n\n\"Lead,\" he says finally, \"do you think they'll come back?\"\n\n\"Tomorrow. Next week. Next month. They always come back.\"\n\n\"And we'll be here.\"\n\n\"Always.\"\n\nYou land at Tanagra, debrief quickly, and head for the ready room. The television is on, showing news of \"tensions in the Aegean.\" The talking heads don't know what happened up there. They never do.\n\nYour phone buzzes. A message from your wife: \"Saw the news. Everything okay?\"\n\nYou type back: \"Everything's fine. Home for dinner.\"\n\nIt's not a lie. Not exactly. You are fine. The islands are fine. Greece is fine—for today.\n\nTomorrow, you'll do it all again. That's the job. That's the life.\n\nYou're the Aegean Falcon. And you'll keep flying until you can't fly anymore.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "dignified_retreat": {
+      "text": "\"All units, break off. Let them go.\"\n\nThe Turkish fighters regroup and turn east, heading for home. They're moving fast—embarrassed, maybe. Angry, certainly.\n\nBut they're leaving.\n\n\"Falcon Lead, Larissa Control. Contacts are egressing. Good work.\"\n\nYou breathe deeply for the first time in what feels like hours. Kosta slides into formation beside you, his Mirage battered by the furball but intact.\n\n\"That was intense,\" he says.\n\n\"That was Tuesday,\" you reply.\n\nHe laughs. The tension breaks. You turn for home, leaving the Aegean behind.\n\nTonight, there will be diplomatic protests. Strongly-worded letters. Maybe a summons to Athens for a briefing.\n\nBut tonight, you'll also have dinner with your family. Your kids will ask about your day. \"Boring,\" you'll say. \"Just flying.\"\n\nSome secrets are worth keeping.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "press_advantage": {
+      "text": "They're scattered. They're defensive. Time to send a message.\n\n\"Falcon Two, engage! Show them what Greek pilots can do!\"\n\nYou push the Mirage to its limits, diving after the Turkish lead. He's good—rolling, jinking, using the terrain. But you're better.\n\n\"TONE!\" you shout, the simulated lock-on solid. In a real fight, he'd be dead.\n\nThe Turkish pilot knows it too. He breaks off, diving for the deck, running for Turkey.\n\n\"Yıldırım flight, all aircraft disengage! Return to base!\"\n\nThe remaining Turkish jets scatter like startled birds, racing for the border. You let them go.\n\n\"Falcon Lead to all units. Break off pursuit. Mission accomplished.\"\n\nKosta forms up on your wing. \"We actually won.\"\n\n\"We won the battle,\" you correct him. \"The war never ends.\"\n\nBut as you turn for home, you allow yourself a small smile. Today, the Aegean Falcon proved his name.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "full_engagement": {
+      "text": "They fired first. The rules are clear.\n\n\"Falcon flight, WEAPONS FREE! Engage!\"\n\nThe sky erupts. Missiles crisscross. Flares bloom like dying stars. You and Kosta dive into the Turkish formation, all pretense of peacetime rules abandoned.\n\nA Turkish F-16 crosses your sights. Lock. \"FOX TWO!\"\n\nThe Sidewinder tracks true. The enemy pilot ejects just before impact, his chute blossoming white against the blue.\n\nKosta takes another. \"SPLASH ONE!\"\n\nThe remaining Turkish jets break and run, afterburners blazing. You don't pursue—no need. The message is clear.\n\nGreece fights back.\n\nThe aftermath is chaos. Diplomatic firestorm. Emergency meetings at NATO. Your name on every news channel.\n\nBut in the ready room, your squadron mates gather around you. \"You did what had to be done,\" the wing commander says. \"You defended Greece.\"\n\nYou look at your hands. They're steady.\n\nToday, you became something you never wanted to be: a killer.\n\nBut you're alive. Your country is safe. And sometimes, that's all that matters.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "one_shot_message": {
+      "text": "One shot. One message. That's enough.\n\n\"Falcon flight, hold fire. They're running.\"\n\nThe Turkish jets scatter, reforming only when they're well into undisputed space. Your radar tracks them all the way to the border.\n\n\"Larissa Control, Falcon Lead. Hostile fire encountered. One defensive shot fired, no hits. Contacts are egressing. Request instructions.\"\n\nA long pause. Then: \"Copy, Falcon Lead. Return to base immediately. You will be met by the wing commander.\"\n\nThe debrief is tense but supportive. The radar tapes confirm—they fired first. You defended yourself.\n\n\"You showed restraint,\" the commander says. \"One shot to establish that we won't be bullied, but no escalation. That's exactly right.\"\n\nYou nod, too tired to feel proud. Tomorrow, the diplomats will take over. Protests and denials and accusations.\n\nBut you know the truth. When push came to shove, Greece pushed back.\n\nAnd they'll think twice before doing this again.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "survived_engagement": {
+      "text": "You land at Tanagra on fumes, the Mirage's fuel warning flashing red. The ground crew swarms the aircraft, inspecting for damage.\n\n\"That was close,\" Kosta says as he climbs down from his own jet. \"Too close.\"\n\n\"They shot first,\" you remind him. \"We defended ourselves.\"\n\n\"I know. But still...\"\n\nThe debrief takes hours. Every second reviewed, every decision analyzed. In the end, Command rules in your favor: the Turkish aircraft initiated hostilities, you responded appropriately.\n\nBut the images stay with you. The missile launch. The desperate dive. The moment when you weren't sure if you'd live or die.\n\nThat night, you sit alone in the ready room, staring at nothing.\n\n\"Captain?\" A young pilot, fresh from training. \"Is it always like that?\"\n\n\"No,\" you reply. \"Usually it's boring.\"\n\n\"And when it isn't?\"\n\nYou look at him. Really look.\n\n\"When it isn't, you remember why you fly. To protect the people who can't protect themselves.\"\n\nHe nods and leaves. You stay, watching the stars.\n\nTomorrow, you'll fly again. Because that's what you do.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "shadow_armed": {
+      "text": "\"Arming weapons. Falcon Two, stay close.\"\n\nYou flip the master arm switch. The HUD changes, showing weapons status. Four Sidewinders, two AMRAAMs. Ready.\n\nYou close to ten miles, staying behind the Turkish formation. Your radar paints them clearly—four F-16s, no evasive action. They know you're there. They don't care.\n\nFor thirty minutes, you follow. They probe toward Chios, then Lesbos, always stopping short of the twelve-mile limit. Testing. Probing.\n\nThen, finally, they turn east. Heading home.\n\n\"Larissa Control, contacts egressing. Maintaining shadow until boundary.\"\n\n\"Copy, Falcon Lead. Well done.\"\n\nWell done. You did nothing. Just watched. Just waited.\n\nBut sometimes, that's the job. Being present. Being ready. Showing them that every incursion will be met, every challenge answered.\n\nYou follow them to the boundary, then turn for home. Another day over the Aegean. Another day without war.\n\nFor now, that's enough.",
+      "isEnding": true,
+      "endingType": "neutral"
+    }
+  }
+}
+

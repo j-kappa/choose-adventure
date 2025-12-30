@@ -41,6 +41,13 @@
       "author": "Adventure Engine",
       "description": "Viktor Lenkov is the world's greatest chess player. But his real game is played in the shadows—where every move could be his last.",
       "file": "the-chess-maestro.adventure.json"
+    },
+    {
+      "id": "the-aegean-falcon",
+      "title": "The Aegean Falcon",
+      "author": "Adventure Engine",
+      "description": "Captain Nikos Stavridis flies F-16s and Mirage 2000s for the Hellenic Air Force. When tensions escalate over the Aegean, every decision could mean war—or peace.",
+      "file": "the-aegean-falcon.adventure.json"
     }
   ]
 }
