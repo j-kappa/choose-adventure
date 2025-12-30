@@ -7,18 +7,9 @@
   font-size: var(--text-sm);
 }
 
-.credit {
-  margin-bottom: var(--space-2);
-}
-
 .accent {
   color: var(--color-accent);
   font-weight: 500;
-}
-
-.copyright {
-  font-size: var(--text-xs);
-  color: var(--color-text-subtle);
 }
 
 .link {
