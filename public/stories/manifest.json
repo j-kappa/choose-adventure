@@ -1,75 +1,92 @@
 {
   "stories": [
     {
+      "id": "the-empathy-trials",
+      "title": "The Empathy Trials",
+      "author": "Adventure Engine",
+      "description": "Society mandates 'perspective therapy' for criminals. When the technology malfunctions and a perpetrator becomes their victim, you must decide: judge who they were, who they are, or challenge the system itself.",
+      "file": "the-empathy-trials.adventure.json",
+      "tags": ["sci-fi", "dystopia", "psychological", "moral dilemma"]
+    },
+    {
       "id": "the-curators-game",
       "title": "The Curator's Game",
       "author": "Adventure Engine",
       "description": "You're locked in a museum after hours, but it's not an accident. Someone—or something—has turned the building into an elaborate puzzle.",
-      "file": "the-curators-game.adventure.json"
+      "file": "the-curators-game.adventure.json",
+      "tags": ["mystery", "puzzle", "thriller", "escape room"]
     },
     {
       "id": "the-lighthouse",
       "title": "The Lighthouse",
       "author": "Adventure Engine",
       "description": "A mysterious light beckons from an abandoned shore. What secrets does the old lighthouse hold?",
-      "file": "the-lighthouse.adventure.json"
+      "file": "the-lighthouse.adventure.json",
+      "tags": ["horror", "supernatural", "mystery", "atmospheric"]
     },
     {
       "id": "the-defector",
       "title": "The Defector",
       "author": "Adventure Engine",
       "description": "A Russian asset wants out. You have 48 hours to extract them from Moscow before the FSB closes in.",
-      "file": "the-defector.adventure.json"
+      "file": "the-defector.adventure.json",
+      "tags": ["spy", "thriller", "action", "cold war"]
     },
     {
       "id": "the-old-man",
       "title": "The Man on the Bench",
       "author": "Adventure Engine",
       "description": "A chance encounter with a kind old man in the park. But some people aren't what they seem.",
-      "file": "the-old-man.adventure.json"
+      "file": "the-old-man.adventure.json",
+      "tags": ["drama", "mystery", "psychological", "slice of life"]
     },
     {
       "id": "the-last-signal",
       "title": "The Last Signal",
       "author": "Adventure Engine",
       "description": "Your ship intercepts a distress call from a vessel that disappeared 200 years ago. You're the only one close enough to respond.",
-      "file": "the-last-signal.adventure.json"
+      "file": "the-last-signal.adventure.json",
+      "tags": ["sci-fi", "space", "mystery", "horror"]
     },
     {
       "id": "the-garden",
       "title": "The Garden of Letters",
       "author": "Adventure Engine",
       "description": "After her mother's passing, Eleanor returns to tend the garden one last time. But among the roses, she finds letters that were never meant to be discovered.",
-      "file": "the-garden.adventure.json"
+      "file": "the-garden.adventure.json",
+      "tags": ["drama", "family", "emotional", "romance"]
     },
     {
       "id": "the-chess-maestro",
       "title": "The Chess Maestro",
       "author": "Adventure Engine",
       "description": "Viktor Lenkov is the world's greatest chess player. But his real game is played in the shadows—where every move could be his last.",
-      "file": "the-chess-maestro.adventure.json"
+      "file": "the-chess-maestro.adventure.json",
+      "tags": ["spy", "thriller", "chess", "strategy"]
     },
     {
       "id": "the-aegean-falcon",
       "title": "The Aegean Falcon",
       "author": "Adventure Engine",
       "description": "Captain Nikos Stavridis flies F-16s and Mirage 2000s for the Hellenic Air Force. When tensions escalate over the Aegean, every decision could mean war—or peace.",
-      "file": "the-aegean-falcon.adventure.json"
+      "file": "the-aegean-falcon.adventure.json",
+      "tags": ["military", "action", "political", "aviation"]
     },
     {
       "id": "the-algorithm-knows",
       "title": "The Algorithm Knows",
       "author": "Adventure Engine",
       "description": "You wake up to find every device in your home locked. A message appears: 'We've been watching. We know what you did.'",
-      "file": "the-algorithm-knows.adventure.json"
+      "file": "the-algorithm-knows.adventure.json",
+      "tags": ["thriller", "tech", "psychological", "suspense"]
     },
     {
       "id": "perfect-match-protocol",
       "title": "Perfect Match Protocol",
       "author": "Adventure Engine",
       "description": "Your dating app claims 99.9% compatibility through neural scanning. After matching with someone perfect, you're offered an upgrade: see your relationship's entire future. Do you look?",
-      "file": "perfect-match-protocol.adventure.json"
+      "file": "perfect-match-protocol.adventure.json",
+      "tags": ["sci-fi", "romance", "tech", "philosophical"]
     }
   ]
 }
-

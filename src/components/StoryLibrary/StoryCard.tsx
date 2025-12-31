@@ -25,6 +25,15 @@ export function StoryCard({ story, index = 0 }: StoryCardProps) {
           <h2 className={styles.cardTitle}>{story.title}</h2>
           <p className={styles.cardAuthor}>by {story.author}</p>
           <p className={styles.cardDescription}>{story.description}</p>
+          {story.tags && story.tags.length > 0 && (
+            <div className={styles.cardTags}>
+              {story.tags.map((tag) => (
+                <span key={tag} className={styles.tag}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
         
         <div className={styles.cardFooter}>

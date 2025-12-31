@@ -96,6 +96,7 @@ export interface StoryManifestEntry {
   description: string;
   cover?: string;
   file: string;
+  tags?: string[];
 }
 
 /**

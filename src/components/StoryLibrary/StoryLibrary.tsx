@@ -33,7 +33,8 @@ export function StoryLibrary() {
     return stories.filter(story => 
       story.title.toLowerCase().includes(query) ||
       story.description.toLowerCase().includes(query) ||
-      story.author.toLowerCase().includes(query)
+      story.author.toLowerCase().includes(query) ||
+      story.tags?.some(tag => tag.toLowerCase().includes(query))
     );
   }, [stories, searchQuery]);
 
@@ -71,10 +72,10 @@ export function StoryLibrary() {
             <input
               type="text"
               className={styles.searchInput}
-              placeholder="Search stories..."
+              placeholder="Search by title, author, description, or tag..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              aria-label="Search stories"
+              aria-label="Search stories by title, author, description, or tag"
             />
           </div>
         )}

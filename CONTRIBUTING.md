@@ -34,6 +34,7 @@ We welcome community story contributions! This guide explains how to write and s
 - All passage references must exist
 - No orphaned passages (unreachable from start)
 - State variables must be initialized before use
+- Include 3-5 descriptive tags for discoverability
 
 ## Writing Your Story
 
@@ -68,6 +69,7 @@ your-story-title.adventure.json
   "title": "Your Story Title",
   "author": "Your Name",
   "description": "A compelling one-sentence hook for your story.",
+  "tags": ["genre", "theme", "mood"],
   "version": "1.0",
   "initialState": {},
   "start": "opening",
@@ -121,7 +123,36 @@ Avoid:
 - Choices that lead to the same outcome
 - Too many options (2-4 is ideal)
 
-### 6. Use State Wisely
+### 6. Add Discoverable Tags
+
+Tags help readers find your story through search. Add 3-5 tags that describe:
+
+- **Genre**: mystery, thriller, sci-fi, fantasy, horror, romance, drama, comedy
+- **Theme**: psychological, philosophical, action, adventure, suspense
+- **Setting/Mood**: atmospheric, dystopia, space, historical, supernatural
+- **Special elements**: puzzle, escape room, moral dilemma, spy, military
+
+Example tags for different story types:
+
+```json
+"tags": ["horror", "supernatural", "mystery", "atmospheric"]
+```
+
+```json
+"tags": ["sci-fi", "space", "thriller", "action"]
+```
+
+```json
+"tags": ["drama", "family", "emotional", "romance"]
+```
+
+Good tags are:
+- **Lowercase**: Use "sci-fi" not "Sci-Fi"
+- **Specific**: "spy" is better than "fiction"
+- **Honest**: Don't tag "horror" if there's no horror
+- **Discoverable**: Think about what readers might search for
+
+### 7. Use State Wisely
 
 State tracking can add depth:
 
@@ -172,6 +203,7 @@ Use conditions to reveal hidden paths:
 - [ ] State conditions work correctly
 - [ ] Text displays properly
 - [ ] No typos or grammatical errors
+- [ ] Tags are accurate and discoverable (3-5 tags)
 
 ### JSON Validation
 
@@ -188,7 +220,19 @@ Click "Fork" on GitHub to create your own copy.
 ### 2. Add Your Story
 
 - Add your `.adventure.json` file to `public/stories/`
-- Update `public/stories/manifest.json` to include your story
+- Update `public/stories/manifest.json` to include your story:
+
+```json
+{
+  "id": "your-story-id",
+  "title": "Your Story Title",
+  "author": "Your Name",
+  "description": "A compelling one-sentence hook for your story.",
+  "file": "your-story-id.adventure.json",
+  "tags": ["genre", "theme", "mood"]
+}
+```
+
 - Optionally add a cover image to `public/covers/`
 
 ### 3. Open a Pull Request
@@ -208,15 +252,15 @@ A maintainer will:
 
 ## Story Ideas
 
-Need inspiration? Here are some genres that work well:
+Need inspiration? Here are some genres that work well (these make great tags too!):
 
-- **Mystery/Thriller**: Solve a crime, escape danger
-- **Fantasy**: Magic, quests, mythical creatures
-- **Sci-Fi**: Space exploration, AI, future societies
-- **Horror**: Suspense, supernatural, psychological
-- **Historical**: Period settings, real events reimagined
-- **Romance**: Love stories with meaningful choices
-- **Comedy**: Humor, absurd situations, satire
+- **Mystery/Thriller**: Solve a crime, escape danger → `mystery`, `thriller`, `suspense`
+- **Fantasy**: Magic, quests, mythical creatures → `fantasy`, `adventure`, `supernatural`
+- **Sci-Fi**: Space exploration, AI, future societies → `sci-fi`, `space`, `dystopia`, `tech`
+- **Horror**: Suspense, supernatural, psychological → `horror`, `psychological`, `atmospheric`
+- **Historical**: Period settings, real events reimagined → `historical`, `drama`, `political`
+- **Romance**: Love stories with meaningful choices → `romance`, `emotional`, `drama`
+- **Comedy**: Humor, absurd situations, satire → `comedy`, `satire`, `slice of life`
 
 ## Examples
 
