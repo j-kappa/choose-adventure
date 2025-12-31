@@ -1,0 +1,531 @@
+{
+  "id": "the-curators-game",
+  "title": "The Curator's Game",
+  "author": "Adventure Engine",
+  "description": "You're locked in a museum after hours, but it's not an accident. Someone—or something—has turned the building into an elaborate puzzle.",
+  "version": "1.0",
+  "initialState": {
+    "hasFlashlight": false,
+    "hasScarabKey": false,
+    "hasKnightsCrest": false,
+    "hasFossilFragment": false,
+    "solvedEgyptianRiddle": false,
+    "solvedMedievalLock": false,
+    "solvedNaturalCode": false,
+    "foundCuratorNote": false,
+    "knowsCuratorSecret": false
+  },
+  "start": "locked_in",
+  "passages": {
+    "locked_in": {
+      "text": "The lights go out.\n\nOne moment you were lingering in the Egyptian wing, admiring a golden scarab. The next, darkness—absolute and sudden, like a door slamming shut on the world.\n\nEmergency lighting flickers on, casting the museum in shades of amber and shadow. You check your phone: 9:47 PM. The museum closed at 6.\n\nYou don't remember the hours passing.\n\nA sound echoes through the marble halls—mechanical, deliberate. Every exit clicks simultaneously. Locked.\n\nThen the speakers crackle to life. A voice, cultured and cold:\n\n\"Welcome to my collection. The game has begun. Find what I've hidden, solve what I've set, and perhaps you'll earn your freedom. Or perhaps...\" A pause. \"You'll become my newest acquisition.\"\n\nThe speaker falls silent. In the emergency light, you see three corridors branching from the main hall.",
+      "choices": [
+        {
+          "text": "Check the security desk for supplies",
+          "goto": "security_desk"
+        },
+        {
+          "text": "Head toward the Egyptian Wing",
+          "goto": "egyptian_entrance"
+        },
+        {
+          "text": "Enter the Medieval Gallery",
+          "goto": "medieval_entrance"
+        },
+        {
+          "text": "Go to Natural History",
+          "goto": "natural_entrance"
+        }
+      ]
+    },
+    "security_desk": {
+      "text": "The security station is abandoned. Coffee still steams in a mug—whoever was here left moments ago. Or was taken.\n\nYou find a flashlight in the top drawer, batteries fresh. Beside it, a crumpled note in hurried handwriting:\n\n\"Three artifacts missing. Three wings. He's done this before. The others didn't—\"\n\nThe note ends mid-sentence. A dark stain mars the corner of the paper.\n\nOn the monitors, you see yourself from a dozen angles. Someone is watching.",
+      "choices": [
+        {
+          "text": "Take the flashlight and explore the Egyptian Wing",
+          "goto": "egyptian_entrance",
+          "setState": { "hasFlashlight": true }
+        },
+        {
+          "text": "Take the flashlight and head to the Medieval Gallery",
+          "goto": "medieval_entrance",
+          "setState": { "hasFlashlight": true }
+        },
+        {
+          "text": "Take the flashlight and investigate Natural History",
+          "goto": "natural_entrance",
+          "setState": { "hasFlashlight": true }
+        }
+      ]
+    },
+    "main_hall": {
+      "text": "You stand in the grand rotunda, marble columns rising into shadow. The dinosaur skeleton at the center seems to watch you with hollow eyes. Moonlight streams through the glass ceiling, catching dust motes that drift like snow.\n\nThree corridors lead to the museum's wings. A fourth—barely visible behind a tapestry—seems to lead somewhere else entirely.\n\nThe hidden passage is sealed with an ornate lock bearing three symbols: a scarab, a knight's helm, and a fossil.",
+      "choices": [
+        {
+          "text": "Try the hidden door",
+          "goto": "hidden_door",
+          "condition": { "hasScarabKey": true, "hasKnightsCrest": true, "hasFossilFragment": true }
+        },
+        {
+          "text": "Examine the hidden door more closely",
+          "goto": "examine_hidden_door"
+        },
+        {
+          "text": "Enter the Egyptian Wing",
+          "goto": "egyptian_entrance"
+        },
+        {
+          "text": "Enter the Medieval Gallery",
+          "goto": "medieval_entrance"
+        },
+        {
+          "text": "Go to Natural History",
+          "goto": "natural_entrance"
+        }
+      ]
+    },
+    "examine_hidden_door": {
+      "text": "Behind the tapestry, you find an ancient door of dark wood, bound in brass. Three keyholes form a triangle—each one shaped differently.\n\nThe first is carved like a scarab beetle.\nThe second resembles a knight's crest.\nThe third is unmistakably organic—a fossil imprint.\n\nAn inscription above reads: \"Three treasures stolen, three treasures returned. Only then does the collector's door open.\"\n\nYou'll need to find all three artifacts to proceed.",
+      "choices": [
+        {
+          "text": "Search the Egyptian Wing for the scarab",
+          "goto": "egyptian_entrance"
+        },
+        {
+          "text": "Search the Medieval Gallery for the crest",
+          "goto": "medieval_entrance"
+        },
+        {
+          "text": "Search Natural History for the fossil",
+          "goto": "natural_entrance"
+        }
+      ]
+    },
+    "egyptian_entrance": {
+      "text": "Towering columns frame the entrance to the Egyptian wing. A massive statue of Anubis guards the threshold, its jackal eyes gleaming in the emergency light. The air here is different—dry, ancient, carrying the faint scent of myrrh.\n\nDisplay cases line the walls, but several are shattered. Glass crunches beneath your feet. Whatever happened here was recent.\n\nA placard on the floor reads: \"The Scarab of Khufu - MISSING.\"\n\nDeeper in, you see the entrance to the Pharaoh's Chamber and, to the left, a room filled with sarcophagi.",
+      "choices": [
+        {
+          "text": "Enter the Pharaoh's Chamber",
+          "goto": "pharaoh_chamber"
+        },
+        {
+          "text": "Investigate the Mummy Room",
+          "goto": "mummy_room"
+        },
+        {
+          "text": "Study the hieroglyphics on the walls",
+          "goto": "hieroglyph_puzzle"
+        },
+        {
+          "text": "Return to the main hall",
+          "goto": "main_hall"
+        }
+      ]
+    },
+    "pharaoh_chamber": {
+      "text": "A recreation of a pharaoh's burial chamber dominates the room. Golden artifacts gleam from every surface—except one pedestal, conspicuously empty.\n\nA riddle is carved into the stone before the empty pedestal:\n\n\"I am taken from a mine, and shut up in a wooden case, from which I am never released. I am used by everyone. What am I?\"\n\nBeneath the riddle, three buttons are labeled: GOLD, COAL, and GRAPHITE.",
+      "choices": [
+        {
+          "text": "Press GOLD",
+          "goto": "wrong_answer"
+        },
+        {
+          "text": "Press COAL",
+          "goto": "wrong_answer"
+        },
+        {
+          "text": "Press GRAPHITE (pencil lead)",
+          "goto": "solve_egyptian",
+          "setState": { "solvedEgyptianRiddle": true }
+        },
+        {
+          "text": "Leave and think about it",
+          "goto": "egyptian_entrance"
+        }
+      ]
+    },
+    "wrong_answer": {
+      "text": "A grinding sound echoes through the chamber. For a heart-stopping moment, the walls seem to shift—then settle. A voice crackles over the speakers:\n\n\"Incorrect. The game continues... for now. But the museum grows impatient.\"\n\nThe temperature drops. You sense you shouldn't keep making mistakes.",
+      "choices": [
+        {
+          "text": "Try the puzzle again",
+          "goto": "pharaoh_chamber"
+        },
+        {
+          "text": "Leave and explore elsewhere",
+          "goto": "main_hall"
+        }
+      ]
+    },
+    "solve_egyptian": {
+      "text": "The GRAPHITE button clicks. A hidden panel slides open in the pedestal, revealing the Scarab of Khufu—ancient gold and lapis lazuli, worth more than you'll earn in a lifetime.\n\nAs your fingers close around it, the speakers crackle:\n\n\"Clever. The first treasure returns. But knowledge without wisdom is a curse. Seek the warrior's honor next.\"\n\nThe scarab is warm in your hand. One piece of the puzzle found.",
+      "choices": [
+        {
+          "text": "Take the scarab and head to the Medieval Gallery",
+          "goto": "medieval_entrance",
+          "setState": { "hasScarabKey": true }
+        },
+        {
+          "text": "Take the scarab and go to Natural History",
+          "goto": "natural_entrance",
+          "setState": { "hasScarabKey": true }
+        },
+        {
+          "text": "Take the scarab and return to the main hall",
+          "goto": "main_hall",
+          "setState": { "hasScarabKey": true }
+        }
+      ]
+    },
+    "mummy_room": {
+      "text": "Rows of sarcophagi stand upright against the walls, their painted faces frozen in eternal serenity. One is open—empty, its occupant missing.\n\nOn the wall, you notice fresh scratches in the paint. Not ancient. Recent. Letters, carved desperately:\n\n\"HE COLLECTS THE LIVING TOO\"\n\nA chill runs down your spine. This isn't just a game. Others have been here before you. And they didn't leave.",
+      "choices": [
+        {
+          "text": "Search the open sarcophagus",
+          "goto": "sarcophagus_secret",
+          "condition": { "hasFlashlight": true }
+        },
+        {
+          "text": "The darkness is too deep—return to the entrance",
+          "goto": "egyptian_entrance"
+        }
+      ]
+    },
+    "sarcophagus_secret": {
+      "text": "Your flashlight reveals a hidden compartment in the base of the empty sarcophagus. Inside, you find a leather journal, its pages yellowed.\n\nThe last entry reads:\n\n\"Day 3. He calls himself the Curator. He's been doing this for decades—maybe longer. The museum is his hunting ground. Some he lets go. Most... the permanent collection isn't just artifacts. I've seen the basement. I've seen what he keeps there.\n\nIf you're reading this, don't trust him. Don't make deals. Just run.\"\n\nThe entry is signed with initials: M.C., 1987.\n\nThirty-seven years ago. And you're still here.",
+      "choices": [
+        {
+          "text": "Take the journal and continue exploring",
+          "goto": "egyptian_entrance",
+          "setState": { "foundCuratorNote": true }
+        }
+      ]
+    },
+    "hieroglyph_puzzle": {
+      "text": "The walls are covered in hieroglyphics—authentic recreations, according to the placard. But among them, you notice something odd: modern symbols hidden within the ancient text.\n\nNumbers. A sequence: 3-1-4-1-5-9.\n\nPi. Someone is leaving clues within the exhibits themselves. A previous player? Or the Curator himself, testing you?",
+      "choices": [
+        {
+          "text": "Remember the code and continue",
+          "goto": "egyptian_entrance",
+          "setState": { "knowsCuratorSecret": true }
+        }
+      ]
+    },
+    "medieval_entrance": {
+      "text": "The Medieval Gallery is a corridor of shadows and steel. Suits of armor stand like silent sentinels, their visors dark, their gauntlets empty. Once, they held weapons. Now the weapon cases are shattered, their contents missing.\n\nTapestries depicting hunts and battles line the walls. In the flickering light, the woven figures seem to move.\n\nAhead, you see a chapel alcove with stained glass windows. To the right, the Armor Hall continues into darkness.",
+      "choices": [
+        {
+          "text": "Enter the Chapel Alcove",
+          "goto": "chapel_alcove"
+        },
+        {
+          "text": "Explore the Armor Hall",
+          "goto": "armor_hall"
+        },
+        {
+          "text": "Examine the weapon cases",
+          "goto": "weapon_room"
+        },
+        {
+          "text": "Return to the main hall",
+          "goto": "main_hall"
+        }
+      ]
+    },
+    "chapel_alcove": {
+      "text": "The recreated Gothic chapel is small but stunning. Stained glass windows filter the emergency light into pools of crimson and blue. An altar stands at the center, and behind it, a reliquary—a golden box meant to hold sacred relics.\n\nThe reliquary is locked. A puzzle mechanism on the front shows four knight's shields, each bearing a different heraldic animal: lion, eagle, dragon, and serpent.\n\nAn inscription reads: \"Only the true order of chivalry unlocks honor's heart.\"\n\nBelow, you notice faded letters: L-E-D-S.",
+      "choices": [
+        {
+          "text": "Arrange: Lion, Eagle, Dragon, Serpent",
+          "goto": "solve_medieval",
+          "setState": { "solvedMedievalLock": true }
+        },
+        {
+          "text": "Arrange: Dragon, Eagle, Lion, Serpent",
+          "goto": "wrong_medieval"
+        },
+        {
+          "text": "Leave and think about it",
+          "goto": "medieval_entrance"
+        }
+      ]
+    },
+    "wrong_medieval": {
+      "text": "The mechanism clicks—incorrectly. A grinding noise echoes through the chapel, and one of the stained glass windows cracks. A shard falls, shattering on the stone floor.\n\n\"Careful,\" the speakers whisper. \"The museum remembers every mistake. And it never forgives.\"\n\nYou should reconsider the order.",
+      "choices": [
+        {
+          "text": "Try again",
+          "goto": "chapel_alcove"
+        },
+        {
+          "text": "Leave and explore elsewhere",
+          "goto": "medieval_entrance"
+        }
+      ]
+    },
+    "solve_medieval": {
+      "text": "The shields click into place. The reliquary opens with a sigh of ancient air.\n\nInside, resting on faded velvet, is the Knight's Crest—a silver medallion bearing the seal of a forgotten order. It's heavy in your hand, real in a way the replicas aren't.\n\n\"The warrior's honor is reclaimed,\" the voice intones. \"But honor alone won't save you. Seek the bones of ages past.\"\n\nTwo artifacts found. One remains.",
+      "choices": [
+        {
+          "text": "Take the crest and head to Natural History",
+          "goto": "natural_entrance",
+          "setState": { "hasKnightsCrest": true }
+        },
+        {
+          "text": "Take the crest and return to the main hall",
+          "goto": "main_hall",
+          "setState": { "hasKnightsCrest": true }
+        }
+      ]
+    },
+    "armor_hall": {
+      "text": "The Armor Hall stretches into darkness, suits of plate mail lining both walls. As you walk, you could swear their helmed heads turn to follow.\n\nOne suit is different—newer, shinier. A placard reads: \"Modern Recreation - DO NOT TOUCH.\"\n\nBut someone has touched it. The breastplate is slightly ajar, revealing a hollow interior. Big enough for a person.\n\nA chill runs through you. These aren't all empty.",
+      "choices": [
+        {
+          "text": "Open the breastplate",
+          "goto": "armor_horror",
+          "condition": { "hasFlashlight": true }
+        },
+        {
+          "text": "Back away slowly",
+          "goto": "medieval_entrance"
+        }
+      ]
+    },
+    "armor_horror": {
+      "text": "Your flashlight illuminates the interior of the armor.\n\nIt's not empty.\n\nA skeleton stands inside, wired into position, wearing the tattered remains of a security uniform. A name badge is still pinned to the chest: \"Marcus Chen - Night Security.\"\n\n1987. The journal. M.C.\n\nHe never escaped. He became part of the collection.\n\nThe speakers crackle with what sounds almost like laughter.",
+      "choices": [
+        {
+          "text": "Steel yourself and continue searching",
+          "goto": "medieval_entrance",
+          "setState": { "knowsCuratorSecret": true }
+        }
+      ]
+    },
+    "weapon_room": {
+      "text": "The weapon displays are a ruin. Swords, maces, and crossbows—all missing from their mounts. Shattered glass covers the floor. Someone took the weapons, or someone wanted to prevent you from having them.\n\nAmong the debris, you find a small dagger that was overlooked. Not much, but better than nothing.\n\nA note is pinned to the empty crossbow mount: \"The game is more interesting when the prey is helpless.\"",
+      "choices": [
+        {
+          "text": "Take the dagger and continue",
+          "goto": "medieval_entrance"
+        }
+      ]
+    },
+    "natural_entrance": {
+      "text": "The Natural History wing opens into a cathedral of bones. A T-Rex skeleton rears above you, jaws frozen in an eternal roar. Smaller specimens crowd the shadows—raptors, pterodactyls, the curved spine of something serpentine.\n\nTo the left, dioramas show prehistoric scenes lit by failing emergency lights. To the right, the specimen room glitters with minerals and preserved creatures.\n\nAn empty pedestal near the dinosaurs catches your eye. The placard reads: \"Archaeopteryx Fossil Fragment - MISSING.\"",
+      "choices": [
+        {
+          "text": "Explore the Specimen Room",
+          "goto": "specimen_room"
+        },
+        {
+          "text": "Investigate the Dioramas",
+          "goto": "diorama_maze"
+        },
+        {
+          "text": "Examine the dinosaur skeletons",
+          "goto": "dinosaur_hall"
+        },
+        {
+          "text": "Return to the main hall",
+          "goto": "main_hall"
+        }
+      ]
+    },
+    "dinosaur_hall": {
+      "text": "You stand beneath the T-Rex, its shadow swallowing you whole. The bones are real—millions of years old—and yet in this light, they seem almost alive.\n\nA series of display screens near the exhibit show a quiz interface. The screen flickers:\n\n\"QUESTION: What links all birds to their dinosaur ancestors?\"\n\nThree options appear: SCALES, FEATHERS, TEETH.",
+      "choices": [
+        {
+          "text": "Select SCALES",
+          "goto": "wrong_natural"
+        },
+        {
+          "text": "Select FEATHERS",
+          "goto": "solve_natural",
+          "setState": { "solvedNaturalCode": true }
+        },
+        {
+          "text": "Select TEETH",
+          "goto": "wrong_natural"
+        },
+        {
+          "text": "Ignore the quiz and leave",
+          "goto": "natural_entrance"
+        }
+      ]
+    },
+    "wrong_natural": {
+      "text": "The screen flashes red. Above you, the T-Rex skeleton shudders—a mechanical groan echoing through the hall. For one heart-stopping moment, you think it's going to fall.\n\nIt doesn't. But the message is clear: the museum is alive, and it's watching your every move.",
+      "choices": [
+        {
+          "text": "Try again",
+          "goto": "dinosaur_hall"
+        },
+        {
+          "text": "Leave and explore elsewhere",
+          "goto": "natural_entrance"
+        }
+      ]
+    },
+    "solve_natural": {
+      "text": "The screen turns green. A panel slides open in the base of the T-Rex display, revealing the Archaeopteryx fossil fragment—a perfect impression of the first bird, caught in stone 150 million years ago.\n\n\"Evolution,\" the voice muses through the speakers. \"The strong survive. The clever adapt. But what are you, I wonder? Strong? Clever? Or merely... lucky?\"\n\nYou have all three artifacts now. The hidden door should open.",
+      "choices": [
+        {
+          "text": "Take the fossil and return to the main hall",
+          "goto": "main_hall",
+          "setState": { "hasFossilFragment": true }
+        }
+      ]
+    },
+    "specimen_room": {
+      "text": "Jars line the walls—specimens preserved in cloudy fluid. Eyes stare from the murk. Teeth float in suspension. It's a cabinet of biological horrors, each one labeled in precise copperplate.\n\nBut not all the specimens are ancient. Some jars are newer. Cleaner. And their contents...\n\nYou look closer at one jar and recoil. It's a human hand. The label reads: \"Homo sapiens - Acquisitioned 2019.\"\n\nThe Curator doesn't just collect artifacts. He collects people.",
+      "choices": [
+        {
+          "text": "Leave immediately",
+          "goto": "natural_entrance",
+          "setState": { "knowsCuratorSecret": true }
+        }
+      ]
+    },
+    "diorama_maze": {
+      "text": "The dioramas create a maze of prehistoric scenes—mammoths on frozen tundras, saber-toothed cats prowling ancient forests. The emergency lighting makes them unnervingly lifelike.\n\nAs you navigate the displays, you realize the layout has changed. The exit isn't where it should be. The museum is rearranging itself.\n\nOr someone is guiding you somewhere specific.",
+      "choices": [
+        {
+          "text": "Keep moving forward",
+          "goto": "diorama_revelation"
+        },
+        {
+          "text": "Turn back immediately",
+          "goto": "natural_entrance"
+        }
+      ]
+    },
+    "diorama_revelation": {
+      "text": "You push through the maze until you reach a diorama you've never seen before. It's not prehistoric. It's modern.\n\nA recreation of a living room. 1950s furniture. A family frozen in tableau—father reading a newspaper, mother knitting, children playing on the floor.\n\nThey're not mannequins.\n\nTheir eyes are glass now, but once they were alive. A placard reads: \"The Morrison Family - Acquisitioned 1962. A perfect American moment, preserved forever.\"\n\nThis is what happens to those who lose the game.",
+      "choices": [
+        {
+          "text": "Run back to the main hall",
+          "goto": "main_hall",
+          "setState": { "knowsCuratorSecret": true }
+        }
+      ]
+    },
+    "hidden_door": {
+      "text": "You insert the three artifacts into their matching keyholes. The scarab clicks. The crest turns. The fossil slides home.\n\nThe hidden door swings open, releasing air that smells of dust and secrets. Beyond lies a spiral staircase descending into darkness.\n\nThe Curator's domain awaits.\n\n\"Impressive,\" the voice echoes from below. \"You've earned an audience. Come. Let us discuss your future.\"",
+      "choices": [
+        {
+          "text": "Descend the staircase",
+          "goto": "curator_office"
+        },
+        {
+          "text": "This is a trap—try to find another way out",
+          "goto": "ending_trapped"
+        }
+      ]
+    },
+    "curator_office": {
+      "text": "The office is Victorian splendor frozen in amber. Mahogany and brass, leather and velvet. Filing cabinets line the walls, each drawer labeled with years stretching back centuries. Photographs cover every surface—people, artifacts, moments in time.\n\nBehind a massive desk sits a figure. The Curator.\n\nHe's older than old—ancient in a way that defies biology. His suit is immaculate, his eyes bright with intelligence and something hungrier. When he smiles, you see too many teeth.\n\n\"Welcome,\" he says, gesturing to a chair. \"Please. Sit. We have much to discuss.\"",
+      "choices": [
+        {
+          "text": "Sit down and listen",
+          "goto": "meet_curator"
+        },
+        {
+          "text": "Refuse and demand to be released",
+          "goto": "curator_anger"
+        },
+        {
+          "text": "Confront him about the bodies in his collection",
+          "goto": "curator_truth",
+          "condition": { "knowsCuratorSecret": true }
+        }
+      ]
+    },
+    "meet_curator": {
+      "text": "You sit. The chair is surprisingly comfortable—designed to make prey feel at ease.\n\n\"I've been curating for... a very long time,\" he says, steepling his fingers. \"Artifacts, yes. But artifacts are dead things. What I truly collect are moments. Experiences. Lives.\"\n\nHe leans forward. \"You've proven yourself clever. Resourceful. I have a proposition: join me. Become my apprentice. Help me curate, and you'll live forever—in a manner of speaking.\"\n\nHis eyes glitter. \"Or refuse, and become my newest exhibit. The choice is yours.\"",
+      "choices": [
+        {
+          "text": "Accept his offer",
+          "goto": "ending_become_curator"
+        },
+        {
+          "text": "Refuse and fight",
+          "goto": "ending_collection"
+        },
+        {
+          "text": "Pretend to accept, then escape",
+          "goto": "ending_escape"
+        }
+      ]
+    },
+    "curator_anger": {
+      "text": "\"Released?\" The Curator laughs—a sound like old pages turning. \"My dear, no one is released. You either earn your place among the living... or among my collection.\"\n\nHe rises from his chair, and you realize he's taller than he appeared—far taller. Shadows pool around him like a living thing.\n\n\"I gave you a chance to play the game with dignity. Now you will play by my rules.\"",
+      "choices": [
+        {
+          "text": "Run for the door",
+          "goto": "ending_collection"
+        },
+        {
+          "text": "Beg for mercy and agree to listen",
+          "goto": "meet_curator"
+        }
+      ]
+    },
+    "curator_truth": {
+      "text": "\"I've seen your collection,\" you say, voice steady despite your terror. \"The real one. The Morrison family. The security guard in the armor. The specimens in the jars. You don't collect artifacts—you collect people.\"\n\nThe Curator's smile doesn't waver, but something shifts in his eyes. Respect, perhaps. Or hunger.\n\n\"Very few see the truth and live to speak of it,\" he says. \"You are... extraordinary. This changes things.\"\n\nHe sets something on the desk—a file folder with your name on it. Photographs of your home. Your family. Your life.\n\n\"I've been watching you for some time. You have potential. The question is: will you embrace it, or waste it?\"",
+      "choices": [
+        {
+          "text": "Accept the truth and join him",
+          "goto": "ending_become_curator"
+        },
+        {
+          "text": "Use his fascination to negotiate your freedom",
+          "goto": "curator_bargain"
+        },
+        {
+          "text": "Attack him while he's talking",
+          "goto": "ending_collection"
+        }
+      ]
+    },
+    "curator_bargain": {
+      "text": "\"If I'm so extraordinary,\" you say carefully, \"then I'm worth more to you alive and free than dead in a display case.\"\n\nThe Curator considers this, fingers tapping on the desk. \"Go on.\"\n\n\"Let me go. In return, I'll... find things for you. Bring you new acquisitions. People won't suspect me the way they'd suspect you.\"\n\nIt's a devil's bargain, and you know it. But it might be the only way out.\n\nHe studies you for a long moment. Then, slowly, he smiles.\n\n\"One year,\" he says. \"Bring me three worthy additions in one year, and you'll have earned your permanent freedom. Fail, and you join the collection anyway.\"\n\nHe extends his hand.",
+      "choices": [
+        {
+          "text": "Shake his hand and seal the bargain",
+          "goto": "ending_escape"
+        },
+        {
+          "text": "Refuse—you won't become like him",
+          "goto": "ending_truth"
+        }
+      ]
+    },
+    "ending_escape": {
+      "text": "You shake his hand. His grip is cold, papery—like shaking hands with a corpse.\n\n\"A pleasure doing business with you,\" the Curator says. \"The door will open now. Remember our arrangement.\"\n\nYou climb the stairs on trembling legs. The hidden door stands open. Beyond it, the museum is silent and still—waiting.\n\nAt 6:00 AM, the front doors unlock automatically. You step into the grey dawn, free.\n\nBut not really. Not ever again.\n\nYou have one year. And somewhere in the city, three people are living their last days of innocence—unknowing candidates for the Curator's collection.\n\nWill you find them? Will you deliver them? Or will you run, and let the Curator come for you instead?\n\nSome games never really end.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "ending_become_curator": {
+      "text": "You take his hand.\n\nThe moment your skin touches his, you feel it—a transfer, an exchange. Your warmth for his cold. Your mortality for his eternity.\n\nTime stretches. Years pass in seconds. When you look down at your hands, they're older. Younger. Both at once.\n\n\"Welcome,\" the Curator says, but his voice is different now—weaker, older. \"Welcome to the collection.\"\n\nHe crumbles. Literally crumbles, centuries catching up with him in an instant. Dust and bone scatter across the desk, and you're alone.\n\nNo—not alone. The museum breathes around you, alive and waiting. Your museum now.\n\nYou sit in the chair behind the desk—your desk—and begin reviewing the files. So many potential acquisitions. So much to curate.\n\nThe speakers crackle, and you hear your own voice echo through the halls:\n\n\"Welcome to my collection. The game has begun.\"",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "ending_collection": {
+      "text": "You run. Or fight. It doesn't matter.\n\nThe shadows move faster than you do. Cold hands grip your arms, your legs. You're lifted, carried, placed—\n\nWhen you wake, you can't move. Your limbs are locked, your eyes fixed forward. You're standing in a glass case, dressed in clothes that aren't yours, posed in a moment that isn't yours.\n\nA placard sits at your feet. You can't read it, but you know what it says.\n\nVisitors pass by your case the next day, and the day after, and the day after that. They admire your lifelike expression. They comment on the artistry. They never suspect the truth.\n\nYou're still aware. Still watching. Still screaming inside a frozen shell.\n\nThe Curator was right about one thing: you did become part of the permanent collection.\n\nForever.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "ending_truth": {
+      "text": "\"No,\" you say, pulling your hand back. \"I won't become a monster to survive. I'd rather be a display than a predator.\"\n\nThe Curator tilts his head, studying you with something that might be disappointment—or admiration.\n\n\"Fascinating,\" he murmurs. \"After all these centuries, you still surprise me.\"\n\nHe snaps his fingers. The office door swings open—not to the spiral staircase, but to the morning sun streaming through the museum's front entrance.\n\n\"Go,\" he says. \"You've won. Not through cleverness or bargaining, but through something I'd forgotten existed: integrity.\"\n\nYou don't wait for him to change his mind. You run.\n\nAt the threshold, you pause and look back. The office is gone. The hidden door has vanished. There's only a tapestry and a blank wall.\n\nBut you know the truth now. You know what lives beneath the museum. And someday, when you're old and gray, you'll write it down—a warning for those who come after.\n\nSome collections should remain secret. Some games should never be played.\n\nAnd some monsters are defeated not by strength, but by refusing to become them.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "ending_trapped": {
+      "text": "You turn away from the hidden door. There must be another way out—a window, a vent, anything.\n\nYou search for hours. Days. The museum shifts around you, corridors looping back on themselves, stairs leading nowhere. The Curator's voice echoes occasionally, amused:\n\n\"Still looking? Take your time. I'm patient.\"\n\nEventually, you stop running. There is no way out. There never was.\n\nThe museum finds you huddled in a corner, too exhausted to move. The Curator stands over you, disappointment in his ancient eyes.\n\n\"Such potential,\" he sighs. \"Wasted on fear.\"\n\nThe shadows take you.\n\nWhen the museum opens the next morning, there's a new exhibit in the main hall: a figure posed in mid-stride, caught in eternal flight. The placard reads:\n\n\"The Runner - Contemporary - A study in futility.\"\n\nVisitors find it unsettling. They don't know why.\n\nYou do. You'll always know. But you'll never be able to tell them.",
+      "isEnding": true,
+      "endingType": "bad"
+    }
+  }
+}
+

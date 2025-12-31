@@ -1,0 +1,281 @@
+{
+  "id": "perfect-match-protocol",
+  "title": "Perfect Match Protocol",
+  "author": "Adventure Engine",
+  "description": "Your dating app claims 99.9% compatibility through neural scanning. After matching with someone perfect, you're offered an upgrade: see your relationship's entire future. Do you look?",
+  "version": "1.0",
+  "initialState": {
+    "sawTheFuture": false,
+    "paidForIntervention": false,
+    "changedMoments": 0,
+    "partnerKnows": false,
+    "trustLevel": 50,
+    "relationshipMonth": 0
+  },
+  "start": "match_notification",
+  "passages": {
+    "match_notification": {
+      "text": "Your phone buzzes at 3:47 AM. You wouldn't normally check, but something about the notification sound—a soft, almost organic chime—pulls you from sleep.\n\nPERFECT MATCH PROTOCOL - NEURAL COMPATIBILITY CONFIRMED\n\nThe app. You'd forgotten you even had it installed. Three weeks ago, a friend convinced you to try it. \"It's different,\" she said. \"They use neural mapping. It actually works.\"\n\nYou tap the notification. A face appears. Alex. Dark eyes, a half-smile that suggests they know something you don't. The compatibility score pulses gently: 99.7%.\n\nBelow it, a message:\n\n\"Hello. I've been waiting for you. Coffee tomorrow? I already know you'll say yes.\"\n\nThere's something unsettling about that certainty. But also something magnetic.\n\nBefore you can respond, another notification slides down:\n\n\"PREMIUM FEATURE UNLOCKED: For £5,000, view your complete relationship timeline with this match. Every joy. Every fight. How it ends. Knowledge is power—or is it?\"",
+      "choices": [
+        {
+          "text": "Pay £5,000 to see the future",
+          "goto": "view_future"
+        },
+        {
+          "text": "Decline and message Alex naturally",
+          "goto": "decline_future"
+        },
+        {
+          "text": "Check what other packages are available",
+          "goto": "view_packages"
+        },
+        {
+          "text": "Delete the app entirely—this is too invasive",
+          "goto": "delete_app"
+        }
+      ]
+    },
+    "view_packages": {
+      "text": "You scroll through the premium options. The interface is sleek, almost hypnotic—colors that seem to pulse in rhythm with your heartbeat.\n\n**FORESIGHT PACKAGE - £5,000**\nView your complete relationship timeline. See every milestone, every conflict, every ending. \"Those who know their destination travel with purpose.\"\n\n**INTERVENTION PROTOCOL - £15,000**\nNot just see the future—change it. Receive advance notice of critical relationship moments with options to alter the outcome before it happens. \"Why accept fate when you can rewrite it?\"\n\n**SELECTIVE MEMORY - £25,000**\nAfter viewing, choose which future memories to keep and which to forget. \"Experience foreknowledge without the burden.\"\n\nA small disclaimer scrolls at the bottom: \"Neural data usage governed by Terms of Service. Your future may be shared with matched partners unless privacy settings are adjusted.\"\n\nAlex's face still glows on screen. 99.7%. Waiting.",
+      "choices": [
+        {
+          "text": "Purchase the Foresight Package (£5,000)",
+          "goto": "view_future"
+        },
+        {
+          "text": "Purchase the Intervention Protocol (£15,000)",
+          "goto": "intervention_package",
+          "setState": { "paidForIntervention": true }
+        },
+        {
+          "text": "This is insane. Just message Alex normally.",
+          "goto": "decline_future"
+        },
+        {
+          "text": "Delete everything. This has gone too far.",
+          "goto": "delete_app"
+        }
+      ]
+    },
+    "view_future": {
+      "text": "Your thumb hovers over \"Confirm Purchase.\" £5,000. Your savings for that trip to Japan. For emergencies. For a future you hadn't planned.\n\nBut isn't this the future? The real one?\n\nYou tap. Your phone warms slightly, and the screen dissolves into something else—not quite video, not quite memory. You're experiencing moments that haven't happened yet.\n\n**Month 1**: Coffee that turns into dinner that turns into talking until sunrise. Alex laughing at something you said, their hand finding yours across the table.\n\n**Month 4**: A rainy afternoon in bed. Comfortable silence. You've never felt so known.\n\n**Month 8**: The first fight. Harsh words about trust, about the app, about whether any of this is real. Alex's face, hurt and closed off.\n\n**Month 14**: A hospital waiting room. Alex squeezing your hand. \"Whatever happens, I'm here.\"\n\n**Month 23**: An apartment. Half-empty. Boxes. Alex's voice: \"I love you. But I can't do this anymore. You're always waiting for something bad to happen.\"\n\n**Month 23**: The ending.\n\nThe visions fade. You're back in your dark bedroom, phone clutched to your chest. You've seen it all. The beauty. The pain. The end.\n\nNow what do you do with this knowledge?",
+      "setState": { "sawTheFuture": true },
+      "choices": [
+        {
+          "text": "Try to prevent the bad moments—you can change this",
+          "goto": "prevent_future"
+        },
+        {
+          "text": "Accept the timeline and cherish what time you have",
+          "goto": "accept_future"
+        },
+        {
+          "text": "End it before it starts—spare yourself the pain",
+          "goto": "preemptive_ending"
+        },
+        {
+          "text": "Message Alex and pretend you saw nothing",
+          "goto": "pretend_normal"
+        }
+      ]
+    },
+    "prevent_future": {
+      "text": "No. You refuse to accept this. The future isn't written—it's shown as a possibility, not a certainty. You can be different. You can fix it.\n\nYou meet Alex for coffee the next day. They're exactly as the vision showed—warm, quick-witted, magnetically present. But now you're watching for signs. Cataloging every word for potential problems.\n\n\"You're staring,\" Alex says with that half-smile.\n\n\"Sorry. You just... you're exactly what I expected.\"\n\n\"The app is good, isn't it?\" They stir their coffee. \"Did you... look? At the timeline?\"\n\nYour stomach drops. Do they know? Did they look too?",
+      "choices": [
+        {
+          "text": "Admit you saw the future",
+          "goto": "admit_future"
+        },
+        {
+          "text": "Lie—say you didn't look",
+          "goto": "lie_about_future"
+        },
+        {
+          "text": "Deflect—ask if they looked",
+          "goto": "ask_if_looked"
+        }
+      ]
+    },
+    "admit_future": {
+      "text": "\"I did,\" you say quietly. \"I saw... everything.\"\n\nAlex sets down their cup. Their expression is unreadable.\n\n\"Everything?\"\n\n\"Twenty-three months. The good parts. The hospital. The...\" You can't say it. The end.\n\nAlex is quiet for a long moment. Then: \"I looked too.\"\n\nThe words hang between you.\n\n\"We have the same information,\" Alex says slowly. \"The same vision of where this goes. The question is: does knowing change anything?\"\n\n\"I want to believe it can.\"\n\n\"So do I.\" Alex reaches across the table, takes your hand. \"But every time we try to avoid something we saw, aren't we just... fulfilling a different prophecy? One the algorithm already predicted?\"\n\nYou realize with cold clarity: the app didn't just show you the future. It gave you the knowledge that would create it.",
+      "setState": { "partnerKnows": true },
+      "choices": [
+        {
+          "text": "Try to change things anyway—together",
+          "goto": "change_together"
+        },
+        {
+          "text": "Accept the timeline and love fully while you can",
+          "goto": "love_fully"
+        },
+        {
+          "text": "Walk away now—before you hurt each other",
+          "goto": "mutual_ending"
+        }
+      ]
+    },
+    "lie_about_future": {
+      "text": "\"No,\" you say, too quickly. \"Seemed like an invasion of privacy. I wanted to discover things naturally.\"\n\nAlex smiles, but something flickers in their eyes. \"Good. Me neither.\"\n\nYou're both lying. You can feel it. And somehow, that shared dishonesty becomes the foundation of everything that follows.\n\nMonths pass. You dance around the knowledge you both carry. You prevent the fight at Month 8 by avoiding the topic entirely—but the silence creates a different wound. You're so focused on not saying the wrong thing that you stop saying anything real.\n\n\"You're always somewhere else,\" Alex says one night. \"Even when you're right here.\"\n\nThey're right. You're living in Month 23, trying to prevent it. And by doing so, you're making it inevitable.\n\nThe ending comes at Month 19. Different words, same result. Alex at the door with a suitcase.\n\n\"You know what's funny?\" they say. \"I saw this. Not exactly this, but... this. And I thought if I just loved you enough, I could change it.\"\n\n\"You saw?\"\n\n\"Of course I saw. We both saw. We were both too afraid to admit it.\" A sad laugh. \"The algorithm knew we'd do exactly this.\"",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "ask_if_looked": {
+      "text": "\"Did you?\" you counter, watching their face carefully.\n\nAlex's expression flickers—just for a moment. Then they smile. \"I asked you first.\"\n\n\"That's not an answer.\"\n\n\"Neither is deflection.\"\n\nYou're both circling, neither willing to show cards. It's a game within a game—and you realize with sudden clarity that this dynamic will define everything. Trust withheld. Truths unspoken. Two people who might be perfect for each other, if only they could be honest.\n\n\"I'll tell you if you tell me,\" you offer.\n\nAlex considers. Then: \"Same time?\"\n\n\"On three.\"\n\n\"One.\"\n\n\"Two.\"\n\n\"Three.\"\n\n\"Yes,\" you both say simultaneously.\n\nThe relief is immediate and overwhelming. You both burst out laughing—the absurdity of it, the fear, the shared secret now shared.\n\n\"Well,\" Alex says, \"I guess we're doing this with full information.\"\n\n\"Is that better or worse?\"\n\n\"I honestly don't know. But at least we're not lying.\"",
+      "setState": { "partnerKnows": true, "trustLevel": 70 },
+      "choices": [
+        {
+          "text": "Decide to fight the timeline together",
+          "goto": "change_together"
+        },
+        {
+          "text": "Agree to never discuss what you saw",
+          "goto": "never_discuss"
+        }
+      ]
+    },
+    "change_together": {
+      "text": "\"We have a choice,\" you say. \"We can let the algorithm win. Or we can prove that humans are more than predictions.\"\n\n\"The Heisenberg Principle of Romance,\" Alex muses. \"Observing the future changes it.\"\n\n\"Exactly.\"\n\nAnd so you try. Month 8 approaches, and you both feel the tension building—the fight about trust and authenticity that the timeline predicted. You recognize the words forming, the defensive postures.\n\n\"This is it,\" you say one night. \"This is the moment.\"\n\nAlex takes a breath. \"So let's not have the fight.\"\n\n\"What if avoiding it causes something worse?\"\n\n\"What if it doesn't?\"\n\nYou talk instead of fight. You admit your fears—not about the relationship, but about the app, the knowledge, whether any choice you make is truly free. Alex admits the same. It's honest. It's vulnerable. It's nothing like what the timeline showed.\n\nMonth 14 comes. The hospital waiting room. But this time, it's Alex's sister with a broken arm, not the crisis you feared. You realize the vision showed emotionally true moments, not literal events.\n\nMonth 23 approaches. You've rewritten so much. But has the ending changed?",
+      "setState": { "changedMoments": 2 },
+      "choices": [
+        {
+          "text": "Stop checking—live without reference to the timeline",
+          "goto": "stop_checking"
+        },
+        {
+          "text": "Purchase the Intervention Package to see if it worked",
+          "goto": "check_intervention"
+        }
+      ]
+    },
+    "stop_checking": {
+      "text": "\"I'm done,\" you tell Alex. \"I'm deleting the app. I don't want to know anymore.\"\n\n\"What about Month 23?\"\n\n\"If it happens, it happens. But I'd rather be surprised by life than imprisoned by prophecy.\"\n\nAlex takes your hand. \"Together?\"\n\nYou both delete the app. The icon vanishes. Whatever neural data they have, whatever future remains mapped in their servers—you let it go.\n\nThe months pass. They're imperfect. There are fights you didn't predict, joys you couldn't have imagined. You stop counting.\n\nOne morning—you don't know what month it is anymore—you wake to find Alex watching you.\n\n\"What?\" you murmur.\n\n\"Nothing. Just... I used to wake up every day wondering if today was the day. The end. And now I don't think about it anymore.\"\n\n\"Is that good?\"\n\n\"It's free.\" They smile. \"I think it's what love is supposed to feel like when algorithms don't tell you what it is.\"\n\nYou never know if Month 23 came and went or was averted entirely. Maybe the relationship ends someday—all relationships do, one way or another. But you're not living in fear of an ending anymore.\n\nYou're just living.\n\nAnd the algorithm, with all its neural data and probability matrices, never predicted that the best way to beat it was to stop playing.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "check_intervention": {
+      "text": "You can't help it. You need to know.\n\nThe Intervention Protocol costs another £15,000. You've already spent £5,000. But what's money compared to certainty?\n\nThe purchase goes through. Your phone warms again, and new visions wash over you—not the original timeline, but something altered. Different. You see Month 23 again, but now it's...\n\nBlank. Corrupted. Static where the ending should be.\n\nA message appears: \"Timeline divergence detected. Original forecast no longer valid. New probability models generating...\"\n\nYou wait. Minutes pass. Then:\n\n\"ERROR: Insufficient data. Relationship outcome now indeterminate. We recommend purchasing the DESTINY RECALIBRATION package (£50,000) for updated projections.\"\n\nYou stare at the screen. They want more money. There's always another package, another level of certainty you can buy.\n\n\"What does it say?\" Alex asks, looking over your shoulder.\n\n\"It says they don't know anymore.\" You laugh—half relief, half hysteria. \"We broke the algorithm.\"\n\n\"So what happens now?\"\n\n\"I guess... we find out the old-fashioned way.\"\n\nAlex takes the phone from your hand and sets it aside. \"I can live with that.\"\n\nAnd somehow, uncertainty feels like the greatest gift either of you has ever received.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "love_fully": {
+      "text": "\"We can't change it,\" you say slowly. \"But we can choose how we live inside it.\"\n\n\"What do you mean?\"\n\n\"The timeline shows twenty-three months. But it doesn't show the moments between moments. The small things. We know the shape of our story—so let's make every scene count.\"\n\nAlex's eyes fill with tears. \"That's either the most beautiful or the most heartbreaking thing anyone's ever said to me.\"\n\n\"Maybe both.\"\n\nAnd so you live with full knowledge. When Month 4 comes, you sink into that rainy afternoon in bed with complete presence. When the fight at Month 8 arrives, you have it—but you both already know you'll come back together. The hospital at Month 14 is still terrifying, but you hold hands through it without the added fear of unknown outcomes.\n\nMonth 23 arrives. The boxes are there. Alex is at the door.\n\nBut something is different.\n\n\"I was supposed to say I can't do this anymore,\" Alex says quietly. \"But watching you love me these past months, knowing everything you knew... I don't think the algorithm understood that.\"\n\n\"Understood what?\"\n\n\"That acceptance isn't the same as resignation. You weren't waiting for the end—you were cherishing every moment before it. And that changed something. In me.\"\n\n\"So what happens now?\"\n\nAlex closes the door. Sets down the suitcase. Walks toward you.\n\n\"I don't know. For the first time in twenty-three months, I genuinely don't know.\"\n\nMonth 24 begins. Unwritten. Unpredicted. Yours.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "mutual_ending": {
+      "text": "\"We both saw the ending,\" you say. \"Maybe the kindest thing is to not put ourselves through the journey.\"\n\nAlex nods slowly. \"A mercy killing. For a relationship that hasn't even started.\"\n\n\"We could be friends. Know each other without the romantic weight.\"\n\n\"Could we? Knowing we're 99.7% compatible? Knowing what we're walking away from?\"\n\nThe coffee grows cold between you. Outside, people pass who haven't seen their futures, who still believe in possibility.\n\n\"I think I'd always wonder,\" Alex admits.\n\n\"Me too.\"\n\n\"So either way, we lose something.\"\n\nYou finish your coffee in silence. When you stand to leave, Alex catches your hand.\n\n\"For what it's worth,\" they say, \"the future I saw wasn't all pain. The part where we fell in love... that was real. That was beautiful.\"\n\n\"I know. I saw it too.\"\n\nYou don't exchange numbers. You don't make plans. You walk away from a love story before it can hurt you, and spend the rest of your life wondering if that was wisdom or cowardice.\n\nThe app sends you new matches. You never open them. The 99.7% haunts you—not because it promised happiness, but because it promised something real, and you were too afraid to find out.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "pretend_normal": {
+      "text": "You meet Alex the next day, armed with knowledge you'll never admit.\n\nThe coffee date is perfect—because you already lived it. You know exactly when to laugh, when to touch their hand, when to share vulnerable truths that seem spontaneous but were rehearsed in prophecy.\n\nAlex falls for the version of you that already knows all the answers. And you feel... hollow.\n\nBy Month 2, you can predict every conversation. By Month 4, you're performing instead of experiencing. The rainy afternoon in bed should be beautiful, but you're watching it happen from outside, checking it against the vision like a script.\n\n\"You're so easy to be with,\" Alex says. \"It's like you always know what to say.\"\n\nBecause I do, you don't say. Because I've seen this already.\n\nThe fight at Month 8 arrives. You know the words Alex will say, so you prepare the perfect response. The conflict dissolves before it truly forms.\n\nBut something breaks instead.\n\n\"Why don't you ever get angry?\" Alex asks. \"Why don't you ever surprise me? It's like you're reading from a script we both don't know about.\"\n\nThey're right. And suddenly, you realize the future you saw wasn't a prediction—it was a genuine reaction to a genuine you. This version, the one who performs and prevents and controls, isn't who they matched with.\n\nThe ending at Month 23 comes early. Month 11.\n\n\"I love the idea of you,\" Alex says at the door. \"But I've never actually met you.\"",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "accept_future": {
+      "text": "You look at your phone. Twenty-three months of memories that haven't happened yet. Beautiful ones. Painful ones. An ending that comes, like all endings eventually do.\n\nAnd you think: isn't that just life?\n\nEveryone dies. Every relationship ends—through breakup or death or simply growing apart. The algorithm didn't show you something terrible. It showed you something true. Something human. Something finite.\n\nYou message Alex: \"Coffee sounds perfect. But I have one condition—no spoilers. Whatever the app showed us, I want to discover it with you, not ahead of you.\"\n\nTheir response comes quickly: \"You looked?\"\n\n\"I looked. I wish I hadn't. But I'm not going to let it ruin anything.\"\n\nA long pause. Then: \"I looked too. Same thought. Let's agree to never discuss it.\"\n\nYou meet. You fall in love. You fight. You make up. You hold hands in the hospital. You discover that foreknowledge doesn't prepare you for pain—it only makes you dread it longer.\n\nAnd when Month 23 comes, when Alex stands at the door with boxes, you realize the vision got one thing wrong.\n\nIt didn't show you the conversation you have after—the one where you both sit in the half-empty apartment and talk for hours. The one where you finally understand why it couldn't work, and forgive each other anyway.\n\nIt didn't show you the goodbye that feels like love, not failure.\n\n\"The algorithm was right,\" Alex says, tears streaming. \"But it didn't understand what it was measuring.\"\n\n\"What do you mean?\"\n\n\"Compatibility isn't about forever. It's about how much you grow when you're together. And you—\" They touch your face. \"You made me so much more than I was.\"\n\nYou hold each other one last time. Then you let go.\n\nMonth 24 begins. Alone, but not empty. Different, but not broken.\n\nThe algorithm predicted the ending. It never predicted who you'd become because of the journey.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "preemptive_ending": {
+      "text": "You block Alex's number. Delete the app. Try to forget the face of the person you were supposed to love.\n\nIt works, mostly. Days pass. Weeks. You convince yourself you made the logical choice—why suffer through something with a known expiration date?\n\nBut the visions don't fade. Month 1's coffee lingers. Month 4's rain. Even Month 14's hospital, the way Alex squeezed your hand with such fierce devotion.\n\nYou matched with someone who would have loved you completely for twenty-three months. Someone who would have changed you, grown you, been there through something at Month 14 that you'll now face alone.\n\nYou avoided twenty-three months of eventual pain. But you also avoided twenty-three months of life.\n\nThe app sends a notification months later: \"Your match, Alex, has entered a new relationship. Compatibility: 94.3%. Timeline projection: 4+ years.\"\n\nThey moved on. They found someone who wasn't too afraid to try.\n\nYou sit in your apartment, alone, and realize the algorithm was right about one thing: you were 99.7% compatible. You just weren't 100% brave.\n\nSome endings, you choose for yourself. And you'll never know if that makes them better or just lonelier.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "decline_future": {
+      "text": "£5,000 to see the future? No. Some things should remain unknown.\n\nYou close the premium offer and type a message to Alex: \"Coffee sounds great. There's a place on High Street with terrible croissants and perfect espresso. 10 AM?\"\n\nTheir response: \"A purist. I like it. See you there.\"\n\nNo visions. No timelines. Just a date.\n\nYou meet Alex, and they're exactly what their profile suggested—sharp, warm, slightly guarded. You talk for hours. You laugh. You feel something click into place.\n\n\"Can I ask you something?\" Alex says as you walk to the tube station.\n\n\"Anything.\"\n\n\"The timeline offer. The future thing. Did you...?\"\n\n\"No. You?\"\n\n\"No.\" They smile—relieved, you think. \"I was afraid you had. That you'd already know how this ends.\"\n\n\"I prefer not knowing. Keeps things interesting.\"\n\n\"Me too.\" Alex stops walking, turns to face you. \"But now I'm curious. What if one of us looked and didn't admit it? What if every moment from here on is just... performing a script the other can't see?\"\n\nIt's a fair point. A shadow that will follow every relationship formed through this app.",
+      "choices": [
+        {
+          "text": "\"We just have to trust each other.\"",
+          "goto": "trust_path"
+        },
+        {
+          "text": "\"Maybe we should both look, so there are no secrets.\"",
+          "goto": "both_look"
+        },
+        {
+          "text": "\"Let me prove I don't know—surprise me with something impossible to predict.\"",
+          "goto": "surprise_me"
+        }
+      ]
+    },
+    "trust_path": {
+      "text": "\"We just have to trust each other,\" you say. \"Isn't that what relationships are anyway? Choosing to believe someone, even when you can't verify it.\"\n\nAlex studies you. \"You're either very wise or very naive.\"\n\n\"Probably both.\"\n\nThey laugh—a real laugh, unguarded. \"Fine. No looking. No spoilers. Whatever happens, we discover it together.\"\n\nMonths pass. The relationship deepens. You learn Alex's habits, fears, dreams—the old-fashioned way, through conversation and time. Some nights, you're tempted to open the app, to see if you're on the right track. But you resist.\n\nAt Month 8, you have a fight. It's ugly—about trust, about whether either of you really knows the other. You wonder if this was predicted. If someone, somewhere, is watching data that says you'll make up or break up.\n\n\"I hate this,\" Alex says, tears streaming. \"I hate that I don't know if you're saying the right things because you mean them or because you saw this coming.\"\n\n\"I didn't look. I promise.\"\n\n\"How can I believe that?\"\n\nYou don't have an answer. Trust is unverifiable. That's what makes it trust.\n\nYou almost break up that night. But in the morning, Alex is still there, watching you wake.\n\n\"I believe you,\" they say quietly. \"I don't know why, but I do.\"\n\n\"I believe you too.\"\n\nIt's not certainty. But it's something better—something chosen, not calculated.\n\nThe app sends periodic notifications: \"Update your timeline? Special offer: £3,000.\" You delete them unread.\n\nYou never learn what the future held. You just live it, moment by uncertain moment.\n\nAnd somehow, that uncertainty becomes the foundation of something the algorithm couldn't predict: a love that grows because neither of you knows where it's going, only that you want to go there together.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "both_look": {
+      "text": "\"Maybe we should both look,\" you say slowly. \"Level the playing field. No secrets.\"\n\nAlex considers. \"That's £10,000 between us for information we might regret.\"\n\n\"But at least we'd be on the same page.\"\n\n\"Or the same script.\" They pull out their phone. \"Fine. Together. On three.\"\n\nYou both purchase. You both watch. You both see.\n\nThe walk home is silent. You've seen the same twenty months—good and bad, joy and fracture. You know when the first \"I love you\" comes. You know about the hospital. You know about the ending.\n\n\"So,\" Alex finally says. \"Now what?\"\n\n\"I don't know. Does anything we do matter now?\"\n\n\"It has to. Otherwise, what's the point?\"\n\nYou try. You really try. But every milestone feels performed, every conflict feels scripted. When Month 4 comes and you're lying in bed during a rainstorm, Alex turns to you and says:\n\n\"Do you feel it?\"\n\n\"Feel what?\"\n\n\"How fake this is. We're acting out something we already saw. I don't even know if my feelings are real or if I'm just... remembering feelings I'm supposed to have.\"\n\nYou can't answer, because you're wondering the same thing.\n\nThe relationship ends at Month 12—earlier than predicted. The algorithm didn't account for the weight of prophecy, the way foreknowledge crushes spontaneity.\n\n\"The match was perfect,\" Alex says at the door. \"We just watched it wrong.\"\n\nYou're left wondering: if you'd never looked, would you have lasted all twenty months? Would the ending have hurt less because it surprised you?\n\nSome knowledge is poison. You just paid £10,000 to learn that lesson.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "surprise_me": {
+      "text": "\"Prove it,\" Alex says, eyes glinting. \"How?\"\n\n\"Do something completely random. Something no algorithm could predict. If I don't react perfectly, you'll know I didn't look.\"\n\nAlex grins. \"Challenge accepted.\"\n\nWhat follows is the strangest, most wonderful courtship of your life. Alex makes unpredictability an art form. They show up at your work with a mariachi band. They take you to a goat yoga class. They learn Morse code just to send you cryptic texts.\n\n\"This isn't in any timeline,\" they say triumphantly after teaching you to waltz in a supermarket aisle.\n\n\"I'm delightfully confused,\" you admit.\n\n\"Good. That's the whole point.\"\n\nThe chaos becomes your love language. Every day is an experiment in defying predictability. You stop using the app entirely—what's the point, when neither of you is following any pattern it could possibly map?\n\nBy Month 6, you've done more absurd, beautiful, unpredictable things than most couples do in years.\n\n\"The algorithm matched us at 99.7%,\" Alex muses one night. \"But I don't think it accounted for... this.\"\n\n\"What's 'this'?\"\n\n\"Two people so determined to surprise each other that they forgot to follow any rules.\"\n\nYou pull them close. \"Do you want to know how this ends?\"\n\n\"Absolutely not.\" They kiss you. \"I want to be shocked.\"\n\nAnd you are. Again and again, in ways the app never imagined.\n\nSome predictions are self-defeating. Some chaos is the only true order. And some loves work not because of compatibility scores, but because both people refuse to let an algorithm write their story.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "never_discuss": {
+      "text": "\"We never talk about what we saw,\" you agree. \"Ever. We pretend we're in a normal relationship with normal uncertainty.\"\n\n\"Can we actually do that?\"\n\n\"We can try.\"\n\nFor months, it almost works. You fall in love the conventional way, even as something sharp lurks beneath every tender moment. You know certain fights are coming. You know certain joys await. But you don't speak of them.\n\nThe problem is anticipation. You start avoiding topics that might trigger predicted conflicts. Alex does too. By Month 6, you're both walking on eggshells, sidestepping entire categories of conversation.\n\n\"Why don't we ever talk about your family?\" you finally ask.\n\n\"Why don't we ever talk about yours?\"\n\nSilence. The things you don't discuss have become a wall between you.\n\nMonth 10: \"This isn't working,\" Alex says. \"We're so afraid of the future that we've stopped having a present.\"\n\n\"I know.\"\n\n\"What do we do?\"\n\nYou have no answer. The future you saw showed twenty-three months. You're only at ten, and already it's crumbling—not from what was predicted, but from what you've both avoided.\n\n\"Maybe the algorithm knew,\" Alex says bitterly. \"Maybe it knew we'd destroy ourselves with silence.\"\n\n\"That's not what I saw.\"\n\n\"Me neither. But that's what's happening.\"\n\nYou break up that night. Not with boxes and moving vans—just two people admitting that the weight of unspoken futures was too heavy to carry.\n\nThe irony isn't lost on you: you both looked to protect yourselves, and protection was exactly what killed it.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "intervention_package": {
+      "text": "£15,000 for the Intervention Protocol. It's insane. It's also, possibly, the only way to have a relationship without fear.\n\nYou purchase it before you can second-guess yourself.\n\nThe visions come differently this time—not as a timeline, but as a series of nodes. Decision points. Each one glows with potential futures branching outward.\n\n**Decision Point 1 (Month 3)**: Alex asks about your past relationships. Option A: Tell the truth about your messy history. Option B: Edit the story to seem more put-together.\n\n**Decision Point 2 (Month 8)**: Alex's mother visits. Option A: Be yourself. Option B: Perform the version of yourself she'll approve of.\n\n**Decision Point 3 (Month 14)**: You catch Alex in a small lie. Option A: Confront them. Option B: Let it go.\n\nThe app explains: \"At each Decision Point, you will receive a 24-hour warning. You may then select your preferred outcome. Reality will be... adjusted.\"\n\nAdjusted. The word sits heavy.\n\nAlex messages again: \"Still on for coffee?\"\n\nYou respond yes, already carrying the weight of futures you can reshape.",
+      "setState": { "paidForIntervention": true },
+      "choices": [
+        {
+          "text": "Begin the relationship with intervention capability",
+          "goto": "intervention_begins"
+        },
+        {
+          "text": "Delete the protocol—this is going too far",
+          "goto": "delete_intervention"
+        }
+      ]
+    },
+    "intervention_begins": {
+      "text": "You meet Alex. You fall in love. And through it all, the intervention nodes pulse softly in your mind, waiting.\n\nMonth 3: The warning comes. Twenty-four hours until the conversation about past relationships.\n\nYou review your options. The app shows probability cascades—how each choice affects the next six months. Truth leads to vulnerability, which leads to deeper connection, but also to a fight at Month 5. Editing leads to smoother sailing, but a foundation built on slight dishonesty.\n\nYou choose truth. The conversation happens. It's messy, revealing, painful in places. But Alex responds with their own truths, and you feel closer than ever.\n\nThe Month 5 fight happens anyway. You saw it coming. But knowing didn't make it easier—and you realize you could have prevented it, if you'd chosen differently.\n\nMonth 8: Alex's mother visits. The intervention notification glows.\n\nYou're tired of choosing. Tired of calculating probabilities. But you can't un-know the options.\n\nYou select \"Be yourself.\" The mother is charmed, against odds. You feel a flicker of triumph.\n\nBut also emptiness. Was that your personality, or the algorithm's optimization?\n\nMonth 14: The lie. You receive the warning, see the choices.\n\nAnd suddenly, you can't do it anymore.",
+      "setState": { "changedMoments": 2 },
+      "choices": [
+        {
+          "text": "Confront Alex—and confess about the intervention protocol",
+          "goto": "confess_intervention"
+        },
+        {
+          "text": "Let the lie go—and stop using interventions entirely",
+          "goto": "stop_interventions"
+        },
+        {
+          "text": "Use the intervention to make Alex confess instead",
+          "goto": "force_confession"
+        }
+      ]
+    },
+    "confess_intervention": {
+      "text": "\"I need to tell you something,\" you say.\n\nAlex looks up from the lie you were supposed to ignore or confront. \"What?\"\n\n\"I bought something. A package. From the app.\" The words spill out—the intervention protocol, the decision points, the two moments you already shaped. \"I've been... adjusting things. Our relationship. Key moments.\"\n\nAlex is silent for a long time. Their face cycles through expressions: confusion, hurt, anger, something that might be understanding.\n\n\"Show me,\" they finally say.\n\nYou hand over your phone. They scroll through the interface, seeing the nodes you've already navigated, the futures you've pruned.\n\n\"You chose truth at Month 3,\" Alex says slowly.\n\n\"Yes.\"\n\n\"And being yourself with my mother.\"\n\n\"Yes.\"\n\n\"You could have optimized for... easier paths. But you didn't.\"\n\n\"I was trying to keep what was real.\"\n\nAlex sets the phone down. \"I can't decide if this is the most manipulative or the most honest thing anyone's ever done in a relationship.\"\n\n\"Maybe both.\"\n\n\"Maybe.\" They're quiet. Then: \"I think I need time. To figure out what's real and what's... curated.\"\n\nThey leave for a week. You don't use the intervention protocol to bring them back. It's the hardest thing you've ever done—letting uncertainty happen.\n\nWhen Alex returns, they have one condition: \"Delete it. All of it. I want to be with you, not with the version of us that an algorithm approves.\"\n\nYou delete the protocol. You delete the app. You lose £20,000 and gain something algorithms can't measure.\n\n\"How do we know any of this is real?\" Alex asks.\n\n\"We don't. But we chose it. And choosing is what makes it matter.\"",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "stop_interventions": {
+      "text": "You let Alex's lie pass. And you let the intervention protocol lapse.\n\nNo more warnings. No more decision nodes. Just... life.\n\nIt's terrifying at first. You've become dependent on foreknowledge, on the comfort of probability cascades. Without them, every conversation feels risky, every moment uncertain.\n\nBut also alive.\n\nBy Month 18, you've forgotten what it felt like to see the future. The relationship has become unpredictable in ways the app never showed—small delights, unexpected conflicts, a depth that algorithms couldn't map.\n\n\"Why do you look at me like that?\" Alex asks one night.\n\n\"Like what?\"\n\n\"Like you're surprised. Every time.\"\n\n\"Because I am.\" You pull them closer. \"Every time.\"\n\nThe app sends notifications you never open. Somewhere in a server, probability models calculate your relationship's trajectory. But you're no longer following their map.\n\nYou don't know how this ends. Neither does Alex. Neither does the algorithm, anymore—you've veered too far from predicted paths.\n\nAnd somehow, not knowing is the greatest intimacy either of you has ever experienced.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "force_confession": {
+      "text": "You select the intervention option: \"Partner Confesses Independently.\"\n\nThe screen flashes: \"Reality adjustment in progress.\"\n\nNothing visible happens. But the next morning, Alex wakes up troubled. They fidget through breakfast. And then:\n\n\"I need to tell you something. I lied yesterday. About where I was. I was actually... meeting my ex. Just for coffee. To get closure. I should have told you.\"\n\nYou nod, playing surprised. \"Why didn't you?\"\n\n\"I was afraid you'd overreact. But lying felt worse. I don't know why I suddenly felt like I had to tell you—I just woke up and couldn't keep it in.\"\n\nBecause the app made you, you don't say.\n\nThe conversation goes well. You forgive them. They feel relieved. Everything's perfect.\n\nExcept you know Alex's confession wasn't free. It was engineered. Whatever neural manipulation the app uses, it reached into their brain and created an impulse that wasn't organic.\n\nYou're not in a relationship anymore. You're in a simulation of one—with yourself as the only knowing participant.\n\nThe months continue. You keep intervening. Small adjustments. Optimizations. Alex becomes impossibly perfect, responsive to your every need in ways that feel... programmed.\n\nBy Month 20, you realize you've created a partner who exists to please the version of you the algorithm projects. There's no conflict because you prevent it. No surprise because you anticipate everything.\n\nNo love because love requires two free wills choosing each other.\n\n\"I adore you,\" Alex says, and you know it's true. The algorithm made it true.\n\nBut you didn't choose it. And neither did they.\n\nYou spend the rest of the relationship wondering if the person beside you is real, or just a very convincing response to your inputs.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "delete_intervention": {
+      "text": "No. This is too far.\n\nYou stare at the intervention nodes—the ability to reshape moments before they happen, to prune futures like dead branches. It's not a relationship. It's gardening. And the plant has no say.\n\nYou request a refund. The app offers 50%. You take it.\n\nThen you message Alex: \"Coffee tomorrow? And I promise—no tricks, no optimizations, no algorithms between us.\"\n\n\"That's a strange promise,\" they reply. \"But I'll take it.\"\n\nYou meet. It's imperfect. You say the wrong thing twice. Alex spills coffee on your sleeve. The conversation has awkward pauses and unexpected depths.\n\nIt's human. Gloriously, messily human.\n\n\"I don't know where this is going,\" Alex admits as you walk home. \"The app gave me probability projections, but I didn't buy the premium. I just have... hope.\"\n\n\"Me too,\" you say. And you realize hope is more valuable than any projection.\n\nThe relationship unfolds in its own time. You don't optimize it. You don't prevent fights. You don't enhance good moments. You just live them, as they come, with another person who's doing the same.\n\nIt ends eventually—all relationships do, one way or another. But when it does, it ends because of choices you both made, not because of nodes you failed to adjust.\n\nAnd there's dignity in that. Freedom. The only kind of love that matters.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "delete_app": {
+      "text": "This is insane. All of it. Neural scanning, relationship timelines, \"intervention protocols\"—it's a dystopia marketed as a dating app.\n\nYou long-press the icon. Delete.\n\n\"Are you sure? Your neural compatibility data will be permanently erased. Your 99.7% match with Alex will be lost.\"\n\n99.7%. The number haunts you for a moment. What if they're perfect? What if this is the greatest love story you'll never tell?\n\nBut what if \"perfect\" doesn't mean anything when it's calculated by code that also offers to sell you your own future?\n\nYou confirm deletion.\n\nThe next week, you join a book club. The person sitting across from you has kind eyes and a dog-eared copy of a novel you love. You start talking. No compatibility score. No neural mapping. Just two strangers discovering each other the old way.\n\nTheir name is Morgan. You know nothing about your future together—whether it will last a week or a lifetime. There's no premium package that can tell you.\n\nIt's terrifying. It's also, somehow, the first time you've felt genuinely excited about dating in years.\n\n\"Want to get coffee sometime?\" Morgan asks.\n\n\"I'd love that,\" you say.\n\nNo algorithms. No predictions. Just possibility, stretching forward into unknown territory.\n\nMaybe Morgan isn't your 99.7% perfect match. Maybe they're 72%, or 45%, or something the neural scanners would call \"suboptimal.\"\n\nBut they're real. You're real. And whatever happens next, it belongs to both of you—not to an app that profits from certainty.\n\nSome stories don't need endings predicted. They just need to be lived.",
+      "isEnding": true,
+      "endingType": "good"
+    }
+  }
+}
+

@@ -1,0 +1,493 @@
+{
+  "id": "the-algorithm-knows",
+  "title": "The Algorithm Knows",
+  "author": "Adventure Engine",
+  "description": "You wake up to find every device in your home locked. A message appears: 'We've been watching. We know what you did.'",
+  "version": "1.0",
+  "initialState": {
+    "discoveredCameras": false,
+    "foundOldFiles": false,
+    "knowsWatcher": false,
+    "trashedPhone": false,
+    "paidRansom": false,
+    "confessedTruth": false,
+    "hoursPassed": 0
+  },
+  "start": "awakening",
+  "passages": {
+    "awakening": {
+      "text": "You wake to silence. Not the comfortable silence of early morning, but the silence of absence—no hum of the refrigerator, no soft glow of standby lights, no familiar chime of notifications.\n\nEvery screen in your apartment is dark. Dead.\n\nYou reach for your phone. The screen flickers to life, but it's not your lock screen. It's a message, white text on black:\n\n\"Good morning. We've been watching. We know what you did on March 15th.\"\n\nYour blood runs cold. March 15th. The night you'd rather forget.\n\nThe message continues: \"Your smart home, your accounts, your digital life—all locked. We offer three paths to freedom:\"\n\n\"1. Confess publicly on social media. Full accountability.\"\n\"2. Transfer $50,000 to the account we specify.\"\n\"3. Find and destroy the evidence within 12 hours.\"\n\n\"Choose wisely. The clock is ticking.\"\n\nA countdown appears: 11:59:47... 11:59:46...",
+      "choices": [
+        {
+          "text": "Confess publicly—maybe honesty is the only way out",
+          "goto": "confession_path"
+        },
+        {
+          "text": "Pay the money—$50,000 to make this disappear",
+          "goto": "payment_path"
+        },
+        {
+          "text": "Find the evidence—12 hours to save yourself",
+          "goto": "evidence_hunt"
+        },
+        {
+          "text": "Ignore it and try to leave the apartment",
+          "goto": "try_to_leave"
+        }
+      ]
+    },
+    "try_to_leave": {
+      "text": "You throw on clothes and head for the door. The smart lock is frozen—no beep, no click, nothing. You try the manual override, but the deadbolt won't budge.\n\nYour phone buzzes. A new message:\n\n\"We control the locks. We control the thermostat. We control the smoke detectors. We suggest you take this seriously.\"\n\nThe temperature in the apartment drops noticeably. A warning.\n\nYou're trapped. And they want you to know it.",
+      "choices": [
+        {
+          "text": "Fine. I'll confess publicly.",
+          "goto": "confession_path"
+        },
+        {
+          "text": "I'll pay. How do I transfer the money?",
+          "goto": "payment_path"
+        },
+        {
+          "text": "I'll find this evidence myself.",
+          "goto": "evidence_hunt"
+        }
+      ]
+    },
+    "confession_path": {
+      "text": "Your phone unlocks—partially. Only social media apps work. Twitter, Instagram, Facebook, LinkedIn. All of them, waiting.\n\nA draft message appears in each app, pre-written:\n\n\"I need to confess something. On March 15th, I accessed confidential files from my employer's server. I copied data I had no right to see. I betrayed the trust placed in me.\"\n\nYour finger hovers over the post button. The confession is... technically true. You did access those files. You were investigating irregularities in the company's finances. You found evidence of fraud.\n\nBut this confession doesn't mention that. It makes you look like a thief.\n\nA new message appears: \"Post within 60 seconds, or we post for you. And we'll add the screenshots.\"",
+      "choices": [
+        {
+          "text": "Post it—take the hit and move on",
+          "goto": "confession_posted"
+        },
+        {
+          "text": "Modify the confession—tell the real story",
+          "goto": "confession_modified"
+        },
+        {
+          "text": "Refuse—call their bluff",
+          "goto": "confession_refused"
+        }
+      ]
+    },
+    "confession_posted": {
+      "text": "You press post. The message spreads instantly.\n\nWithin minutes, your phone explodes. Notifications. Texts. Missed calls. Your employer's HR department. Your mother. Former colleagues.\n\nThe apartment unlocks. The screens flicker back to life. A final message:\n\n\"Thank you for your cooperation. Your compliance has been noted.\"\n\nYou're free. But at what cost?\n\nOver the next weeks, you lose your job. Your reputation. Friends stop calling. The fraud you discovered at your company? It continues unchecked. The real criminals walk free while you're branded a thief.\n\nSix months later, scrolling through job rejections, you see a news article: \"Tech Executive Indicted for Securities Fraud.\" It's your old boss. Someone else found the evidence you'd uncovered.\n\nYou were so close to being the hero. Instead, you're a cautionary tale about the dangers of corporate data access.\n\nBut who was watching? You never found out. And somehow, that's the part that keeps you awake at night.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "confession_modified": {
+      "text": "You delete their draft and start typing furiously:\n\n\"I accessed my employer's files because I discovered fraud. Millions stolen. Executives covering it up. They're trying to silence me. I have proof—\"\n\nThe phone freezes mid-sentence. The screen goes black.\n\nWhen it returns, there's a new message:\n\n\"That wasn't the deal. You had your chance.\"\n\nScreenshots flood your social media—your browser history, your private messages, photos from your cloud backup you forgot existed. They're posting everything. The files you accessed. Conversations out of context. A photo from a party years ago you'd die to forget.\n\nYour reputation implodes in real-time. And mixed into the chaos, buried and discredited, is your attempt to expose the truth.\n\nNo one believes you now. You're just another disgruntled employee making wild accusations.\n\nThe door unlocks. You're free to go.\n\nBut your life is already over.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "confession_refused": {
+      "text": "\"No,\" you say aloud, though no one can hear you. \"I'm not playing this game.\"\n\nYou put the phone down. Sixty seconds pass. Nothing happens.\n\nThen ninety seconds. Two minutes.\n\nYour phone buzzes. A new message:\n\n\"Interesting. You're the first to refuse. Perhaps we underestimated you.\"\n\nA pause. Then:\n\n\"Very well. The game changes. You have 10 hours remaining. Find the evidence. Destroy it. Prove you deserve your freedom.\"\n\nThe apartment warms. The locks click open—you hear the deadbolt release.\n\nThey're giving you a chance. But why?",
+      "choices": [
+        {
+          "text": "Start searching the apartment for hidden devices",
+          "goto": "search_apartment",
+          "setState": { "hoursPassed": 2 }
+        },
+        {
+          "text": "Try to trace where these messages are coming from",
+          "goto": "trace_source",
+          "setState": { "hoursPassed": 2 }
+        }
+      ]
+    },
+    "payment_path": {
+      "text": "Your banking apps unlock. A payment screen appears with routing numbers to an offshore account. $50,000. Nearly your entire savings.\n\nYou hesitate. This is extortion. You should call the police.\n\nBut then you think about March 15th. About what you found. About who might want you silenced.\n\nThe police might not be on your side.\n\n\"Transfer now,\" the message prompts. \"Or the price doubles in one hour.\"",
+      "choices": [
+        {
+          "text": "Make the transfer—freedom is worth any price",
+          "goto": "payment_made"
+        },
+        {
+          "text": "Try to trace the account before paying",
+          "goto": "trace_payment"
+        },
+        {
+          "text": "Refuse—this is extortion and I won't play along",
+          "goto": "payment_refused"
+        }
+      ]
+    },
+    "payment_made": {
+      "text": "You authorize the transfer. $50,000. Gone.\n\nFor a moment, nothing happens. Then your apartment comes alive—lights, appliances, the gentle hum of normalcy. Your phone unlocks fully. A final message:\n\n\"Transaction complete. Your records have been adjusted. Enjoy your life.\"\n\nYou wait for the other shoe to drop. For another demand. For the evidence to leak anyway.\n\nBut days pass. Weeks. Nothing.\n\nYou go back to work. You pretend March 15th never happened. You stop asking questions about the company's finances. You become the perfect, compliant employee.\n\nThree months later, you get a promotion. A raise. Your boss smiles at you in meetings in a way that feels like a warning.\n\nYou've been bought. And you'll spend the rest of your career wondering if the evidence still exists somewhere—and what it would take for them to use it.",
+      "setState": { "paidRansom": true },
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "trace_payment": {
+      "text": "You're a financial analyst. You know how to follow money.\n\nYou screenshot the account details before doing anything. Cayman Islands routing, but there's a secondary verification code that looks... familiar. It's the same format your company uses for internal transfers.\n\nYour blood runs cold. This isn't a random hacker. This is coming from inside your own company.\n\nSomeone at work knows what you found. And they're using your own employer's financial infrastructure to blackmail you.\n\nThe countdown timer flashes: 10:42:33 remaining.",
+      "choices": [
+        {
+          "text": "Pay now—but keep the evidence of where the money's going",
+          "goto": "payment_traced",
+          "setState": { "knowsWatcher": true }
+        },
+        {
+          "text": "Forget payment—I need to find who's doing this",
+          "goto": "investigate_company",
+          "setState": { "knowsWatcher": true, "hoursPassed": 2 }
+        }
+      ]
+    },
+    "payment_traced": {
+      "text": "You make the payment, but you save every detail. Screenshots, routing numbers, timestamps. If they think you'll just forget this, they're wrong.\n\nYour apartment unlocks. Your life returns to \"normal.\"\n\nBut over the next month, you dig. Quietly. Carefully. The routing numbers lead to a subsidiary your company uses for \"consulting fees.\" The authorization codes match patterns used by the CFO's office.\n\nYou compile everything—the original fraud you discovered, the blackmail, the money trail. You send it anonymously to three journalists, two regulatory agencies, and a law firm known for whistleblower cases.\n\nThen you wait.\n\nSix weeks later, federal agents raid your company's headquarters. Executives are perp-walked past news cameras. The CFO flees to a non-extradition country.\n\nYour name never comes up. You're just another employee, shocked like everyone else.\n\nBut you know. And somewhere in the chaos of the investigation, you get an anonymous message: \"Well played.\"\n\nYou delete it without responding. Some games, you win by not playing at all.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "payment_refused": {
+      "text": "\"No,\" you say. \"I'm not giving you anything.\"\n\nThe temperature drops. The lights flicker. A new message:\n\n\"Brave. Foolish, but brave. The evidence goes public in 24 hours unless you change your mind.\"\n\nThe apartment unlocks. You're free to leave—but to what? Your digital life is still hostage. Your accounts, your records, everything they could twist against you.\n\nYou need to find another way.",
+      "choices": [
+        {
+          "text": "Search the apartment for hidden cameras",
+          "goto": "search_apartment",
+          "setState": { "hoursPassed": 2 }
+        },
+        {
+          "text": "Leave and go to the police",
+          "goto": "go_to_police"
+        }
+      ]
+    },
+    "evidence_hunt": {
+      "text": "Twelve hours. You need to think.\n\nMarch 15th. You stayed late at work, accessing files you shouldn't have. You found evidence of financial fraud—millions laundered through fake consulting contracts. You copied the files to a personal drive.\n\nBut you never reported it. You were scared. You sat on it, deciding what to do.\n\nSomeone knows. Someone's been watching.\n\nYour phone buzzes: \"The evidence is closer than you think. Start with what you can see. Then look at what sees you.\"\n\nA riddle. Helpful or mocking, you can't tell.\n\n11:42:18 remaining.",
+      "choices": [
+        {
+          "text": "Search the apartment for hidden cameras",
+          "goto": "search_apartment",
+          "setState": { "hoursPassed": 2 }
+        },
+        {
+          "text": "Check your devices—what's been compromised?",
+          "goto": "check_devices",
+          "setState": { "hoursPassed": 2 }
+        },
+        {
+          "text": "Look for the files you copied—maybe they're the key",
+          "goto": "find_copied_files",
+          "setState": { "hoursPassed": 2 }
+        }
+      ]
+    },
+    "search_apartment": {
+      "text": "You tear through the apartment methodically. Behind mirrors. Inside smoke detectors. Under furniture.\n\nIn the living room vent, you find it: a tiny camera, no bigger than a shirt button. Wireless. Battery-powered. It's been there for... how long?\n\nYou check other vents. More cameras. One in the bedroom. One in the bathroom. One pointed at your desk.\n\nYour skin crawls. Every moment of your private life, watched. Every conversation. Every vulnerable moment.\n\nBut the cameras aren't the evidence they mentioned. They're how they've been gathering it.\n\nYour phone buzzes: \"You're getting warmer. But the cameras aren't what you need to destroy. Think deeper.\"\n\n9:15:42 remaining.",
+      "setState": { "discoveredCameras": true },
+      "choices": [
+        {
+          "text": "Destroy all the cameras anyway",
+          "goto": "destroy_cameras"
+        },
+        {
+          "text": "Check where these cameras are transmitting to",
+          "goto": "trace_cameras"
+        },
+        {
+          "text": "Look for the original files you copied from work",
+          "goto": "find_copied_files",
+          "condition": { "foundOldFiles": false }
+        }
+      ]
+    },
+    "check_devices": {
+      "text": "You grab your laptop. It's unlocked now, but something's wrong. The activity log shows remote access—dozens of sessions over the past six months. Someone has been inside your machine.\n\nYour smart TV. Your thermostat. Your voice assistant—you disabled it months ago, but the activity log shows it's been listening anyway.\n\nEverything is compromised. Your entire life has been streamed somewhere.\n\nBut there's something else. A folder on your desktop you don't recognize: \"MARCH_15_BACKUP.\"\n\nYou didn't create it. But someone wants you to find it.",
+      "choices": [
+        {
+          "text": "Open the folder",
+          "goto": "open_mystery_folder"
+        },
+        {
+          "text": "Don't touch it—it could be a trap",
+          "goto": "avoid_folder"
+        }
+      ]
+    },
+    "open_mystery_folder": {
+      "text": "The folder contains video files. Timestamps from March 15th.\n\nYou click the first one. It's you, at your work computer, late at night. Copying files. Looking over your shoulder. The footage is from an angle you don't recognize—from inside your monitor's camera.\n\nThe second video shows you at home, looking at the files. Talking to yourself about what to do. \"This could bring down the whole company,\" you hear yourself say.\n\nThe third video is different. It's your CEO, in his office, on a call. \"The analyst found the files,\" he says. \"We need to handle this. Call Matheson.\"\n\nMatheson. Your company's head of security. A former intelligence operative.\n\nThe videos aren't the evidence you need to destroy. They're evidence against the people hunting you.\n\nYour phone buzzes: \"Now you understand. The question is: what will you do with it?\"",
+      "setState": { "foundOldFiles": true, "knowsWatcher": true },
+      "choices": [
+        {
+          "text": "Use this evidence to fight back",
+          "goto": "fight_back"
+        },
+        {
+          "text": "Destroy everything and try to disappear",
+          "goto": "destroy_everything"
+        }
+      ]
+    },
+    "avoid_folder": {
+      "text": "Something about this feels wrong. Why would they show you where to find the evidence?\n\nYou leave the folder untouched and continue searching. In your email's trash folder, you find a message from three months ago you don't remember receiving. No sender, no subject. Just a line:\n\n\"Your company is watching you. I'm watching them. When the time comes, I'll help. —A friend.\"\n\nYou have an ally. Someone who's been setting this up for months. But who?\n\nYour phone buzzes: \"You're cautious. Good. The folder was real—evidence to protect yourself. But caution will serve you well for what comes next.\"",
+      "setState": { "knowsWatcher": true },
+      "choices": [
+        {
+          "text": "Go back and open the folder now",
+          "goto": "open_mystery_folder"
+        },
+        {
+          "text": "Try to identify your mysterious ally",
+          "goto": "find_ally"
+        }
+      ]
+    },
+    "find_copied_files": {
+      "text": "The USB drive. You hid it after March 15th—in a book on your shelf, hollowed out. Your grandfather's copy of 1984. Fitting.\n\nYou pull it out. The drive is there. The files from your company, the ones that prove fraud.\n\nBut there's something else on the drive now. A text file you didn't create: \"READ_ME.txt\"\n\nYou plug it in. The file contains a single paragraph:\n\n\"These files are your leverage. Your company knows you have them. They've been trying to locate this drive for months. They installed the cameras. They compromised your devices. They want to destroy you before you can destroy them. But I copied everything first. The cloud backup is secure. Even if you destroy this drive, the evidence survives.\n\nYou can run. You can hide. Or you can fight.\n\n—Someone who knows what they did.\"\n\nYou're not alone. Someone has been protecting you without your knowledge.",
+      "setState": { "foundOldFiles": true },
+      "choices": [
+        {
+          "text": "Use the files to go public with the fraud",
+          "goto": "go_public"
+        },
+        {
+          "text": "Try to find out who's been helping you",
+          "goto": "find_ally"
+        },
+        {
+          "text": "Destroy the drive—maybe they'll leave you alone",
+          "goto": "destroy_drive"
+        }
+      ]
+    },
+    "trace_cameras": {
+      "text": "The cameras are wireless, but they need to transmit somewhere. You check your router logs—encrypted traffic flowing to an IP address you don't recognize.\n\nA little research reveals it's registered to a shell company. More digging links that company to a security consultancy. Even more digging, and you find it: the consultancy's largest client is your employer.\n\nYour own company has been surveilling you for months. But this goes beyond paranoid corporate security. This is obsessive. Invasive. Illegal.\n\nAnd now you have proof.\n\nYour phone buzzes: \"You see now. The hunter has become the hunted. Use what you've learned. Or be used.\"",
+      "setState": { "knowsWatcher": true, "discoveredCameras": true },
+      "choices": [
+        {
+          "text": "Gather all the evidence and go to the authorities",
+          "goto": "go_to_authorities"
+        },
+        {
+          "text": "Confront your employer directly",
+          "goto": "confront_employer"
+        }
+      ]
+    },
+    "destroy_cameras": {
+      "text": "You smash every camera you find. It feels good—cathartic. You're taking back control.\n\nBut then you notice something. The cameras have no brand markings. No serial numbers. They're custom-made. Expensive. Whoever did this has resources.\n\nYour phone buzzes: \"Destruction is satisfying. But you've only destroyed the eyes. The brain remains. And it remembers everything it saw.\"\n\nThe footage is already backed up somewhere. Destroying the cameras accomplished nothing except proving how desperate you are.\n\n6:30:15 remaining.",
+      "choices": [
+        {
+          "text": "Try to find where the footage is stored",
+          "goto": "trace_cameras"
+        },
+        {
+          "text": "Look for the USB drive with the original files",
+          "goto": "find_copied_files",
+          "condition": { "foundOldFiles": false }
+        }
+      ]
+    },
+    "investigate_company": {
+      "text": "You need to go to the source. But walking into the office would be suicide—if they're behind this, they're expecting you to make a move.\n\nInstead, you call a friend. Janet, from IT. She owes you a favor.\n\n\"I need you to check something for me,\" you say. \"The server logs from March 15th. And any security investigations opened after that date.\"\n\nJanet is quiet for a moment. \"There was an investigation. They were looking for a data breach. Someone accessed financial records without authorization.\" She pauses. \"Your access codes were flagged.\"\n\n\"Did they find anything?\"\n\n\"That's the thing. The investigation was closed a week later. Quietly. No action taken.\" Another pause. \"But the security team installed new monitoring on your workstation. And they asked for your home address.\"\n\nThey've known for months. And instead of firing you, they've been watching. Waiting.\n\n\"Janet, who authorized the investigation?\"\n\n\"That's above my access level. But the ticket was signed off by Matheson.\"\n\nMatheson. The former spook who runs corporate security. The one you've always found unsettling.",
+      "setState": { "knowsWatcher": true },
+      "choices": [
+        {
+          "text": "Go home and find the evidence you copied",
+          "goto": "find_copied_files"
+        },
+        {
+          "text": "Try to access Matheson's files remotely",
+          "goto": "hack_matheson"
+        }
+      ]
+    },
+    "go_to_police": {
+      "text": "You drive to the nearest precinct. A bored desk sergeant listens to your story: locked devices, extortion, surveillance.\n\nHis expression shifts from skeptical to dismissive. \"So someone hacked your smart home and is asking for money?\"\n\n\"They've been watching me. Cameras hidden in my apartment.\"\n\n\"Did you document the cameras? Take photos?\"\n\nYou didn't. In your panic, you just looked for them.\n\n\"Look,\" the sergeant says, \"we can file a report. But without evidence of the cameras, or the messages...\"\n\n\"The messages are on my phone!\"\n\nYou pull out your phone. The messages are gone. Your text history shows nothing unusual. No countdown timer. No extortion demands.\n\nThey've cleaned up after themselves.\n\nThe sergeant gives you a look that says everything: crazy person. Wasting police time.\n\nYou leave with nothing. They're always one step ahead.",
+      "choices": [
+        {
+          "text": "Go back home and document everything properly",
+          "goto": "search_apartment",
+          "setState": { "hoursPassed": 4 }
+        },
+        {
+          "text": "Contact a journalist instead",
+          "goto": "contact_journalist"
+        }
+      ]
+    },
+    "contact_journalist": {
+      "text": "The police won't help. But the press might.\n\nYou call Alex Chen, an investigative reporter who's covered corporate scandals before. You met at a conference last year.\n\n\"Slow down,\" Alex says after you explain. \"You're saying your company installed surveillance in your home because you found evidence of fraud?\"\n\n\"I know how it sounds. But I have proof. The cameras, the files, the extortion—\"\n\n\"The extortion is the angle,\" Alex interrupts. \"Corporate surveillance? That's a story. Extortion by a Fortune 500 company? That's a Pulitzer.\"\n\nAlex agrees to meet. You spend three hours walking through everything: the fraud you discovered, the monitoring you've uncovered, the threatening messages.\n\nBy the end, Alex is convinced. \"I'll start digging. But I need you to get me everything—the files, the camera footage, any communication from Matheson's team. Can you do that?\"\n\nYou can. You will.",
+      "setState": { "hoursPassed": 6 },
+      "choices": [
+        {
+          "text": "Return home and gather all the evidence",
+          "goto": "gather_evidence"
+        }
+      ]
+    },
+    "gather_evidence": {
+      "text": "You return to your apartment with purpose. The countdown timer shows 3:45:22.\n\nYou work methodically: photographing each camera, saving router logs, recovering the USB drive from its hiding spot. You document everything.\n\nThen you copy it all to a secure cloud service Alex recommended. Even if they find and destroy the originals, the evidence survives.\n\nYour phone buzzes. A new message:\n\n\"You've chosen to fight. Good. But the company isn't your only enemy. Matheson works for someone bigger. Dig deeper.\"\n\nWho is sending these messages? They seem to want you to succeed. But why?\n\n2:12:45 remaining.",
+      "setState": { "foundOldFiles": true },
+      "choices": [
+        {
+          "text": "Try to discover who's been helping you",
+          "goto": "find_ally"
+        },
+        {
+          "text": "Focus on the evidence against Matheson",
+          "goto": "investigate_matheson"
+        }
+      ]
+    },
+    "find_ally": {
+      "text": "The messages have come from your own phone, your own devices. But the language doesn't match any AI you know. Someone is feeding instructions through the system.\n\nYou dig through email logs, message metadata, anything that might reveal the source. And then you find it—a pattern in the timing. The messages correlate with access logs from your company's internal system. Someone inside is using corporate infrastructure to communicate with you.\n\nYou cross-reference with employee directories. The access codes belong to a user ID that was supposed to be deactivated two years ago: E. MORRIS.\n\nEleanor Morris. Your company's former CFO. The one who resigned suddenly amid rumors of a disagreement with the CEO. The one who everyone assumed took a golden parachute and disappeared.\n\nShe didn't disappear. She's been watching. Waiting. Building a case.\n\nYour phone buzzes: \"You found me. I wondered how long it would take. We need to meet. 42nd and Lexington. One hour. Come alone.\"",
+      "choices": [
+        {
+          "text": "Go meet Eleanor Morris",
+          "goto": "meet_eleanor"
+        },
+        {
+          "text": "This could be a trap—don't go",
+          "goto": "refuse_meeting"
+        }
+      ]
+    },
+    "meet_eleanor": {
+      "text": "The coffee shop is crowded. Good for privacy. You spot a woman in her fifties, silver hair, sharp eyes. She waves you over.\n\n\"You're braver than I expected,\" Eleanor Morris says. \"Or more desperate.\"\n\n\"You've been watching me for months. Why?\"\n\n\"Because you found what I found. Three years ago, I discovered the fraud. I tried to go to the board. They buried it. Then they forced me out.\" She sips her coffee. \"I've been building a case ever since. But I needed someone on the inside. Someone who could access the current files. Then you came along.\"\n\n\"The cameras. The extortion. That was you?\"\n\n\"No. That's Matheson. He's been running surveillance on anyone who gets too close. I just... piggy-backed on his system. When he locked you out this morning, I saw an opportunity. The messages you received? Half were his threats. Half were my clues.\"\n\nShe slides a folder across the table. \"Everything I have. Combined with what you found, it's enough to bring them down. But Matheson is running out of patience. If we don't move now, you'll disappear. Like others have.\"\n\n\"Others?\"\n\n\"Two internal auditors. One journalist. All of them 'resigned' or 'moved away.'\" Her eyes are cold. \"I don't think they moved.\"\n\nThe weight of it hits you. This is bigger than corporate fraud. This is cover-up territory. Maybe worse.",
+      "choices": [
+        {
+          "text": "Work with Eleanor to expose everything",
+          "goto": "partner_ending"
+        },
+        {
+          "text": "Take the evidence and go to the FBI immediately",
+          "goto": "fbi_ending"
+        }
+      ]
+    },
+    "partner_ending": {
+      "text": "You and Eleanor spend the next 48 hours in a controlled demolition. She has contacts: journalists, SEC investigators, a senator on the financial oversight committee.\n\nThe story breaks on a Sunday evening. By Monday morning, federal agents are executing search warrants. The CEO is arrested trying to board a flight to Singapore. Matheson vanishes—some say South America, others say worse.\n\nThe fraud exposed amounts to over 200 million dollars. Three executives plead guilty. The company's stock collapses, but the pension fund—protected by the investigation—survives intact.\n\nYou testify before Congress. Your face is everywhere. \"Whistleblower.\" \"Hero.\" Words that feel strange after months of fear.\n\nEleanor doesn't seek the spotlight. She sends you one final message after the last conviction: \"The system failed us. But we didn't fail each other. Be well.\"\n\nYou're offered jobs at half a dozen firms. Book deals. Speaking engagements. You turn most of them down.\n\nInstead, you take a position at a nonprofit that protects whistleblowers. The pay is terrible. The work is important.\n\nThe algorithm knew what you did. But so did someone else—someone who used that knowledge to bring down an empire.\n\nSometimes, being watched is the only thing that keeps you safe.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "fbi_ending": {
+      "text": "\"I appreciate the help,\" you tell Eleanor. \"But I'm doing this my way.\"\n\nYou take her folder and go straight to the FBI field office. A white-collar crimes unit. You tell them everything: the fraud, the surveillance, Matheson, the missing people.\n\nThey listen. They take notes. They make you repeat the story three times.\n\nThen they make a phone call. An hour later, a team from Washington arrives. This isn't local—this goes higher than you realized.\n\nThe investigation takes six months. You're relocated, given a new identity while the case builds. Eleanor is brought in as a cooperating witness.\n\nWhen the indictments come, they reach further than you imagined. Matheson was connected to a network that ran similar operations at a dozen companies. Intelligence community ties. Political donations flowing in suspicious patterns.\n\nThe trial is sealed. You never testify publicly. Most of the details never make the news.\n\nBut you receive a letter, months later. No return address. Inside, a single line: \"The algorithm saw everything. Thank you for making it matter.\"\n\nYou burn the letter. Some things are better forgotten.\n\nYou have a new life now. New name. New city. The past can't touch you.\n\nBut sometimes, late at night, you catch yourself checking your devices. Just to be sure.\n\nOld habits die hard.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "refuse_meeting": {
+      "text": "Something feels wrong. If Eleanor is really a former executive with a vendetta, why the games? Why not just contact you directly?\n\nYou don't go to the meeting. Instead, you send everything you have—the files, the camera evidence, the corporate surveillance—to a lawyer, two journalists, and an encrypted backup.\n\nThen you wait.\n\nTwo hours later, police find a body at 42nd and Lexington. An unidentified woman, shot once. No witnesses.\n\nThe news doesn't name her. But you know.\n\nYour instinct was right—someone was using Eleanor, or her identity, to lure you into a trap. But who? Matheson? Someone higher?\n\nYou'll never know. But your evidence is out there now. Multiple copies, multiple sources. If anything happens to you, the truth survives.\n\nYou spend the next three years looking over your shoulder. The company eventually collapses under SEC investigation, triggered by your anonymous tips. But the people at the top walk free on technicalities.\n\nYou're alive. That has to count for something.\n\nBut the algorithm knew what you did. And someone else knew even more. That someone is still out there, and you've made an enemy for life.\n\nYou sleep with the lights on now. Just in case.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "fight_back": {
+      "text": "You have videos of them discussing how to \"handle\" you. You have evidence of the fraud. You have proof of illegal surveillance.\n\nTime to go on offense.\n\nYou copy everything to multiple cloud services, encrypted drives, and a physical USB you mail to your sister with instructions to open it if anything happens to you. Then you send an email to your CEO, CC'ing Matheson:\n\n\"I have videos of your March 15th meeting. I have the surveillance footage from my apartment. I have the original fraud files. If anything happens to me, everything goes public automatically. But here's my offer: resign within 48 hours, make a full confession to the SEC, and I'll keep your names out of the press. The company survives. You just don't run it anymore.\"\n\nYou hit send.\n\nYour phone buzzes immediately. A message from your mysterious ally:\n\n\"Bold move. I didn't expect that. Let's see if it works.\"\n\nForty-seven hours later, a press release announces the CEO's sudden resignation for \"health reasons.\" The CFO follows. Matheson is quietly let go.\n\nWithin six months, new leadership has reformed the company's practices. The fraud is written off as legacy issues. No one goes to prison, but no one continues the scheme either.\n\nYou keep your job. You get a raise, actually—the new CEO wants to keep you happy.\n\nIt's not justice, exactly. But it's power. And the algorithm that watched your every move? It's still running somewhere. Still recording. But now, you're the one controlling what it sees.\n\nSome endings aren't about winning. They're about leverage.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "destroy_everything": {
+      "text": "You're tired of this game. Tired of being watched, manipulated, threatened.\n\nYou smash the USB drive. You factory-reset every device. You tear out the cameras and burn them in the kitchen sink. You're destroying every trace of March 15th—theirs and yours.\n\nYour phone buzzes one last time: \"Running won't save you. The cloud remembers.\"\n\nYou throw the phone against the wall.\n\nThen you pack a bag and leave. You empty your bank account—what's left after $50,000 wasn't demanded—and drive. No destination. Just away.\n\nThree months later, you're working under a fake name in a small town. Cash only. No smart devices. No social media. A flip phone for emergencies.\n\nThe investigation happens without you. Someone—Eleanor? Another whistleblower?—provides the evidence. The company is raided. Executives are arrested.\n\nYou read about it in a newspaper, the old-fashioned way.\n\nYou could go back. Clear your name. Claim the whistleblower protection.\n\nBut you don't. You've seen what happens to people who get too close to power. You've seen what the algorithm can do.\n\nBetter to stay invisible. Stay forgotten.\n\nThe algorithm knew what you did. But out here, in the analog world, you're finally free of its gaze.\n\nMostly.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "destroy_drive": {
+      "text": "Maybe they'll leave you alone if you give them what they want.\n\nYou take the USB drive to the kitchen. You put it in the microwave and destroy it completely. Sparks, smoke, the acrid smell of melting plastic.\n\nYour phone buzzes: \"Evidence destroyed. Thank you for your compliance.\"\n\nThe apartment returns to normal. Devices unlock. Lights come back. The countdown timer disappears.\n\nYou've destroyed your leverage. The fraud continues. The people who threatened you have won.\n\nLife returns to a facsimile of normal. But you notice things now. The way your boss looks at you. The new cameras in the office. The small tests of loyalty.\n\nYou passed their test. You chose silence over justice.\n\nYears later, when the company finally collapses from accumulated corruption, you're long gone—transferred to a subsidiary, then laid off, then forgotten. You watch the news coverage and feel... nothing.\n\nYou had a chance to matter. You burned it in a microwave.\n\nThe algorithm knows what you did. And what you didn't do. And you'll live with that knowledge forever.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "go_public": {
+      "text": "You've been hiding these files for months. No more.\n\nYou write an email to every major news outlet, financial regulator, and law enforcement agency you can think of. You attach everything: the fraud evidence, the surveillance proof, the threatening messages.\n\nSubject line: \"Corporate Fraud and Illegal Surveillance at [Company Name]—Full Documentation Attached\"\n\nYou hit send.\n\nYour phone buzzes: \"So you chose the hard way. Respect.\"\n\nThe next 72 hours are chaos. Your story is everywhere. Journalists camp outside your apartment. Your company releases statements calling you a \"disgruntled former employee.\" Lawyers send cease-and-desist letters.\n\nBut the evidence is undeniable. SEC investigators confirm the fraud. FBI agents raid corporate headquarters. The surveillance is documented by three separate forensic firms.\n\nYou testify. You tell the truth. You become a symbol.\n\nThe CEO gets fifteen years. Matheson disappears before they can arrest him. The company survives, barely, under new management.\n\nYou receive death threats for a while. Then book offers. Then job offers. Then, finally, silence.\n\nYou move somewhere quiet. You write a book about what happened. It sells moderately well.\n\nAt the end, you're asked what you learned. You think about it.\n\n\"The algorithm knew what I did,\" you say. \"But it couldn't predict what I'd do next. That's the only freedom any of us have.\"",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "hack_matheson": {
+      "text": "Matheson is smart. But you're a financial analyst with IT skills honed by years of forensic accounting.\n\nYou find a vulnerability in the company's VPN. From there, you access Matheson's internal drive. His security is tight, but his assistant's isn't—and she has access to his calendar, his emails, his files.\n\nWhat you find makes your blood run cold.\n\nMatheson has files on dozens of employees. Surveillance reports. Psychological profiles. Vulnerability assessments. Some are marked \"resolved\"—people who were promoted, transferred, or quietly let go. Others are marked \"ongoing.\"\n\nYour file is thick. March 15th is highlighted. But there's more—they've been watching you since you asked a \"troubling question\" in a meeting six months ago.\n\nThere's also a communication log with an external contact. Code names. Payment records. References to \"extraction scenarios.\"\n\nMatheson isn't just corporate security. He's running an operation.\n\nYour phone buzzes: \"You've seen behind the curtain. Now you know why I've been helping you. Matheson destroyed my career. I want him destroyed in return. Will you help me?\"\n\nYou have minutes before they notice the intrusion.",
+      "setState": { "knowsWatcher": true },
+      "choices": [
+        {
+          "text": "Copy everything and agree to help",
+          "goto": "partner_ending"
+        },
+        {
+          "text": "Send everything to the FBI immediately",
+          "goto": "fbi_ending"
+        }
+      ]
+    },
+    "confront_employer": {
+      "text": "You've had enough of games. Time to face this head-on.\n\nYou walk into the office the next morning like nothing is wrong. You take the elevator to the executive floor. You walk past the secretary's protests and into the CEO's office.\n\n\"We need to talk.\"\n\nThe CEO—David Chen—looks up from his desk. Matheson is already there, in a chair by the window. He doesn't look surprised to see you.\n\n\"Close the door,\" Chen says.\n\nYou do.\n\n\"I know everything,\" you say. \"The fraud. The surveillance. The threats. I have evidence. Multiple copies, in multiple locations, set to release if anything happens to me.\"\n\nChen and Matheson exchange a look.\n\n\"Interesting,\" Matheson says. \"And what do you want?\"\n\nThis is the moment. You can demand money. You can demand their resignation. You can demand justice.\n\nOr you can realize, looking at their calm faces, that this isn't going to go the way you planned.",
+      "choices": [
+        {
+          "text": "Demand their resignation and full confession",
+          "goto": "demand_resignation"
+        },
+        {
+          "text": "Demand money and a clean exit",
+          "goto": "demand_money"
+        }
+      ]
+    },
+    "demand_resignation": {
+      "text": "\"You're going to resign. Both of you. And you're going to confess everything to the SEC.\"\n\nChen laughs. Actually laughs.\n\n\"You think you're the first person to walk in here with threats? Matheson?\"\n\nMatheson stands. \"Your evidence is impressive. But we have evidence too. Your unauthorized access. Your violation of your NDA. Your... other indiscretions.\"\n\nHe holds up a tablet. Footage from your apartment. Private moments. Things you'd never want anyone to see.\n\n\"Mutually assured destruction,\" Chen says. \"You release yours, we release ours. Nobody wins.\"\n\nThey're calling your bluff. And the thing is—they have more to lose than you do. The fraud is criminal. Your NDA violation is civil. They're banking on your shame.\n\nBut you're done being afraid.",
+      "choices": [
+        {
+          "text": "Release everything anyway—they can't stop you",
+          "goto": "mutual_destruction"
+        },
+        {
+          "text": "Walk away—you can't win this",
+          "goto": "walk_away"
+        }
+      ]
+    },
+    "demand_money": {
+      "text": "\"Five million dollars. Wire transfer. And I disappear. You never hear from me again.\"\n\nChen considers this. \"Done.\"\n\nThe speed of his agreement should worry you. It does worry you. But the transfer goes through. Real money, in your account.\n\n\"One more thing,\" Matheson says. \"You'll sign a document. A confession to the unauthorized access. Insurance, you understand.\"\n\nYou understand perfectly. They're buying your silence with money and binding it with blackmail.\n\nYou sign. You take the money. You leave.\n\nSix months later, you're living overseas. New name, new life. The company continues its fraud. People are hurt—investors, employees, pension funds.\n\nYou try not to think about it. You try to enjoy the beach, the freedom, the escape.\n\nBut some nights, you dream about March 15th. About what you could have done differently.\n\nThe algorithm knew what you did. It knows what you did with the money, too.\n\nSome prices are too high. Some silences too loud.\n\nYou'll spend the rest of your life wondering if this was worth it.",
+      "isEnding": true,
+      "endingType": "bad"
+    },
+    "mutual_destruction": {
+      "text": "\"Do your worst,\" you say. \"I don't care anymore.\"\n\nYou pull out your phone and hit send on the email you drafted. Everything—fraud, surveillance, their threat—goes to every outlet you know.\n\nMatheson moves fast. Within minutes, your private footage is spreading across the internet. Moments you never wanted anyone to see, exposed to millions.\n\nIt's humiliating. Devastating. You'll never recover from this publicly.\n\nBut neither will they.\n\nThe fraud investigation destroys the company. Chen goes to prison. Matheson flees the country. Three thousand employees lose their jobs, but the pension fund—the thing you were originally trying to protect—is salvaged.\n\nYou're a martyr. An embarrassment. A cautionary tale.\n\nBut you're also free.\n\nThe algorithm knew everything about you. Now the world does too. Strangely, there's relief in that. No more secrets. No more leverage.\n\nYou rebuild. Slowly. Painfully. The people who matter don't care about the videos. The people who care don't matter.\n\nIt takes years, but you find peace. Not happiness—you're not sure that's possible anymore—but peace.\n\nThe algorithm knew what you did. But it couldn't know who you'd become after everyone else knew too.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "walk_away": {
+      "text": "You're outgunned. Outmaneuvered. They have more resources, fewer scruples, and no intention of letting you win.\n\nYou walk out of the office without another word.\n\nOver the next month, you quietly resign. You find another job in another city. You keep your copies of the evidence, but you never release them.\n\nLife goes on. The fraud continues. Eventually, years later, someone else discovers it. The company collapses. People you worked with go to prison.\n\nBut by then, you're long gone. Just another name in the employment records. Unremarkable. Uninvolved.\n\nYou tell yourself you did what you could. That fighting would have destroyed you. That survival matters.\n\nMostly, you believe it.\n\nBut sometimes, late at night, you wonder what would have happened if you'd been braver. If you'd risked everything.\n\nThe algorithm knew what you did. It also knows what you didn't do.\n\nAnd so do you.",
+      "isEnding": true,
+      "endingType": "neutral"
+    },
+    "investigate_matheson": {
+      "text": "Focus. Matheson is the key.\n\nYou dig through Eleanor's files, looking for patterns. Matheson's career before this company: military intelligence, private security, a consulting firm with ties to three-letter agencies.\n\nHe's not just corporate security. He's a fixer. Someone who makes problems disappear.\n\nThe file includes names of other \"problems\" Matheson handled. You recognize one: James Ortiz, an internal auditor who \"resigned\" two years ago. Janet mentioned him once—said he asked too many questions about the CEO's expenses.\n\nYou find James's LinkedIn. He's listed as working at a company that doesn't exist, living in a city he never moved to.\n\nJames Ortiz disappeared.\n\nAnd if Matheson is still operating, you could be next.\n\nThe timer shows 1:30:00.\n\nYour phone buzzes: \"You're close. Too close for Matheson's comfort. He's sent someone to your apartment. You have twenty minutes.\"",
+      "choices": [
+        {
+          "text": "Run—get out now and go public",
+          "goto": "emergency_escape"
+        },
+        {
+          "text": "Stay and set a trap",
+          "goto": "set_trap"
+        }
+      ]
+    },
+    "emergency_escape": {
+      "text": "You grab everything important—evidence copies, cash, passport—and run.\n\nYou don't take your car. It's probably tracked. You take the subway four stops, switch to a bus, get off at random. Classic evasion.\n\nFrom a pay phone—you're amazed they still exist—you call Alex Chen.\n\n\"I'm out of time. Matheson's sending people. I'm sending you everything now.\"\n\nYou upload the files from your phone before ditching it. Everything Eleanor gave you. Everything you found. All of it.\n\n\"Got it,\" Alex says. \"Jesus. This is... this is huge.\"\n\n\"Run the story. Today. Now.\"\n\n\"I need to verify—\"\n\n\"There's no time. They're going to kill me. The verification is in the documents. Run it.\"\n\nYou hang up. You spend the night in a homeless shelter, one face among many.\n\nThe story breaks at 6 AM. By noon, it's everywhere. Federal investigation. Arrests. Matheson's face on every news channel.\n\nThey never find you. Not the FBI, not the company, not the reporters who want interviews.\n\nYou stay gone. New name, new life, far away.\n\nThe algorithm knew what you did. But in the end, you were smarter than the algorithm.\n\nYou were smarter than all of them.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "set_trap": {
+      "text": "Running is what they expect. You're done playing their game.\n\nYou set up your phone to livestream to a cloud server. Whatever happens next, there will be a record. Then you wait by the door, fire extinguisher in hand.\n\nThe lock clicks. The door opens.\n\nTwo men in suits. Professional. One reaches for his jacket.\n\n\"I wouldn't,\" you say, holding up your phone. \"This is live. Thousands of viewers. Including several journalists.\"\n\nYou're bluffing about the thousands. But the men hesitate.\n\n\"Walk away,\" you say. \"Tell Matheson his operation is over. The evidence is already out. Killing me accomplishes nothing except adding murder to the charges.\"\n\nThe men exchange a look. One of them pulls out a phone, has a quiet conversation.\n\nThen they leave.\n\nYou lock the door and collapse against it, shaking.\n\nIt's not over. But you've bought time.\n\nYour phone buzzes: \"Impressive. You might survive this after all. Stay on the livestream. I'm calling in reinforcements.\"\n\nThirty minutes later, FBI agents arrive at your door. They've received an anonymous tip—detailed evidence of corporate fraud, surveillance, and conspiracy. They're taking you into protective custody.\n\nAs they escort you out, you see Matheson being led to a police car in handcuffs.\n\nHe meets your eyes. There's no anger there—just respect.\n\n\"Well played,\" he says.\n\nYou don't respond. Some victories don't need words.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "go_to_authorities": {
+      "text": "Enough games. You go straight to the FBI field office with everything: the fraud files, the camera evidence, the corporate surveillance proof, the routing numbers that lead back to your company.\n\nThe agent who takes your statement listens carefully. Makes notes. Asks questions.\n\n\"This is comprehensive,\" she says finally. \"If this checks out, we're looking at multiple federal crimes. Securities fraud. Wiretapping. Potentially conspiracy.\"\n\n\"What happens now?\"\n\n\"We investigate. You go somewhere safe. And you don't talk to anyone—especially not your employer.\"\n\nYou spend two weeks in an FBI safe house while they verify everything. It's boring. Terrifying. The longest fourteen days of your life.\n\nThen the arrests begin.\n\nMatheson. The CFO. Two board members. Even the CEO, eventually—pulled off a golf course in handcuffs.\n\nYou testify in a sealed hearing. Your name is kept out of the press. Whistleblower protections, they call it.\n\nThe company is restructured. The pension fund survives. Thousands of employees keep their jobs.\n\nYou get a settlement—substantial, though not enough to feel like victory. You use it to start over somewhere new.\n\nYour phone buzzes one last time. A message from a number that shouldn't exist anymore:\n\n\"Thank you. What they did to me, they won't do to anyone else now. Goodbye.\"\n\nEleanor Morris, finally at peace.\n\nThe algorithm knew what you did. But it also knew what they did.\n\nSometimes, the watchers become the watched.\n\nAnd sometimes, justice finds a way.",
+      "isEnding": true,
+      "endingType": "good"
+    },
+    "trace_source": {
+      "text": "The messages are coming through your own devices, but that doesn't mean they're originating there.\n\nYou access your router's admin panel and start tracing the traffic. Most of it's normal—but there's an encrypted stream you don't recognize. It's flowing to and from an IP address registered to... your own company.\n\nNot a hacker. Not a criminal syndicate. Your employer.\n\nYou dig deeper. The traffic started six months ago—right after you asked that question in the Q3 meeting. The one about the irregularities in the consulting fees line item.\n\nThey've been watching you ever since. Waiting for you to make a mistake.\n\nMarch 15th wasn't a random night. They knew you were getting close. They documented everything, waiting for the right moment to strike.\n\nYour phone buzzes: \"Now you see. Your employer fears what you know. But I have what they fear more. Work with me, and we both win.\"\n\nWho is this ally?",
+      "setState": { "knowsWatcher": true },
+      "choices": [
+        {
+          "text": "Agree to work with the mysterious helper",
+          "goto": "find_ally"
+        },
+        {
+          "text": "Ignore them and go to the FBI directly",
+          "goto": "go_to_authorities"
+        }
+      ]
+    }
+  }
+}
+

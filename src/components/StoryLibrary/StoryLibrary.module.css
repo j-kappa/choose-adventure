@@ -146,6 +146,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: var(--space-6);
+  margin-bottom: var(--space-12);
 }
 
 /* Card */
