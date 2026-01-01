@@ -48,7 +48,7 @@ function StoryBuilderContent() {
     isDirty,
   } = useStoryBuilderContext();
 
-  const { screenToFlowPosition } = useReactFlow();
+  const { screenToFlowPosition, fitView } = useReactFlow();
   
   const [showExportDialog, setShowExportDialog] = useState(false);
   const [showImportDialog, setShowImportDialog] = useState(false);
@@ -226,11 +226,12 @@ function StoryBuilderContent() {
             <Background gap={15} size={1} color="rgba(255, 255, 255, 0.2)" />
             <MiniMap 
               nodeStrokeWidth={2}
-              pannable
-              zoomable
+              pannable={false}
+              zoomable={false}
               className={styles.minimap}
               maskColor="rgba(30, 30, 30, 0.4)"
               style={{ width: 120, height: 80 }}
+              onClick={() => fitView({ padding: 0.2, duration: 300 })}
               nodeColor={(node) => {
                 switch (node.type) {
                   case 'start': return '#22c55e';
