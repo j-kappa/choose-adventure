@@ -38,6 +38,13 @@
   gap: var(--space-3);
 }
 
+.toolbarDivider {
+  width: 1px;
+  height: 24px;
+  background: var(--color-border);
+  margin: 0 var(--space-1);
+}
+
 .backButton {
   display: flex;
   align-items: center;

@@ -19,7 +19,6 @@ import { ImportDialog } from './toolbar/ImportDialog';
 import { RestoreDialog } from './toolbar/RestoreDialog';
 import { StoryPreview } from './preview';
 import { PropertiesPanel } from './panels/PropertiesPanel';
-import { ValidationIndicator } from './panels/ValidationIndicator';
 import { ConnectionMenu } from './panels/ConnectionMenu';
 import { useValidation } from './hooks/useValidation';
 import { useExport } from './hooks/useExport';
@@ -195,6 +194,8 @@ function StoryBuilderContent() {
         onTest={() => setShowPreview(true)}
         hasErrors={hasErrors}
         canTest={!hasErrors && !!story}
+        errors={errors}
+        warnings={warnings}
       />
       
       <div className={styles.main}>
@@ -256,8 +257,6 @@ function StoryBuilderContent() {
               </p>
             </div>
           )}
-          
-          <ValidationIndicator errors={errors} warnings={warnings} />
           
           {showSavedIndicator && (
             <div className={styles.savedIndicator}>

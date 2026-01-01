@@ -1,8 +1,9 @@
 import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Download, Trash2, Play, Upload } from 'lucide-react';
-import { useStoryBuilderContext } from '../../../context/StoryBuilderContext';
+import { useStoryBuilderContext, type ValidationError } from '../../../context/StoryBuilderContext';
 import { nodeTypeInfo } from '../nodes';
+import { ValidationIndicator } from '../panels/ValidationIndicator';
 import styles from '../StoryBuilder.module.css';
 
 interface BuilderToolbarProps {
@@ -11,9 +12,11 @@ interface BuilderToolbarProps {
   onTest: () => void;
   hasErrors: boolean;
   canTest: boolean;
+  errors: ValidationError[];
+  warnings: ValidationError[];
 }
 
-export function BuilderToolbar({ onExport, onImport, onTest, hasErrors, canTest }: BuilderToolbarProps) {
+export function BuilderToolbar({ onExport, onImport, onTest, hasErrors, canTest, errors, warnings }: BuilderToolbarProps) {
   const { metadata, setMetadata, addNode, nodes, clearCanvas } = useStoryBuilderContext();
   
   const handleAddNode = useCallback((type: string) => {
@@ -85,14 +88,6 @@ export function BuilderToolbar({ onExport, onImport, onTest, hasErrors, canTest 
       <div className={styles.toolbarRight}>
         <button
           className={`${styles.actionButton} ${styles.actionButtonSecondary}`}
-          onClick={onImport}
-        >
-          <Upload size={16} />
-          Import
-        </button>
-        
-        <button
-          className={`${styles.actionButton} ${styles.actionButtonSecondary}`}
           onClick={clearCanvas}
           disabled={nodes.length === 0}
         >
@@ -107,6 +102,18 @@ export function BuilderToolbar({ onExport, onImport, onTest, hasErrors, canTest 
         >
           <Play size={16} />
           Test
+        </button>
+        
+        <ValidationIndicator errors={errors} warnings={warnings} />
+        
+        <div className={styles.toolbarDivider} />
+        
+        <button
+          className={`${styles.actionButton} ${styles.actionButtonSecondary}`}
+          onClick={onImport}
+        >
+          <Upload size={16} />
+          Import
         </button>
         
         <button
