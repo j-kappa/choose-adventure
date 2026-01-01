@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import { Handle, Position, type NodeProps } from '@xyflow/react';
+import { AlertCircle, AlertTriangle } from 'lucide-react';
 import type { ConditionNodeData } from '../../../context/StoryBuilderContext';
+import { useNodeValidation } from '../../../context/ValidationContext';
 import styles from './nodeStyles.module.css';
 
 type ConditionNodeProps = NodeProps & {
@@ -8,8 +10,9 @@ type ConditionNodeProps = NodeProps & {
   selected?: boolean;
 };
 
-function ConditionNodeComponent({ data, selected }: ConditionNodeProps) {
+function ConditionNodeComponent({ id, data, selected }: ConditionNodeProps) {
   const { conditions } = data;
+  const { hasError, hasWarning } = useNodeValidation(id);
   
   return (
     <div className={`${styles.node} ${selected ? styles.selected : ''}`}>
@@ -21,10 +24,22 @@ function ConditionNodeComponent({ data, selected }: ConditionNodeProps) {
       />
       
       <div className={`${styles.header} ${styles.headerCondition}`}>
-        <svg className={styles.headerIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-        </svg>
-        Condition
+        <div className={styles.headerTitle}>
+          <svg className={styles.headerIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+          </svg>
+          Condition
+        </div>
+        {hasError && (
+          <span className={styles.headerValidation}>
+            <AlertCircle size={16} />
+          </span>
+        )}
+        {!hasError && hasWarning && (
+          <span className={styles.headerValidation}>
+            <AlertTriangle size={16} />
+          </span>
+        )}
       </div>
       
       <div className={styles.body}>

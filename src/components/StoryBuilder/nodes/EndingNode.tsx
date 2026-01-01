@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import { Handle, Position, type NodeProps } from '@xyflow/react';
+import { AlertCircle, AlertTriangle } from 'lucide-react';
 import type { EndingNodeData } from '../../../context/StoryBuilderContext';
+import { useNodeValidation } from '../../../context/ValidationContext';
 import styles from './nodeStyles.module.css';
 
 type EndingNodeProps = NodeProps & {
@@ -14,8 +16,9 @@ const endingTypeLabels = {
   neutral: 'Neutral Ending',
 };
 
-function EndingNodeComponent({ data, selected }: EndingNodeProps) {
+function EndingNodeComponent({ id, data, selected }: EndingNodeProps) {
   const { passageId, text, endingType } = data;
+  const { hasError, hasWarning } = useNodeValidation(id);
   
   const headerClass = {
     good: styles.headerEndingGood,
@@ -33,11 +36,23 @@ function EndingNodeComponent({ data, selected }: EndingNodeProps) {
       />
       
       <div className={`${styles.header} ${headerClass}`}>
-        <svg className={styles.headerIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
-          <line x1="4" y1="22" x2="4" y2="15" />
-        </svg>
-        Ending
+        <div className={styles.headerTitle}>
+          <svg className={styles.headerIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+            <line x1="4" y1="22" x2="4" y2="15" />
+          </svg>
+          Ending
+        </div>
+        {hasError && (
+          <span className={styles.headerValidation}>
+            <AlertCircle size={16} />
+          </span>
+        )}
+        {!hasError && hasWarning && (
+          <span className={styles.headerValidation}>
+            <AlertTriangle size={16} />
+          </span>
+        )}
       </div>
       
       <div className={styles.body}>

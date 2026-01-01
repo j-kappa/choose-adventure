@@ -11,6 +11,7 @@ import '@xyflow/react/dist/style.css';
 import { BookOpen, Check } from 'lucide-react';
 
 import { StoryBuilderProvider, useStoryBuilderContext, type BuilderNode, type BuilderEdge } from '../../context/StoryBuilderContext';
+import { ValidationProvider } from '../../context/ValidationContext';
 import { nodeTypes } from './nodes';
 import { BuilderToolbar } from './toolbar/BuilderToolbar';
 import { ExportDialog } from './toolbar/ExportDialog';
@@ -313,7 +314,9 @@ export function StoryBuilder() {
   return (
     <ReactFlowProvider>
       <StoryBuilderProvider>
-        <StoryBuilderContent />
+        <ValidationProvider>
+          <StoryBuilderContent />
+        </ValidationProvider>
       </StoryBuilderProvider>
     </ReactFlowProvider>
   );
