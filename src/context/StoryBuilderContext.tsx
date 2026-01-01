@@ -1,4 +1,4 @@
-import { createContext, useContext, useCallback, useState, type ReactNode } from 'react';
+import { createContext, useContext, useCallback, useState, useEffect, useRef, type ReactNode } from 'react';
 import {
   useNodesState,
   useEdgesState,
@@ -76,6 +76,16 @@ export interface ValidationError {
 }
 
 /**
+ * Undo action for tracking deletions
+ */
+interface UndoAction {
+  type: 'delete-node' | 'delete-edge';
+  node?: BuilderNode;
+  edges?: BuilderEdge[];
+  edge?: BuilderEdge;
+}
+
+/**
  * Story Builder Context State
  */
 interface StoryBuilderContextState {
@@ -115,6 +125,10 @@ interface StoryBuilderContextState {
   clearCanvas: () => void;
   restoreDraft: (nodes: BuilderNode[], edges: BuilderEdge[], metadata: StoryMetadata) => void;
   importStory: (story: Story) => void;
+  
+  // Undo
+  undo: () => void;
+  canUndo: boolean;
 }
 
 const StoryBuilderContext = createContext<StoryBuilderContextState | null>(null);
@@ -197,6 +211,10 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
   
   // Validation errors (computed later in validation hook)
   const [validationErrors] = useState<ValidationError[]>([]);
+  
+  // Undo stack for deletions
+  const undoStackRef = useRef<UndoAction[]>([]);
+  const [canUndo, setCanUndo] = useState(false);
   
   // Handle new connections
   const onConnect = useCallback((connection: Connection) => {
@@ -328,15 +346,29 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
     setIsDirty(true);
   }, [setNodes]);
   
-  // Delete a node
+  // Delete a node (with undo support)
   const deleteNode = useCallback((nodeId: string) => {
+    // Find the node and its connected edges before deleting
+    const nodeToDelete = nodes.find(n => n.id === nodeId);
+    const edgesToDelete = edges.filter(e => e.source === nodeId || e.target === nodeId);
+    
+    if (nodeToDelete) {
+      // Save to undo stack
+      undoStackRef.current.push({
+        type: 'delete-node',
+        node: nodeToDelete,
+        edges: edgesToDelete,
+      });
+      setCanUndo(true);
+    }
+    
     setNodes((nds) => nds.filter((node) => node.id !== nodeId));
     setEdges((eds) => eds.filter((edge) => edge.source !== nodeId && edge.target !== nodeId));
     if (selectedNodeId === nodeId) {
       setSelectedNodeId(null);
     }
     setIsDirty(true);
-  }, [setNodes, setEdges, selectedNodeId]);
+  }, [nodes, edges, setNodes, setEdges, selectedNodeId]);
   
   // Delete an edge
   const deleteEdge = useCallback((edgeId: string) => {
@@ -358,7 +390,52 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
     });
     setIsDirty(false);
     nodeIdCounter = 0;
+    // Clear undo stack
+    undoStackRef.current = [];
+    setCanUndo(false);
   }, [setNodes, setEdges]);
+  
+  // Undo last deletion
+  const undo = useCallback(() => {
+    const action = undoStackRef.current.pop();
+    if (!action) {
+      setCanUndo(false);
+      return;
+    }
+    
+    if (action.type === 'delete-node' && action.node) {
+      // Restore the node
+      setNodes((nds) => [...nds, action.node!]);
+      // Restore connected edges
+      if (action.edges && action.edges.length > 0) {
+        setEdges((eds) => [...eds, ...action.edges!]);
+      }
+      setSelectedNodeId(action.node.id);
+    } else if (action.type === 'delete-edge' && action.edge) {
+      setEdges((eds) => [...eds, action.edge!]);
+    }
+    
+    setCanUndo(undoStackRef.current.length > 0);
+    setIsDirty(true);
+  }, [setNodes, setEdges]);
+  
+  // Keyboard shortcut for undo (Cmd/Ctrl+Z)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'z' && !e.shiftKey) {
+        // Only handle if not in an input field
+        const target = e.target as HTMLElement;
+        if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable) {
+          return;
+        }
+        e.preventDefault();
+        undo();
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [undo]);
   
   // Restore from saved draft
   const restoreDraft = useCallback((
@@ -556,6 +633,8 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
     clearCanvas,
     restoreDraft,
     importStory,
+    undo,
+    canUndo,
   };
   
   return (
