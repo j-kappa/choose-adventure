@@ -1,4 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import type { StoryManifestEntry } from '../../types/story';
 import { getAvailableStories } from '../../utils/storyLoader';
 import { StoryCard } from './StoryCard';
@@ -68,7 +69,7 @@ export function StoryLibrary() {
           Select a story to begin your journey
         </p>
         {stories.length > 0 && (
-          <div className={styles.searchContainer}>
+          <div className={styles.searchRow}>
             <input
               type="text"
               className={styles.searchInput}
@@ -77,6 +78,24 @@ export function StoryLibrary() {
               onChange={(e) => setSearchQuery(e.target.value)}
               aria-label="Search stories by title, author, description, or tag"
             />
+            <Link to="/builder" className={styles.createButton}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Create Story
+            </Link>
+          </div>
+        )}
+        {stories.length === 0 && (
+          <div className={styles.headerActions}>
+            <Link to="/builder" className={styles.createButton}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              Create Story
+            </Link>
           </div>
         )}
       </header>

@@ -29,12 +29,51 @@
   font-weight: 400;
 }
 
-/* Search */
-.searchContainer {
+/* Search row with create button */
+.searchRow {
   margin-top: var(--space-8);
-  max-width: 24rem;
+  max-width: 36rem;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+/* Header actions (when no stories) */
+.headerActions {
+  margin-top: var(--space-6);
+  display: flex;
+  justify-content: center;
+}
+
+.createButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-card);
+  color: var(--color-text);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.createButton:hover {
+  border-color: var(--color-accent);
+  background: var(--color-bg-subtle);
+}
+
+.createButton svg {
+  opacity: 0.7;
 }
 
 .searchInput {
