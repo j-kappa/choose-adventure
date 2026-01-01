@@ -316,12 +316,11 @@ function MobileWarning() {
     <div className={styles.mobileWarning}>
       <div className={styles.mobileWarningContent}>
         <div className={styles.mobileWarningIcon}>
-          <Monitor size={48} />
+          <Monitor size={32} />
         </div>
         <h2 className={styles.mobileWarningTitle}>Desktop Required</h2>
         <p className={styles.mobileWarningText}>
-          The Story Builder is designed for desktop use with a mouse and keyboard. 
-          Please visit on a larger screen for the best experience.
+          The Story Builder needs a desktop with mouse and keyboard.
         </p>
         <Link to="/" className={styles.mobileWarningButton}>
           <ArrowLeft size={16} />
