@@ -25,12 +25,12 @@ function StateNodeComponent({ id, data, selected }: StateNodeProps) {
       
       <div className={`${styles.header} ${styles.headerState}`}>
         <div className={styles.headerTitle}>
-          <svg className={styles.headerIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M12 20V10" />
-            <path d="M18 20V4" />
-            <path d="M6 20v-4" />
-          </svg>
-          Set State
+        <svg className={styles.headerIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M12 20V10" />
+          <path d="M18 20V4" />
+          <path d="M6 20v-4" />
+        </svg>
+        Set State
         </div>
         {hasError && (
           <span className={styles.headerValidation}>

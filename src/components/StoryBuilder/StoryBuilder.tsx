@@ -316,7 +316,7 @@ export function StoryBuilder() {
     <ReactFlowProvider>
       <StoryBuilderProvider>
         <ValidationProvider>
-          <StoryBuilderContent />
+        <StoryBuilderContent />
         </ValidationProvider>
       </StoryBuilderProvider>
     </ReactFlowProvider>

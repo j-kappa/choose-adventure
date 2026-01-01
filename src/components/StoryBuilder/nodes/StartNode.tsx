@@ -17,10 +17,10 @@ function StartNodeComponent({ id, data, selected }: StartNodeProps) {
     <div className={`${styles.node} ${selected ? styles.selected : ''}`}>
       <div className={`${styles.header} ${styles.headerStart}`}>
         <div className={styles.headerTitle}>
-          <svg className={styles.headerIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <polygon points="5 3 19 12 5 21 5 3" />
-          </svg>
-          Start
+        <svg className={styles.headerIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <polygon points="5 3 19 12 5 21 5 3" />
+        </svg>
+        Start
         </div>
         {hasError && (
           <span className={styles.headerValidation}>

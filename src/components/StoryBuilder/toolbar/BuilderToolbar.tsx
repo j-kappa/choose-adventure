@@ -29,11 +29,11 @@ export function BuilderToolbar({ onExport, onImport, onTest, hasErrors, canTest 
       const rightmostNode = nodes.find(n => n.position.x === rightmostX)!;
       
       // Place new node to the right with fixed spacing
-      const position = {
+    const position = {
         x: rightmostX + nodeSpacing,
         y: rightmostNode.position.y,
-      };
-      addNode(type, position);
+    };
+    addNode(type, position);
     }
   }, [addNode, nodes]);
   
