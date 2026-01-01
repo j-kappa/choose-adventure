@@ -10,7 +10,7 @@ import {
 import '@xyflow/react/dist/style.css';
 import { BookOpen } from 'lucide-react';
 
-import { StoryBuilderProvider, useStoryBuilderContext } from '../../context/StoryBuilderContext';
+import { StoryBuilderProvider, useStoryBuilderContext, type BuilderNode, type BuilderEdge } from '../../context/StoryBuilderContext';
 import { nodeTypes } from './nodes';
 import { BuilderToolbar } from './toolbar/BuilderToolbar';
 import { ExportDialog } from './toolbar/ExportDialog';
@@ -166,7 +166,7 @@ function StoryBuilderContent() {
   }, []);
   
   // Memoize selected nodes for React Flow
-  const nodesWithSelection = useMemo(() => {
+  const nodesWithSelection = useMemo((): BuilderNode[] => {
     return nodes.map(node => ({
       ...node,
       selected: node.id === selectedNodeId,
@@ -185,7 +185,7 @@ function StoryBuilderContent() {
       
       <div className={styles.main}>
         <div className={styles.canvasWrapper}>
-          <ReactFlow
+          <ReactFlow<BuilderNode, BuilderEdge>
             nodes={nodesWithSelection}
             edges={edges}
             onNodesChange={onNodesChange}
