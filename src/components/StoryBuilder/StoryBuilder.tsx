@@ -1,4 +1,4 @@
-import { useCallback, useState, useMemo, useRef } from 'react';
+import { useCallback, useState, useMemo, useRef, useEffect } from 'react';
 import {
   ReactFlow,
   ReactFlowProvider,
@@ -8,7 +8,7 @@ import {
   type NodeMouseHandler,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, Check } from 'lucide-react';
 
 import { StoryBuilderProvider, useStoryBuilderContext, type BuilderNode, type BuilderEdge } from '../../context/StoryBuilderContext';
 import { nodeTypes } from './nodes';
@@ -44,6 +44,7 @@ function StoryBuilderContent() {
     selectedNodeId,
     importStory,
     addNodeWithConnection,
+    isDirty,
   } = useStoryBuilderContext();
 
   const { screenToFlowPosition } = useReactFlow();
@@ -52,6 +53,18 @@ function StoryBuilderContent() {
   const [showImportDialog, setShowImportDialog] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const [pendingConnection, setPendingConnection] = useState<PendingConnection | null>(null);
+  const [showSavedIndicator, setShowSavedIndicator] = useState(false);
+  const wasDirtyRef = useRef(false);
+  
+  // Show saved indicator when isDirty changes from true to false
+  useEffect(() => {
+    if (wasDirtyRef.current && !isDirty && nodes.length > 0) {
+      setShowSavedIndicator(true);
+      const timer = setTimeout(() => setShowSavedIndicator(false), 2000);
+      return () => clearTimeout(timer);
+    }
+    wasDirtyRef.current = isDirty;
+  }, [isDirty, nodes.length]);
   
   // Track the connection source during drag
   const connectingNodeId = useRef<string | null>(null);
@@ -243,6 +256,13 @@ function StoryBuilderContent() {
           )}
           
           <ValidationIndicator errors={errors} warnings={warnings} />
+          
+          {showSavedIndicator && (
+            <div className={styles.savedIndicator}>
+              <Check size={12} />
+              Saved
+            </div>
+          )}
         </div>
         
         <div className={styles.sidePanel}>

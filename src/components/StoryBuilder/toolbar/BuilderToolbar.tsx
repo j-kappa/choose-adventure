@@ -14,16 +14,27 @@ interface BuilderToolbarProps {
 }
 
 export function BuilderToolbar({ onExport, onImport, onTest, hasErrors, canTest }: BuilderToolbarProps) {
-  const { metadata, setMetadata, addNode, nodes, clearCanvas, isDirty } = useStoryBuilderContext();
+  const { metadata, setMetadata, addNode, nodes, clearCanvas } = useStoryBuilderContext();
   
   const handleAddNode = useCallback((type: string) => {
-    // Calculate position for new node (center of viewport with offset)
-    const existingOfType = nodes.filter(n => n.type === type).length;
-    const position = {
-      x: 100 + (existingOfType * 50),
-      y: 100 + (existingOfType * 30),
-    };
-    addNode(type, position);
+    // Node width + 40px gap (nodes are 220-280px wide)
+    const nodeSpacing = 300;
+    
+    if (nodes.length === 0) {
+      // First node - place at starting position
+      addNode(type, { x: 100, y: 100 });
+    } else {
+      // Find the rightmost node position
+      const rightmostX = Math.max(...nodes.map(n => n.position.x));
+      const rightmostNode = nodes.find(n => n.position.x === rightmostX)!;
+      
+      // Place new node to the right with fixed spacing
+      const position = {
+        x: rightmostX + nodeSpacing,
+        y: rightmostNode.position.y,
+      };
+      addNode(type, position);
+    }
   }, [addNode, nodes]);
   
   const handleTitleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,12 +58,6 @@ export function BuilderToolbar({ onExport, onImport, onTest, hasErrors, canTest 
           onChange={handleTitleChange}
           placeholder="Untitled Story"
         />
-        
-        {isDirty && (
-          <span style={{ fontSize: 'var(--text-xs)', color: 'var(--color-text-subtle)' }}>
-            Unsaved changes
-          </span>
-        )}
       </div>
       
       <div className={styles.toolbarCenter}>

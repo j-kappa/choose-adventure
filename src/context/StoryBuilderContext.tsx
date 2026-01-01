@@ -208,18 +208,14 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
     setIsDirty(true);
   }, [setEdges]);
   
-  // Check if a position overlaps with existing nodes
+  // Check if a position overlaps with existing nodes and find a clear spot
   const findNonOverlappingPosition = useCallback((
     initialPos: { x: number; y: number },
     existingNodes: BuilderNode[]
   ): { x: number; y: number } => {
     const nodeWidth = 280;
-    const nodeHeight = 150;
-    const padding = 20;
-    
-    let pos = { ...initialPos };
-    let attempts = 0;
-    const maxAttempts = 50;
+    const nodeHeight = 180;
+    const minGap = 10; // Just prevent actual overlaps
     
     const overlaps = (testPos: { x: number; y: number }) => {
       return existingNodes.some((node) => {
@@ -228,25 +224,26 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
         const testRight = testPos.x + nodeWidth;
         const testBottom = testPos.y + nodeHeight;
         
-        return !(testPos.x > nodeRight + padding ||
-                 testRight < node.position.x - padding ||
-                 testPos.y > nodeBottom + padding ||
-                 testBottom < node.position.y - padding);
+        // Check if boxes overlap (with small buffer)
+        const xOverlap = testPos.x < nodeRight + minGap && testRight > node.position.x - minGap;
+        const yOverlap = testPos.y < nodeBottom + minGap && testBottom > node.position.y - minGap;
+        
+        return xOverlap && yOverlap;
       });
     };
     
     // If no overlap, return original position
-    if (!overlaps(pos)) {
-      return pos;
+    if (!overlaps(initialPos)) {
+      return initialPos;
     }
     
-    // Try to find a non-overlapping position
-    while (overlaps(pos) && attempts < maxAttempts) {
-      // Move down and slightly right for each attempt
-      pos = {
-        x: initialPos.x + (attempts % 5) * (nodeWidth + padding),
-        y: initialPos.y + Math.floor(attempts / 5) * (nodeHeight + padding),
-      };
+    // Keep shifting right until we find a clear spot
+    let pos = { ...initialPos };
+    const shiftAmount = 300;
+    let attempts = 0;
+    
+    while (overlaps(pos) && attempts < 20) {
+      pos.x += shiftAmount;
       attempts++;
     }
     
