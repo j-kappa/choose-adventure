@@ -19,7 +19,7 @@ interface UseAutoSaveReturn {
 
 export function useAutoSave(): UseAutoSaveReturn {
   const { nodes, edges, metadata, isDirty, setIsDirty, restoreDraft } = useStoryBuilderContext();
-  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isInitialLoadRef = useRef(true);
   const [pendingDraft, setPendingDraft] = useState<SavedDraft | null>(null);
   

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 import { X, RotateCcw, ArrowLeft, Flag } from 'lucide-react';
-import type { Story, Passage, Choice } from '../../../types/story';
+import type { Story, Choice } from '../../../types/story';
 import styles from './StoryPreview.module.css';
 
 interface StoryPreviewProps {

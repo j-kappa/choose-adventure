@@ -13,29 +13,35 @@ import type { Story, Passage } from '../types/story';
 
 /**
  * Node data types for the story builder
+ * Each interface includes an index signature to satisfy Record<string, unknown> constraint
  */
 export interface StartNodeData {
   label: string;
+  [key: string]: unknown;
 }
 
 export interface PassageNodeData {
   passageId: string;
   text: string;
   choices: { id: string; text: string }[];
+  [key: string]: unknown;
 }
 
 export interface EndingNodeData {
   passageId: string;
   text: string;
   endingType: 'good' | 'bad' | 'neutral';
+  [key: string]: unknown;
 }
 
 export interface StateNodeData {
   stateChanges: { key: string; value: string | number | boolean }[];
+  [key: string]: unknown;
 }
 
 export interface ConditionNodeData {
   conditions: { key: string; operator: '==' | '!=' | '>' | '<' | '>=' | '<='; value: string | number | boolean }[];
+  [key: string]: unknown;
 }
 
 export type BuilderNodeData = 
