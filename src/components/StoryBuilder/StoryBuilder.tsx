@@ -15,6 +15,7 @@ import { StoryBuilderProvider, useStoryBuilderContext, type BuilderNode, type Bu
 import { ValidationProvider } from '../../context/ValidationContext';
 import { nodeTypes } from './nodes';
 import { BuilderToolbar } from './toolbar/BuilderToolbar';
+import { NodeMenu } from './toolbar/NodeMenu';
 import { ExportDialog } from './toolbar/ExportDialog';
 import { ImportDialog } from './toolbar/ImportDialog';
 import { RestoreDialog } from './toolbar/RestoreDialog';
@@ -254,7 +255,7 @@ function StoryBuilderContent() {
               </div>
               <h2 className={styles.emptyStateTitle}>Start Building Your Story</h2>
               <p className={styles.emptyStateText}>
-                Click a node type above to add it to the canvas, then connect nodes to create your adventure.
+                Click a node type below to add it to the canvas, then connect nodes to create your adventure.
               </p>
             </div>
           )}
@@ -265,6 +266,8 @@ function StoryBuilderContent() {
               Saved
             </div>
           )}
+          
+          <NodeMenu />
         </div>
         
         <div className={styles.sidePanel}>
