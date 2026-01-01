@@ -8,7 +8,8 @@ import {
   type NodeMouseHandler,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { BookOpen, Check } from 'lucide-react';
+import { BookOpen, Check, Monitor, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 import { StoryBuilderProvider, useStoryBuilderContext, type BuilderNode, type BuilderEdge } from '../../context/StoryBuilderContext';
 import { ValidationProvider } from '../../context/ValidationContext';
@@ -310,15 +311,39 @@ function StoryBuilderContent() {
   );
 }
 
+function MobileWarning() {
+  return (
+    <div className={styles.mobileWarning}>
+      <div className={styles.mobileWarningContent}>
+        <div className={styles.mobileWarningIcon}>
+          <Monitor size={48} />
+        </div>
+        <h2 className={styles.mobileWarningTitle}>Desktop Required</h2>
+        <p className={styles.mobileWarningText}>
+          The Story Builder is designed for desktop use with a mouse and keyboard. 
+          Please visit on a larger screen for the best experience.
+        </p>
+        <Link to="/" className={styles.mobileWarningButton}>
+          <ArrowLeft size={16} />
+          Back to Library
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 export function StoryBuilder() {
   return (
-    <ReactFlowProvider>
-      <StoryBuilderProvider>
-        <ValidationProvider>
-        <StoryBuilderContent />
-        </ValidationProvider>
-      </StoryBuilderProvider>
-    </ReactFlowProvider>
+    <>
+      <MobileWarning />
+      <ReactFlowProvider>
+        <StoryBuilderProvider>
+          <ValidationProvider>
+            <StoryBuilderContent />
+          </ValidationProvider>
+        </StoryBuilderProvider>
+      </ReactFlowProvider>
+    </>
   );
 }
 
