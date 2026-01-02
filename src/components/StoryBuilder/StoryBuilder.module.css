@@ -965,6 +965,36 @@
   color: var(--color-text-muted);
 }
 
+.exportDivider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-2) 0;
+}
+
+.exportDivider::before,
+.exportDivider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.exportDivider span {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.exportOptionHighlight {
+  border-color: var(--color-accent);
+  background: var(--color-accent-subtle);
+}
+
+.exportOptionHighlight:hover {
+  background: rgba(212, 168, 76, 0.15);
+}
+
 /* Restore draft dialog */
 .restoreDraftInfo {
   background: var(--color-bg);

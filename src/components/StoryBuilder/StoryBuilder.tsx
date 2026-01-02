@@ -384,6 +384,7 @@ function StoryBuilderContent() {
         onClose={() => setShowExportDialog(false)}
         storyJson={storyJson}
         filename={filename}
+        storyTitle={story?.title}
       />
       
       <ImportDialog

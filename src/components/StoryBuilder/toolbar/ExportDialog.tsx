@@ -1,5 +1,5 @@
-import { useCallback, useState } from 'react';
-import { X, Download, Clipboard, Check } from 'lucide-react';
+import { useCallback, useState, useMemo } from 'react';
+import { X, Download, Clipboard, Check, Send } from 'lucide-react';
 import styles from '../StoryBuilder.module.css';
 
 interface ExportDialogProps {
@@ -7,9 +7,12 @@ interface ExportDialogProps {
   onClose: () => void;
   storyJson: string;
   filename: string;
+  storyTitle?: string;
 }
 
-export function ExportDialog({ isOpen, onClose, storyJson, filename }: ExportDialogProps) {
+const SUBMISSION_EMAIL = import.meta.env.VITE_SUBMISSION_EMAIL || 'stories@example.com';
+
+export function ExportDialog({ isOpen, onClose, storyJson, filename, storyTitle }: ExportDialogProps) {
   const [copied, setCopied] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
   
@@ -36,6 +39,24 @@ export function ExportDialog({ isOpen, onClose, storyJson, filename }: ExportDia
       console.error('Failed to copy:', err);
     }
   }, [storyJson]);
+
+  const mailtoLink = useMemo(() => {
+    const subject = encodeURIComponent(`Story Submission: ${storyTitle || filename}`);
+    const body = encodeURIComponent(
+      `Hi!\n\nI'd like to submit my story "${storyTitle || filename}" for publication.\n\n` +
+      `Please find the story JSON attached or pasted below.\n\n` +
+      `---\n\n` +
+      `If the story is too long to paste here, please:\n` +
+      `1. Download the story using the "Download File" option\n` +
+      `2. Attach the .adventure.json file to this email\n\n` +
+      `---\n\nStory JSON:\n\n${storyJson.length <= 5000 ? storyJson : '[Story too large - please attach the downloaded file]'}`
+    );
+    return `mailto:${SUBMISSION_EMAIL}?subject=${subject}&body=${body}`;
+  }, [storyJson, storyTitle, filename]);
+
+  const handleSubmit = useCallback(() => {
+    window.location.href = mailtoLink;
+  }, [mailtoLink]);
   
   if (!isOpen) return null;
   
@@ -79,6 +100,24 @@ export function ExportDialog({ isOpen, onClose, storyJson, filename }: ExportDia
                 </div>
                 <div className={styles.exportOptionDescription}>
                   Copy the JSON to paste elsewhere
+                </div>
+              </div>
+            </button>
+
+            <div className={styles.exportDivider}>
+              <span>Want to share your story?</span>
+            </div>
+            
+            <button className={`${styles.exportOption} ${styles.exportOptionHighlight}`} onClick={handleSubmit}>
+              <div className={styles.exportOptionIcon}>
+                <Send size={24} />
+              </div>
+              <div className={styles.exportOptionText}>
+                <div className={styles.exportOptionTitle}>
+                  Submit for Publication
+                </div>
+                <div className={styles.exportOptionDescription}>
+                  Email your story to be added to the library
                 </div>
               </div>
             </button>

@@ -8,6 +8,7 @@ import { StoryLibrary } from './components/StoryLibrary';
 import { StoryReader } from './components/StoryReader';
 import { StoryBuilder } from './components/StoryBuilder';
 import { Terms } from './components/Terms';
+import { Admin } from './components/Admin';
 
 import './styles/global.css';
 
@@ -25,6 +26,7 @@ function App() {
                   <Route path="terms" element={<Terms />} />
                 </Route>
                 <Route path="builder" element={<StoryBuilder />} />
+                <Route path="admin" element={<Admin />} />
               </Routes>
             </BrowserRouter>
           </StoryProvider>
