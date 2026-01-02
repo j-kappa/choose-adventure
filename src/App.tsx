@@ -9,6 +9,7 @@ import { StoryReader } from './components/StoryReader';
 import { StoryBuilder } from './components/StoryBuilder';
 import { Terms } from './components/Terms';
 import { Admin } from './components/Admin';
+import { ScrollToTop } from './components/ScrollToTop';
 
 import './styles/global.css';
 
@@ -19,6 +20,7 @@ function App() {
         <FontSizeProvider>
           <StoryProvider>
             <BrowserRouter>
+              <ScrollToTop />
               <Routes>
                 <Route path="/" element={<Layout />}>
                   <Route index element={<StoryLibrary />} />
