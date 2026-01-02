@@ -55,7 +55,14 @@ export function ExportDialog({ isOpen, onClose, storyJson, filename, storyTitle 
   }, [storyJson, storyTitle, filename]);
 
   const handleSubmit = useCallback(() => {
-    window.location.href = mailtoLink;
+    // Create a temporary anchor and click it - more reliable than window.location.href for mailto
+    const a = document.createElement('a');
+    a.href = mailtoLink;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   }, [mailtoLink]);
   
   if (!isOpen) return null;
