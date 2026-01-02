@@ -15,15 +15,38 @@ import type { Story, Passage } from '../types/story';
  * Node data types for the story builder
  * Each interface includes an index signature to satisfy Record<string, unknown> constraint
  */
+export interface StateVariable {
+  key: string;
+  value: string | number | boolean;
+}
+
 export interface StartNodeData {
   label: string;
+  initialState: StateVariable[];
   [key: string]: unknown;
+}
+
+export interface ChoiceCondition {
+  key: string;
+  value: string | number | boolean;
+}
+
+export interface ChoiceStateChange {
+  key: string;
+  value: string | number | boolean;
+}
+
+export interface BuilderChoice {
+  id: string;
+  text: string;
+  condition?: ChoiceCondition;
+  setState?: ChoiceStateChange;
 }
 
 export interface PassageNodeData {
   passageId: string;
   text: string;
-  choices: { id: string; text: string }[];
+  choices: BuilderChoice[];
   [key: string]: unknown;
 }
 
@@ -159,7 +182,7 @@ const generatePassageId = (label: string) => {
 const createDefaultNodeData = (type: string): BuilderNodeData => {
   switch (type) {
     case 'start':
-      return { label: 'Story Start' };
+      return { label: 'Story Start', initialState: [] };
     case 'passage':
       return {
         passageId: generatePassageId('New Passage'),
@@ -488,13 +511,17 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
       return baseHeight + textHeight + choicesHeight;
     };
     
-    // Create a start node
+    // Create a start node with initial state from the story
     const startNodeId = generateNodeId('start');
+    const initialStateArray: StateVariable[] = story.initialState 
+      ? Object.entries(story.initialState).map(([key, value]) => ({ key, value }))
+      : [];
+    
     newNodes.push({
       id: startNodeId,
       type: 'start',
       position: { x: 100, y: 50 },
-      data: { label: 'Story Start' } as StartNodeData,
+      data: { label: 'Story Start', initialState: initialStateArray } as StartNodeData,
     });
     
     // Track column heights for smart placement
@@ -540,10 +567,26 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
           } as EndingNodeData,
         });
       } else {
-        const choices = (passage.choices || []).map((choice, idx) => ({
-          id: `choice-${Date.now()}-${idx}`,
-          text: choice.text,
-        }));
+        const choices: BuilderChoice[] = (passage.choices || []).map((choice, idx) => {
+          const builderChoice: BuilderChoice = {
+            id: `choice-${Date.now()}-${idx}`,
+            text: choice.text,
+          };
+          
+          // Convert setState object to single key-value (take first entry)
+          if (choice.setState && Object.keys(choice.setState).length > 0) {
+            const [key, value] = Object.entries(choice.setState)[0];
+            builderChoice.setState = { key, value };
+          }
+          
+          // Convert condition object to single key-value (take first entry)
+          if (choice.condition && Object.keys(choice.condition).length > 0) {
+            const [key, value] = Object.entries(choice.condition)[0];
+            builderChoice.condition = { key, value };
+          }
+          
+          return builderChoice;
+        });
         
         newNodes.push({
           id: nodeId,

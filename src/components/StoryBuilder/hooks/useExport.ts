@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useStoryBuilderContext, type PassageNodeData, type EndingNodeData, type StateNodeData, type ConditionNodeData } from '../../../context/StoryBuilderContext';
+import { useStoryBuilderContext, type PassageNodeData, type EndingNodeData, type StateNodeData, type ConditionNodeData, type StartNodeData } from '../../../context/StoryBuilderContext';
 import type { Story, Passage, Choice, StateChange, Condition } from '../../../types/story';
 
 interface ExportResult {
@@ -49,14 +49,22 @@ export function useExport(): ExportResult {
             goto: resolvedTarget.passageId,
           };
           
-          // Add state changes if going through a state node
+          // Add state changes from choice-level setState (takes precedence)
+          if (choice.setState?.key) {
+            choiceObj.setState = { [choice.setState.key]: choice.setState.value };
+          }
+          // Merge with state changes from state nodes in the path
           if (resolvedTarget.stateChanges && Object.keys(resolvedTarget.stateChanges).length > 0) {
-            choiceObj.setState = resolvedTarget.stateChanges;
+            choiceObj.setState = { ...resolvedTarget.stateChanges, ...choiceObj.setState };
           }
           
-          // Add conditions if going through a condition node
+          // Add conditions from choice-level condition (takes precedence)
+          if (choice.condition?.key) {
+            choiceObj.condition = { [choice.condition.key]: choice.condition.value };
+          }
+          // Merge with conditions from condition nodes in the path
           if (resolvedTarget.conditions && Object.keys(resolvedTarget.conditions).length > 0) {
-            choiceObj.condition = resolvedTarget.conditions;
+            choiceObj.condition = { ...resolvedTarget.conditions, ...choiceObj.condition };
           }
           
           return choiceObj;
@@ -91,9 +99,18 @@ export function useExport(): ExportResult {
       }
     }
     
-    // Build initial state from state nodes that aren't in the flow
-    // (This is a simplified approach - full implementation would traverse the graph)
+    // Build initial state from the Start node
     const initialState: Record<string, boolean | string | number> = {};
+    if (startNode) {
+      const startData = startNode.data as StartNodeData;
+      if (startData.initialState && startData.initialState.length > 0) {
+        startData.initialState.forEach(variable => {
+          if (variable.key) {
+            initialState[variable.key] = variable.value;
+          }
+        });
+      }
+    }
     
     const story: Story = {
       id: metadata.id || generateStoryId(metadata.title),

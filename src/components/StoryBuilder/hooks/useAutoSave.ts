@@ -18,7 +18,7 @@ interface UseAutoSaveReturn {
 }
 
 export function useAutoSave(): UseAutoSaveReturn {
-  const { nodes, edges, metadata, isDirty, setIsDirty, restoreDraft } = useStoryBuilderContext();
+  const { nodes, edges, metadata, isDirty, setIsDirty, restoreDraft, clearCanvas } = useStoryBuilderContext();
   const saveTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isInitialLoadRef = useRef(true);
   const [pendingDraft, setPendingDraft] = useState<SavedDraft | null>(null);
@@ -86,11 +86,12 @@ export function useAutoSave(): UseAutoSaveReturn {
     }
   }, []);
   
-  // Clear pending draft (user chose not to restore)
+  // Clear pending draft (user chose not to restore) and clear the canvas
   const clearPendingDraft = useCallback(() => {
     setPendingDraft(null);
     localStorage.removeItem(STORAGE_KEY);
-  }, []);
+    clearCanvas();
+  }, [clearCanvas]);
   
   // Restore pending draft
   const restorePendingDraft = useCallback(() => {

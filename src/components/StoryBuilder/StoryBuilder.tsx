@@ -8,7 +8,8 @@ import {
   SelectionMode,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
-import { BookOpen, Check, Monitor, ArrowLeft } from 'lucide-react';
+import { BookOpen, Check, Monitor, ArrowLeft, Upload } from 'lucide-react';
+import type { Story } from '../../types/story';
 import { Link } from 'react-router-dom';
 
 import { StoryBuilderProvider, useStoryBuilderContext, type BuilderNode, type BuilderEdge } from '../../context/StoryBuilderContext';
@@ -55,7 +56,9 @@ function StoryBuilderContent() {
   const [showPreview, setShowPreview] = useState(false);
   const [pendingConnection, setPendingConnection] = useState<PendingConnection | null>(null);
   const [showSavedIndicator, setShowSavedIndicator] = useState(false);
+  const [isDraggingFile, setIsDraggingFile] = useState(false);
   const wasDirtyRef = useRef(false);
+  const dragCounterRef = useRef(0);
   
   // Show saved indicator when isDirty changes from true to false
   useEffect(() => {
@@ -173,6 +176,86 @@ function StoryBuilderContent() {
     setPendingConnection(null);
   }, []);
   
+  // Handle file drag and drop for importing stories
+  const handleDragEnter = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragCounterRef.current++;
+    
+    // Check if dragging files
+    if (e.dataTransfer.types.includes('Files')) {
+      setIsDraggingFile(true);
+    }
+  }, []);
+  
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragCounterRef.current--;
+    
+    if (dragCounterRef.current === 0) {
+      setIsDraggingFile(false);
+    }
+  }, []);
+  
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  }, []);
+  
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragCounterRef.current = 0;
+    setIsDraggingFile(false);
+    
+    const file = e.dataTransfer.files[0];
+    if (!file) return;
+    
+    // Check if it's a JSON file
+    if (!file.type.includes('json') && !file.name.endsWith('.json')) {
+      alert('Please drop a .json file');
+      return;
+    }
+    
+    // Read and parse the file
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const content = event.target?.result as string;
+        const story = JSON.parse(content) as Story;
+        
+        // Basic validation
+        if (!story.id || !story.title || !story.passages || !story.start) {
+          alert('Invalid story format. Missing required fields (id, title, passages, start).');
+          return;
+        }
+        
+        if (!story.passages[story.start]) {
+          alert(`Start passage "${story.start}" not found in passages.`);
+          return;
+        }
+        
+        // Confirm import if there are existing nodes
+        if (nodes.length > 0) {
+          if (!confirm('This will replace your current story. Continue?')) {
+            return;
+          }
+        }
+        
+        importStory(story);
+      } catch (err) {
+        alert('Failed to parse story file. Please check the JSON format.');
+      }
+    };
+    
+    reader.onerror = () => {
+      alert('Failed to read file.');
+    };
+    
+    reader.readAsText(file);
+  }, [importStory, nodes.length]);
+  
   // Update selectedNodeId when node selection changes in React Flow
   useEffect(() => {
     const selectedNodes = nodes.filter(n => n.selected);
@@ -197,7 +280,21 @@ function StoryBuilderContent() {
       />
       
       <div className={styles.main}>
-        <div className={styles.canvasWrapper}>
+        <div 
+          className={styles.canvasWrapper}
+          onDragEnter={handleDragEnter}
+          onDragLeave={handleDragLeave}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+        >
+          {isDraggingFile && (
+            <div className={styles.dropOverlay}>
+              <div className={styles.dropOverlayContent}>
+                <Upload size={24} strokeWidth={1.5} />
+                <p>Drop to import</p>
+              </div>
+            </div>
+          )}
           <ReactFlow<BuilderNode, BuilderEdge>
             nodes={nodes}
             edges={edges}

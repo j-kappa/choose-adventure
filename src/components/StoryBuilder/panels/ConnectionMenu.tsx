@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FileText, Flag, ToggleRight, GitBranch } from 'lucide-react';
+import { FileText, Flag } from 'lucide-react';
 import styles from './ConnectionMenu.module.css';
 
 interface ConnectionMenuProps {
@@ -8,16 +8,15 @@ interface ConnectionMenuProps {
   onClose: () => void;
 }
 
+// Simplified menu - state/condition logic moved to choices
 const menuItems = [
   { type: 'passage', label: 'Passage', icon: FileText, description: 'Story content with choices' },
   { type: 'ending', label: 'Ending', icon: Flag, description: 'End of a story path' },
-  { type: 'state', label: 'Set State', icon: ToggleRight, description: 'Modify story variables' },
-  { type: 'condition', label: 'Condition', icon: GitBranch, description: 'Branch based on state' },
 ];
 
 // Menu dimensions (approximate)
 const MENU_WIDTH = 220;
-const MENU_HEIGHT = 220;
+const MENU_HEIGHT = 130; // Reduced since we now have only 2 items
 const PADDING = 10;
 
 export function ConnectionMenu({ position, onSelect, onClose }: ConnectionMenuProps) {

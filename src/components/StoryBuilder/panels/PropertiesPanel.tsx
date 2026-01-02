@@ -1,6 +1,6 @@
-import { useCallback, useMemo } from 'react';
-import { Play, X, Plus } from 'lucide-react';
-import { useStoryBuilderContext, type PassageNodeData, type EndingNodeData, type StateNodeData, type ConditionNodeData } from '../../../context/StoryBuilderContext';
+import { useCallback, useMemo, useState } from 'react';
+import { Play, X, Plus, ChevronDown, ChevronRight, Eye, Zap, Variable } from 'lucide-react';
+import { useStoryBuilderContext, type PassageNodeData, type EndingNodeData, type StateNodeData, type ConditionNodeData, type BuilderChoice, type StartNodeData, type StateVariable } from '../../../context/StoryBuilderContext';
 import styles from '../StoryBuilder.module.css';
 
 export function PropertiesPanel() {
@@ -41,7 +41,11 @@ export function PropertiesPanel() {
       </div>
       <div className={styles.sidePanelContent}>
         {nodeType === 'start' && (
-          <StartNodeEditor nodeId={selectedNode.id} />
+          <StartNodeEditor 
+            nodeId={selectedNode.id} 
+            data={selectedNode.data as StartNodeData}
+            updateData={(data) => updateNodeData(selectedNode.id, data)}
+          />
         )}
         {nodeType === 'passage' && (
           <PassageNodeEditor 
@@ -137,19 +141,96 @@ function MetadataEditor({ metadata, setMetadata }: MetadataEditorProps) {
   );
 }
 
-function StartNodeEditor({ nodeId }: { nodeId: string }) {
+interface StartNodeEditorProps {
+  nodeId: string;
+  data: StartNodeData;
+  updateData: (data: Partial<StartNodeData>) => void;
+}
+
+function StartNodeEditor({ nodeId, data, updateData }: StartNodeEditorProps) {
+  const initialState = data.initialState || [];
+  
+  const handleAddVariable = useCallback(() => {
+    updateData({ 
+      initialState: [...initialState, { key: '', value: '' }] 
+    });
+  }, [initialState, updateData]);
+  
+  const handleUpdateVariable = useCallback((index: number, updates: Partial<StateVariable>) => {
+    const newState = [...initialState];
+    newState[index] = { ...newState[index], ...updates };
+    updateData({ initialState: newState });
+  }, [initialState, updateData]);
+  
+  const handleDeleteVariable = useCallback((index: number) => {
+    updateData({ initialState: initialState.filter((_, i) => i !== index) });
+  }, [initialState, updateData]);
+  
+  const parseValue = (valueStr: string): string | number | boolean => {
+    if (valueStr === 'true') return true;
+    if (valueStr === 'false') return false;
+    if (!isNaN(Number(valueStr)) && valueStr !== '') return Number(valueStr);
+    return valueStr;
+  };
+  
   return (
-    <div className={styles.emptyPanel}>
-      <div className={styles.emptyPanelIcon}>
-        <Play size={32} />
+    <>
+      <div className={styles.startNodeIntro}>
+        <div className={styles.emptyPanelIcon}>
+          <Play size={24} />
+        </div>
+        <p className={styles.emptyPanelText}>
+          This is where your story begins. Connect it to your first passage.
+        </p>
       </div>
-      <p className={styles.emptyPanelText}>
-        This is where your story begins. Connect it to your first passage.
-      </p>
-      <p style={{ fontSize: 'var(--text-xs)', marginTop: 'var(--space-2)', color: 'var(--color-text-subtle)' }}>
+      
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>
+          <Variable size={14} style={{ marginRight: '6px', verticalAlign: 'middle' }} />
+          Initial State Variables
+        </label>
+        <p className={styles.choiceOptionHint} style={{ marginBottom: 'var(--space-2)' }}>
+          Define variables that track story progress (e.g., hasKey, trustLevel)
+        </p>
+        
+        <div className={styles.stateList}>
+          {initialState.map((variable, index) => (
+            <div key={index} className={styles.stateItem}>
+              <input
+                type="text"
+                className={styles.stateKeyInput}
+                value={variable.key}
+                onChange={(e) => handleUpdateVariable(index, { key: e.target.value })}
+                placeholder="variable name"
+              />
+              <span className={styles.stateEquals}>=</span>
+              <input
+                type="text"
+                className={styles.stateValueInput}
+                value={String(variable.value)}
+                onChange={(e) => handleUpdateVariable(index, { value: parseValue(e.target.value) })}
+                placeholder="initial value"
+              />
+              <button
+                className={styles.choiceDeleteButton}
+                onClick={() => handleDeleteVariable(index)}
+              >
+                <X size={14} />
+              </button>
+            </div>
+          ))}
+        </div>
+        
+        <button className={styles.addChoiceButton} onClick={handleAddVariable}>
+          <Plus size={14} />
+          Add Variable
+        </button>
+      </div>
+      
+      <p style={{ fontSize: 'var(--text-xs)', marginTop: 'var(--space-4)', color: 'var(--color-text-subtle)' }}>
         Node ID: {nodeId}
       </p>
-    </div>
+    </>
   );
 }
 
@@ -160,6 +241,8 @@ interface PassageNodeEditorProps {
 }
 
 function PassageNodeEditor({ data, updateData }: PassageNodeEditorProps) {
+  const [expandedChoices, setExpandedChoices] = useState<Set<string>>(new Set());
+  
   const handlePassageIdChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, '_');
     updateData({ passageId: value });
@@ -169,21 +252,38 @@ function PassageNodeEditor({ data, updateData }: PassageNodeEditorProps) {
     updateData({ text: e.target.value });
   }, [updateData]);
   
-  const handleChoiceTextChange = useCallback((choiceId: string, text: string) => {
+  const handleChoiceUpdate = useCallback((choiceId: string, updates: Partial<BuilderChoice>) => {
     const newChoices = data.choices.map(c => 
-      c.id === choiceId ? { ...c, text } : c
+      c.id === choiceId ? { ...c, ...updates } : c
     );
     updateData({ choices: newChoices });
   }, [data.choices, updateData]);
   
   const handleAddChoice = useCallback(() => {
-    const newChoice = { id: `choice-${Date.now()}`, text: '' };
+    const newChoice: BuilderChoice = { id: `choice-${Date.now()}`, text: '' };
     updateData({ choices: [...data.choices, newChoice] });
   }, [data.choices, updateData]);
   
   const handleDeleteChoice = useCallback((choiceId: string) => {
     updateData({ choices: data.choices.filter(c => c.id !== choiceId) });
+    setExpandedChoices(prev => {
+      const next = new Set(prev);
+      next.delete(choiceId);
+      return next;
+    });
   }, [data.choices, updateData]);
+  
+  const toggleExpanded = useCallback((choiceId: string) => {
+    setExpandedChoices(prev => {
+      const next = new Set(prev);
+      if (next.has(choiceId)) {
+        next.delete(choiceId);
+      } else {
+        next.add(choiceId);
+      }
+      return next;
+    });
+  }, []);
   
   return (
     <>
@@ -213,23 +313,16 @@ function PassageNodeEditor({ data, updateData }: PassageNodeEditorProps) {
         <label className={styles.formLabel}>Choices</label>
         <div className={styles.choiceList}>
           {data.choices.map((choice, index) => (
-            <div key={choice.id} className={styles.choiceItem}>
-              <span className={styles.choiceNumber}>{index + 1}</span>
-              <input
-                type="text"
-                className={styles.choiceInput}
-                value={choice.text}
-                onChange={(e) => handleChoiceTextChange(choice.id, e.target.value)}
-                placeholder="Choice text..."
-              />
-              <button
-                className={styles.choiceDeleteButton}
-                onClick={() => handleDeleteChoice(choice.id)}
-                disabled={data.choices.length <= 1}
-              >
-                <X size={14} />
-              </button>
-            </div>
+            <ChoiceEditor
+              key={choice.id}
+              choice={choice}
+              index={index}
+              isExpanded={expandedChoices.has(choice.id)}
+              onToggleExpand={() => toggleExpanded(choice.id)}
+              onUpdate={(updates) => handleChoiceUpdate(choice.id, updates)}
+              onDelete={() => handleDeleteChoice(choice.id)}
+              canDelete={data.choices.length > 1}
+            />
           ))}
         </div>
         <button className={styles.addChoiceButton} onClick={handleAddChoice}>
@@ -238,6 +331,154 @@ function PassageNodeEditor({ data, updateData }: PassageNodeEditorProps) {
         </button>
       </div>
     </>
+  );
+}
+
+interface ChoiceEditorProps {
+  choice: BuilderChoice;
+  index: number;
+  isExpanded: boolean;
+  onToggleExpand: () => void;
+  onUpdate: (updates: Partial<BuilderChoice>) => void;
+  onDelete: () => void;
+  canDelete: boolean;
+}
+
+function ChoiceEditor({ choice, index, isExpanded, onToggleExpand, onUpdate, onDelete, canDelete }: ChoiceEditorProps) {
+  const hasCondition = !!choice.condition?.key;
+  const hasSetState = !!choice.setState?.key;
+  
+  const handleConditionKeyChange = (key: string) => {
+    if (!key) {
+      onUpdate({ condition: undefined });
+    } else {
+      onUpdate({ condition: { key, value: choice.condition?.value ?? true } });
+    }
+  };
+  
+  const handleConditionValueChange = (valueStr: string) => {
+    let value: string | number | boolean = valueStr;
+    if (valueStr === 'true') value = true;
+    else if (valueStr === 'false') value = false;
+    else if (!isNaN(Number(valueStr)) && valueStr !== '') value = Number(valueStr);
+    
+    onUpdate({ condition: { key: choice.condition?.key || '', value } });
+  };
+  
+  const handleSetStateKeyChange = (key: string) => {
+    if (!key) {
+      onUpdate({ setState: undefined });
+    } else {
+      onUpdate({ setState: { key, value: choice.setState?.value ?? true } });
+    }
+  };
+  
+  const handleSetStateValueChange = (valueStr: string) => {
+    let value: string | number | boolean = valueStr;
+    if (valueStr === 'true') value = true;
+    else if (valueStr === 'false') value = false;
+    else if (!isNaN(Number(valueStr)) && valueStr !== '') value = Number(valueStr);
+    
+    onUpdate({ setState: { key: choice.setState?.key || '', value } });
+  };
+  
+  return (
+    <div className={styles.choiceItemExpanded}>
+      <div className={styles.choiceItemHeader}>
+        <button 
+          className={styles.choiceExpandButton}
+          onClick={onToggleExpand}
+          title={isExpanded ? "Collapse options" : "Expand options"}
+        >
+          {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+        </button>
+        <span className={styles.choiceNumber}>{index + 1}</span>
+        <input
+          type="text"
+          className={styles.choiceInput}
+          value={choice.text}
+          onChange={(e) => onUpdate({ text: e.target.value })}
+          placeholder="Choice text..."
+        />
+        {hasCondition && (
+          <span className={styles.choiceBadge} title="Has show condition">
+            <Eye size={10} />
+          </span>
+        )}
+        {hasSetState && (
+          <span className={styles.choiceBadge} title="Sets state">
+            <Zap size={10} />
+          </span>
+        )}
+        <button
+          className={styles.choiceDeleteButton}
+          onClick={onDelete}
+          disabled={!canDelete}
+        >
+          <X size={14} />
+        </button>
+      </div>
+      
+      {isExpanded && (
+        <div className={styles.choiceOptions}>
+          <div className={styles.choiceOption}>
+            <div className={styles.choiceOptionLabel}>
+              <Eye size={12} />
+              <span>Show only if</span>
+            </div>
+            <div className={styles.choiceOptionInputs}>
+              <input
+                type="text"
+                className={styles.choiceOptionInput}
+                value={choice.condition?.key || ''}
+                onChange={(e) => handleConditionKeyChange(e.target.value)}
+                placeholder="variable name"
+              />
+              <span className={styles.choiceOptionEquals}>=</span>
+              <input
+                type="text"
+                className={styles.choiceOptionInput}
+                value={choice.condition?.key ? String(choice.condition.value) : ''}
+                onChange={(e) => handleConditionValueChange(e.target.value)}
+                placeholder="value"
+                disabled={!choice.condition?.key}
+              />
+            </div>
+            <p className={styles.choiceOptionHint}>
+              Leave empty to always show this choice
+            </p>
+          </div>
+          
+          <div className={styles.choiceOption}>
+            <div className={styles.choiceOptionLabel}>
+              <Zap size={12} />
+              <span>When chosen, set</span>
+            </div>
+            <div className={styles.choiceOptionInputs}>
+              <input
+                type="text"
+                className={styles.choiceOptionInput}
+                value={choice.setState?.key || ''}
+                onChange={(e) => handleSetStateKeyChange(e.target.value)}
+                placeholder="variable name"
+              />
+              <span className={styles.choiceOptionEquals}>=</span>
+              <input
+                type="text"
+                className={styles.choiceOptionInput}
+                value={choice.setState?.key ? String(choice.setState.value) : ''}
+                onChange={(e) => handleSetStateValueChange(e.target.value)}
+                placeholder="value"
+                disabled={!choice.setState?.key}
+              />
+            </div>
+            <p className={styles.choiceOptionHint}>
+              Leave empty if no state change needed
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 

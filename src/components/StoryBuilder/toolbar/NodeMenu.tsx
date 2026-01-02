@@ -1,7 +1,10 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useStoryBuilderContext } from '../../../context/StoryBuilderContext';
 import { nodeTypeInfo } from '../nodes';
 import styles from './NodeMenu.module.css';
+
+// Only show these node types in the menu (state/condition logic moved to choices)
+const visibleNodeTypes = ['start', 'passage', 'ending'];
 
 export function NodeMenu() {
   const { addNode, nodes } = useStoryBuilderContext();
@@ -25,9 +28,15 @@ export function NodeMenu() {
   
   const hasStartNode = nodes.some(n => n.type === 'start');
   
+  // Filter to only show the simplified node types
+  const filteredNodeTypes = useMemo(() => 
+    nodeTypeInfo.filter(info => visibleNodeTypes.includes(info.type)),
+    []
+  );
+  
   return (
     <div className={styles.menu}>
-      {nodeTypeInfo.map((info) => {
+      {filteredNodeTypes.map((info) => {
         const isStartDisabled = info.type === 'start' && hasStartNode;
         const IconComponent = info.icon;
         
