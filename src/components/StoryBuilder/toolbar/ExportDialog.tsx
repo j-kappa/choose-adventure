@@ -1,5 +1,5 @@
-import { useCallback, useState, useMemo } from 'react';
-import { X, Download, Clipboard, Check, Send } from 'lucide-react';
+import { useCallback, useState } from 'react';
+import { X, Download, Clipboard, Check, Mail } from 'lucide-react';
 import styles from '../StoryBuilder.module.css';
 
 interface ExportDialogProps {
@@ -7,14 +7,15 @@ interface ExportDialogProps {
   onClose: () => void;
   storyJson: string;
   filename: string;
-  storyTitle?: string;
 }
 
 const SUBMISSION_EMAIL = import.meta.env.VITE_SUBMISSION_EMAIL || 'stories@example.com';
 
-export function ExportDialog({ isOpen, onClose, storyJson, filename, storyTitle }: ExportDialogProps) {
+export function ExportDialog({ isOpen, onClose, storyJson, filename }: ExportDialogProps) {
   const [copied, setCopied] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
+  const [showSubmitInfo, setShowSubmitInfo] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
   
   const handleDownload = useCallback(() => {
     const blob = new Blob([storyJson], { type: 'application/json' });
@@ -40,30 +41,15 @@ export function ExportDialog({ isOpen, onClose, storyJson, filename, storyTitle 
     }
   }, [storyJson]);
 
-  const mailtoLink = useMemo(() => {
-    const subject = encodeURIComponent(`Story Submission: ${storyTitle || filename}`);
-    const body = encodeURIComponent(
-      `Hi!\n\nI'd like to submit my story "${storyTitle || filename}" for publication.\n\n` +
-      `Please find the story JSON attached or pasted below.\n\n` +
-      `---\n\n` +
-      `If the story is too long to paste here, please:\n` +
-      `1. Download the story using the "Download File" option\n` +
-      `2. Attach the .adventure.json file to this email\n\n` +
-      `---\n\nStory JSON:\n\n${storyJson.length <= 5000 ? storyJson : '[Story too large - please attach the downloaded file]'}`
-    );
-    return `mailto:${SUBMISSION_EMAIL}?subject=${subject}&body=${body}`;
-  }, [storyJson, storyTitle, filename]);
-
-  const handleSubmit = useCallback(() => {
-    // Create a temporary anchor and click it - more reliable than window.location.href for mailto
-    const a = document.createElement('a');
-    a.href = mailtoLink;
-    a.target = '_blank';
-    a.rel = 'noopener noreferrer';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }, [mailtoLink]);
+  const handleCopyEmail = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(SUBMISSION_EMAIL);
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy email:', err);
+    }
+  }, []);
   
   if (!isOpen) return null;
   
@@ -115,19 +101,51 @@ export function ExportDialog({ isOpen, onClose, storyJson, filename, storyTitle 
               <span>Want to share your story?</span>
             </div>
             
-            <button className={`${styles.exportOption} ${styles.exportOptionHighlight}`} onClick={handleSubmit}>
-              <div className={styles.exportOptionIcon}>
-                <Send size={24} />
-              </div>
-              <div className={styles.exportOptionText}>
-                <div className={styles.exportOptionTitle}>
-                  Submit for Publication
+            {!showSubmitInfo ? (
+              <button 
+                className={`${styles.exportOption} ${styles.exportOptionHighlight}`} 
+                onClick={() => setShowSubmitInfo(true)}
+              >
+                <div className={styles.exportOptionIcon}>
+                  <Mail size={24} />
                 </div>
-                <div className={styles.exportOptionDescription}>
-                  Email your story to be added to the library
+                <div className={styles.exportOptionText}>
+                  <div className={styles.exportOptionTitle}>
+                    Submit for Publication
+                  </div>
+                  <div className={styles.exportOptionDescription}>
+                    Get instructions to submit your story
+                  </div>
+                </div>
+              </button>
+            ) : (
+              <div className={styles.submitInfo}>
+                <div className={styles.submitInfoHeader}>
+                  <Mail size={20} />
+                  <span>Submit Your Story</span>
+                </div>
+                <div className={styles.submitInfoContent}>
+                  <p>To submit your story for publication:</p>
+                  <ol>
+                    <li>Download your <strong>.adventure.json</strong> file using the button above</li>
+                    <li>Send it as an attachment to:</li>
+                  </ol>
+                  <div className={styles.emailBox}>
+                    <code>{SUBMISSION_EMAIL}</code>
+                    <button 
+                      className={styles.copyEmailButton}
+                      onClick={handleCopyEmail}
+                      title="Copy email address"
+                    >
+                      {emailCopied ? <Check size={16} /> : <Clipboard size={16} />}
+                    </button>
+                  </div>
+                  <p className={styles.submitNote}>
+                    Include your story title in the subject line. We'll review it and add it to the library if approved!
+                  </p>
                 </div>
               </div>
-            </button>
+            )}
           </div>
         </div>
         
