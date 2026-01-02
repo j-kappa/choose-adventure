@@ -9,7 +9,7 @@ import {
   type OnNodesChange,
   type OnEdgesChange,
 } from '@xyflow/react';
-import type { Story, Passage } from '../types/story';
+import type { Story } from '../types/story';
 
 /**
  * Node data types for the story builder
@@ -491,27 +491,77 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
     
     // Layout configuration
     const nodeWidth = 280;
-    const horizontalGap = 60;
-    const verticalGap = 40;
-    const numColumns = 4;
-    const startY = 200;
+    const horizontalGap = 80;
+    const verticalGap = 120;
+    const startX = 100;
+    const startY = 50;
     
-    // Estimate node height based on content
-    const estimateNodeHeight = (passage: Passage, isEnding: boolean): number => {
-      const baseHeight = 80; // Header + padding
-      const textLines = Math.ceil((passage.text?.length || 0) / 40); // ~40 chars per line
-      const textHeight = Math.min(textLines * 20, 80); // Cap text preview height
+    // Build a graph of connections to determine depth levels
+    const passageDepths: Record<string, number> = {};
+    const visited = new Set<string>();
+    
+    // BFS to calculate depth of each passage from the start
+    const calculateDepths = () => {
+      const queue: { id: string; depth: number }[] = [{ id: story.start, depth: 0 }];
       
-      if (isEnding) {
-        return baseHeight + textHeight;
+      while (queue.length > 0) {
+        const { id, depth } = queue.shift()!;
+        
+        if (visited.has(id)) continue;
+        visited.add(id);
+        
+        // Keep the minimum depth if already assigned
+        if (passageDepths[id] === undefined || depth < passageDepths[id]) {
+          passageDepths[id] = depth;
+        }
+        
+        const passage = story.passages[id];
+        if (!passage || passage.isEnding) continue;
+        
+        // Add all connected passages to the queue
+        for (const choice of passage.choices || []) {
+          if (choice.goto && !visited.has(choice.goto)) {
+            queue.push({ id: choice.goto, depth: depth + 1 });
+          }
+        }
       }
       
-      const choiceCount = passage.choices?.length || 1;
-      const choicesHeight = choiceCount * 36; // Each choice row ~36px
-      return baseHeight + textHeight + choicesHeight;
+      // Handle any unvisited passages (orphans or cycles)
+      for (const passageId of Object.keys(story.passages)) {
+        if (passageDepths[passageId] === undefined) {
+          passageDepths[passageId] = Object.keys(passageDepths).length > 0 
+            ? Math.max(...Object.values(passageDepths)) + 1 
+            : 0;
+        }
+      }
     };
     
-    // Create a start node with initial state from the story
+    calculateDepths();
+    
+    // Group passages by depth level
+    const levelGroups: Record<number, string[]> = {};
+    let maxDepth = 0;
+    
+    for (const [passageId, depth] of Object.entries(passageDepths)) {
+      if (!levelGroups[depth]) levelGroups[depth] = [];
+      levelGroups[depth].push(passageId);
+      maxDepth = Math.max(maxDepth, depth);
+    }
+    
+    // Separate endings to place at the bottom
+    const endings: string[] = [];
+    for (const passageId of Object.keys(story.passages)) {
+      if (story.passages[passageId].isEnding) {
+        endings.push(passageId);
+        // Remove from level groups
+        for (const level of Object.values(levelGroups)) {
+          const idx = level.indexOf(passageId);
+          if (idx !== -1) level.splice(idx, 1);
+        }
+      }
+    }
+    
+    // Create start node
     const startNodeId = generateNodeId('start');
     const initialStateArray: StateVariable[] = story.initialState 
       ? Object.entries(story.initialState).map(([key, value]) => ({ key, value }))
@@ -520,53 +570,32 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
     newNodes.push({
       id: startNodeId,
       type: 'start',
-      position: { x: 100, y: 50 },
+      position: { x: startX, y: startY },
       data: { label: 'Story Start', initialState: initialStateArray } as StartNodeData,
     });
     
-    // Track column heights for smart placement
-    const columnHeights: number[] = Array(numColumns).fill(startY);
+    // Track Y position for each level
+    let currentY = startY + 150; // Start below the start node
     
-    // Create nodes for each passage
-    const passageEntries = Object.entries(story.passages);
-    
-    passageEntries.forEach(([passageId, passage]) => {
-      const isEnding = !!passage.isEnding;
-      const estimatedHeight = estimateNodeHeight(passage, isEnding);
+    // Create nodes level by level
+    for (let depth = 0; depth <= maxDepth; depth++) {
+      const passagesAtLevel = levelGroups[depth] || [];
+      if (passagesAtLevel.length === 0) continue;
       
-      // Find the column with the smallest height (most space)
-      let shortestColumn = 0;
-      let shortestHeight = columnHeights[0];
-      for (let i = 1; i < numColumns; i++) {
-        if (columnHeights[i] < shortestHeight) {
-          shortestHeight = columnHeights[i];
-          shortestColumn = i;
-        }
-      }
+      // Calculate X positions to center the level
+      const levelWidth = passagesAtLevel.length * nodeWidth + (passagesAtLevel.length - 1) * horizontalGap;
+      const levelStartX = startX + (nodeWidth / 2) - (levelWidth / 2);
       
-      const position = {
-        x: 100 + shortestColumn * (nodeWidth + horizontalGap),
-        y: columnHeights[shortestColumn],
-      };
-      
-      // Update column height
-      columnHeights[shortestColumn] += estimatedHeight + verticalGap;
-      
-      const nodeId = generateNodeId(isEnding ? 'ending' : 'passage');
-      passageIdToNodeId[passageId] = nodeId;
-      
-      if (isEnding) {
-        newNodes.push({
-          id: nodeId,
-          type: 'ending',
-          position,
-          data: {
-            passageId,
-            text: passage.text,
-            endingType: passage.endingType || 'neutral',
-          } as EndingNodeData,
-        });
-      } else {
+      passagesAtLevel.forEach((passageId, index) => {
+        const passage = story.passages[passageId];
+        const nodeId = generateNodeId('passage');
+        passageIdToNodeId[passageId] = nodeId;
+        
+        const position = {
+          x: levelStartX + index * (nodeWidth + horizontalGap),
+          y: currentY,
+        };
+        
         const choices: BuilderChoice[] = (passage.choices || []).map((choice, idx) => {
           const builderChoice: BuilderChoice = {
             id: `choice-${Date.now()}-${idx}`,
@@ -598,8 +627,38 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
             choices: choices.length > 0 ? choices : [{ id: `choice-${Date.now()}`, text: 'Continue' }],
           } as PassageNodeData,
         });
-      }
-    });
+      });
+      
+      currentY += verticalGap + 200; // Move to next level
+    }
+    
+    // Create ending nodes at the bottom
+    if (endings.length > 0) {
+      const endingWidth = endings.length * nodeWidth + (endings.length - 1) * horizontalGap;
+      const endingStartX = startX + (nodeWidth / 2) - (endingWidth / 2);
+      
+      endings.forEach((passageId, index) => {
+        const passage = story.passages[passageId];
+        const nodeId = generateNodeId('ending');
+        passageIdToNodeId[passageId] = nodeId;
+        
+        const position = {
+          x: endingStartX + index * (nodeWidth + horizontalGap),
+          y: currentY,
+        };
+        
+        newNodes.push({
+          id: nodeId,
+          type: 'ending',
+          position,
+          data: {
+            passageId,
+            text: passage.text,
+            endingType: passage.endingType || 'neutral',
+          } as EndingNodeData,
+        });
+      });
+    }
     
     // Connect start node to the first passage
     if (story.start && passageIdToNodeId[story.start]) {
@@ -612,7 +671,7 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
     }
     
     // Create edges from choices to their target passages
-    passageEntries.forEach(([passageId, passage]) => {
+    Object.entries(story.passages).forEach(([passageId, passage]) => {
       if (passage.choices && !passage.isEnding) {
         const sourceNodeId = passageIdToNodeId[passageId];
         const sourceNode = newNodes.find(n => n.id === sourceNodeId);
