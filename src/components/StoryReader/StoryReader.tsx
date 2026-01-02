@@ -172,10 +172,10 @@ export function StoryReader() {
                 The End
               </p>
               <div className={styles.endingActions}>
-                <button onClick={restart} className={styles.endingButton}>
+                <button onClick={restart} className={styles.endingLink}>
                   Read Again
                 </button>
-                <Link to="/" className={styles.endingButtonSecondary}>
+                <Link to="/" className={styles.endingLinkSecondary}>
                   Choose Another Story
                 </Link>
               </div>
