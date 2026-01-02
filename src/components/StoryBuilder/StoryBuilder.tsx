@@ -1,11 +1,11 @@
-import { useCallback, useState, useMemo, useRef, useEffect } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 import {
   ReactFlow,
   ReactFlowProvider,
   Background,
   MiniMap,
   useReactFlow,
-  type NodeMouseHandler,
+  SelectionMode,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { BookOpen, Check, Monitor, ArrowLeft } from 'lucide-react';
@@ -43,7 +43,6 @@ function StoryBuilderContent() {
     onEdgesChange,
     onConnect,
     setSelectedNodeId,
-    selectedNodeId,
     importStory,
     addNodeWithConnection,
     isDirty,
@@ -81,22 +80,16 @@ function StoryBuilderContent() {
   // Auto-save to localStorage
   const { pendingDraft, clearPendingDraft, restorePendingDraft } = useAutoSave();
   
-  // Handle node selection
-  const onNodeClick: NodeMouseHandler = useCallback((_event, node) => {
-    setSelectedNodeId(node.id);
-  }, [setSelectedNodeId]);
-  
   // Track if we just showed the connection menu to prevent pane click from closing it
   const justShowedMenuRef = useRef(false);
 
   const onPaneClick = useCallback(() => {
-    setSelectedNodeId(null);
     // Don't close menu if we just showed it (from connection drop)
     if (!justShowedMenuRef.current) {
       setPendingConnection(null);
     }
     justShowedMenuRef.current = false;
-  }, [setSelectedNodeId]);
+  }, []);
 
   // Track when a connection starts - React Flow v12 passes (event, { nodeId, handleId, handleType })
   const onConnectStart = useCallback((
@@ -180,13 +173,16 @@ function StoryBuilderContent() {
     setPendingConnection(null);
   }, []);
   
-  // Memoize selected nodes for React Flow
-  const nodesWithSelection = useMemo((): BuilderNode[] => {
-    return nodes.map(node => ({
-      ...node,
-      selected: node.id === selectedNodeId,
-    }));
-  }, [nodes, selectedNodeId]);
+  // Update selectedNodeId when node selection changes in React Flow
+  useEffect(() => {
+    const selectedNodes = nodes.filter(n => n.selected);
+    if (selectedNodes.length === 1) {
+      setSelectedNodeId(selectedNodes[0].id);
+    } else if (selectedNodes.length === 0) {
+      setSelectedNodeId(null);
+    }
+    // Keep current selectedNodeId if multiple nodes selected
+  }, [nodes, setSelectedNodeId]);
   
   return (
     <div className={styles.container}>
@@ -203,14 +199,13 @@ function StoryBuilderContent() {
       <div className={styles.main}>
         <div className={styles.canvasWrapper}>
           <ReactFlow<BuilderNode, BuilderEdge>
-            nodes={nodesWithSelection}
+            nodes={nodes}
             edges={edges}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
             onConnect={onConnect}
             onConnectStart={onConnectStart}
             onConnectEnd={onConnectEnd}
-            onNodeClick={onNodeClick}
             onPaneClick={onPaneClick}
             nodeTypes={nodeTypes}
             fitView
@@ -224,6 +219,10 @@ function StoryBuilderContent() {
             panOnScrollSpeed={1}
             zoomOnPinch
             zoomOnScroll={false}
+            selectionOnDrag
+            selectionMode={SelectionMode.Partial}
+            panOnDrag={[1, 2]}
+            selectNodesOnDrag={false}
             proOptions={{ hideAttribution: true }}
           >
             <Background gap={15} size={1} color="rgba(255, 255, 255, 0.2)" />
