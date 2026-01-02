@@ -93,6 +93,16 @@ interface MetadataEditorProps {
 }
 
 function MetadataEditor({ metadata, setMetadata }: MetadataEditorProps) {
+  const handleStoryIdChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    // Convert to kebab-case: lowercase, spaces to hyphens, remove special chars
+    const value = e.target.value
+      .toLowerCase()
+      .replace(/\s+/g, '-')           // spaces to hyphens
+      .replace(/[^a-z0-9-]/g, '')     // remove special chars except hyphens
+      .replace(/-+/g, '-');           // collapse multiple hyphens
+    setMetadata({ ...metadata, id: value });
+  }, [metadata, setMetadata]);
+
   return (
     <>
       <div className={styles.formGroup}>
@@ -101,7 +111,7 @@ function MetadataEditor({ metadata, setMetadata }: MetadataEditorProps) {
           type="text"
           className={styles.formInput}
           value={metadata.id}
-          onChange={(e) => setMetadata({ ...metadata, id: e.target.value })}
+          onChange={handleStoryIdChange}
           placeholder="my-story-id"
         />
       </div>
@@ -325,7 +335,7 @@ function PassageNodeEditor({ data, updateData }: PassageNodeEditorProps) {
             />
           ))}
         </div>
-        <button className={styles.addChoiceButton} onClick={handleAddChoice}>
+        <button className={styles.addChoiceButton} onClick={handleAddChoice} tabIndex={-1}>
           <Plus size={14} />
           Add Choice
         </button>
@@ -389,6 +399,7 @@ function ChoiceEditor({ choice, index, isExpanded, onToggleExpand, onUpdate, onD
           className={styles.choiceExpandButton}
           onClick={onToggleExpand}
           title={isExpanded ? "Collapse options" : "Expand options"}
+          tabIndex={-1}
         >
           {isExpanded ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
         </button>
@@ -414,6 +425,7 @@ function ChoiceEditor({ choice, index, isExpanded, onToggleExpand, onUpdate, onD
           className={styles.choiceDeleteButton}
           onClick={onDelete}
           disabled={!canDelete}
+          tabIndex={-1}
         >
           <X size={14} />
         </button>
