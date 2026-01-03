@@ -73,6 +73,8 @@ function StoryBuilderContent() {
   // Track the connection source during drag
   const connectingNodeId = useRef<string | null>(null);
   const connectingHandleId = useRef<string | null>(null);
+  // Track if a connection was just successfully made (to prevent showing menu)
+  const connectionSucceededRef = useRef(false);
   
   // Validation
   const { errors, warnings, hasErrors } = useValidation();
@@ -85,6 +87,12 @@ function StoryBuilderContent() {
   
   // Track if we just showed the connection menu to prevent pane click from closing it
   const justShowedMenuRef = useRef(false);
+
+  // Wrap onConnect to track successful connections
+  const handleConnect = useCallback((params: Parameters<typeof onConnect>[0]) => {
+    connectionSucceededRef.current = true;
+    onConnect(params);
+  }, [onConnect]);
 
   const onPaneClick = useCallback(() => {
     // Don't close menu if we just showed it (from connection drop)
@@ -113,6 +121,12 @@ function StoryBuilderContent() {
     connectingNodeId.current = null;
     connectingHandleId.current = null;
     
+    // If a connection was just made successfully, don't show the menu
+    if (connectionSucceededRef.current) {
+      connectionSucceededRef.current = false;
+      return;
+    }
+    
     // Check if we have a source node
     if (!sourceNodeId) {
       return;
@@ -121,7 +135,7 @@ function StoryBuilderContent() {
     // Get the target element to check if we dropped on empty space
     const targetElement = (event as MouseEvent).target as HTMLElement;
     
-    // Don't show menu if dropped on a node or handle (successful connection)
+    // Don't show menu if dropped on a node or handle (backup check)
     if (targetElement?.closest('.react-flow__node') || 
         targetElement?.closest('.react-flow__handle') ||
         targetElement?.classList?.contains('react-flow__handle')) {
@@ -300,7 +314,7 @@ function StoryBuilderContent() {
             edges={edges}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}
-            onConnect={onConnect}
+            onConnect={handleConnect}
             onConnectStart={onConnectStart}
             onConnectEnd={onConnectEnd}
             onPaneClick={onPaneClick}
