@@ -178,13 +178,14 @@
   background: var(--color-bg-subtle);
 }
 
-/* Minimap dark mode styling */
+/* Minimap styling */
 .minimap {
-  background: rgba(30, 30, 30, 0.6) !important;
+  background: var(--color-bg-card) !important;
   border: 1px solid var(--color-border) !important;
   border-radius: var(--radius-lg) !important;
   cursor: pointer !important;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast) !important;
+  overflow: hidden !important;
 }
 
 .minimap:hover {
@@ -193,6 +194,13 @@
 
 .minimap svg {
   background: transparent !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+/* Minimap mask (the viewport rectangle) */
+.minimap :global(.react-flow__minimap-mask) {
+  fill: var(--color-bg-subtle) !important;
+  rx: 4 !important;
 }
 
 /* Edge (connection line) styling */
