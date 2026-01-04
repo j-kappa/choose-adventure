@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowLeft, Download, Trash2, Play, Upload } from 'lucide-react';
+import { ArrowLeft, Download, Trash2, Play, Upload, HelpCircle } from 'lucide-react';
 import { useStoryBuilderContext, type ValidationError } from '../../../context/StoryBuilderContext';
 import { ValidationIndicator } from '../panels/ValidationIndicator';
 import styles from '../StoryBuilder.module.css';
@@ -9,13 +9,14 @@ interface BuilderToolbarProps {
   onExport: () => void;
   onImport: () => void;
   onTest: () => void;
+  onHelp: () => void;
   hasErrors: boolean;
   canTest: boolean;
   errors: ValidationError[];
   warnings: ValidationError[];
 }
 
-export function BuilderToolbar({ onExport, onImport, onTest, hasErrors, canTest, errors, warnings }: BuilderToolbarProps) {
+export function BuilderToolbar({ onExport, onImport, onTest, onHelp, hasErrors, canTest, errors, warnings }: BuilderToolbarProps) {
   const { metadata, setMetadata, nodes, clearCanvas } = useStoryBuilderContext();
   
   const handleTitleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,6 +78,14 @@ export function BuilderToolbar({ onExport, onImport, onTest, hasErrors, canTest,
         >
           <Download size={16} />
           Export
+        </button>
+        
+        <button
+          className={`${styles.actionButton} ${styles.actionButtonHelp}`}
+          onClick={onHelp}
+          title="Help & Guide"
+        >
+          <HelpCircle size={16} />
         </button>
       </div>
     </div>

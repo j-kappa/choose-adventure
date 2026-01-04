@@ -1,0 +1,105 @@
+# Choose Your Adventure - Project Rules
+
+## Overview
+
+This is an interactive fiction engine built with React, TypeScript, and Vite. Users can read choose-your-own-adventure stories and create their own using a visual node-based Story Builder.
+
+## Tech Stack
+
+- **Frontend**: React 18 with TypeScript
+- **Build**: Vite
+- **Routing**: React Router v6
+- **Flow Editor**: @xyflow/react (React Flow v12)
+- **Styling**: CSS Modules with CSS custom properties
+- **Icons**: Lucide React
+
+## Story Builder
+
+The Story Builder is a visual node-based editor located at `/builder`. It allows users to create stories by connecting nodes.
+
+### Available Node Types
+
+The builder supports **three node types only**:
+
+1. **Start Node** (green) - The entry point of every story. Exactly one required.
+2. **Passage Node** (blue) - The main content blocks containing narrative text and choices.
+3. **Ending Node** (gray/green/red) - Terminal nodes that conclude the story. Can be marked as good, bad, or neutral.
+
+### Removed Features
+
+**State Nodes and Condition Nodes have been removed from the visual builder.** Do not:
+- Add State or Condition node types to the builder
+- Reference State or Condition nodes in builder documentation
+- Suggest state/condition features in the builder UI
+
+Note: The underlying story JSON format still supports `setState` and `condition` properties on choices for advanced users who edit JSON directly. This is documented in `docs/story-format.md`.
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── StoryBuilder/     # Visual story editor
+│   │   ├── nodes/        # Node components (Start, Passage, Ending)
+│   │   ├── panels/       # Properties panel, validation
+│   │   ├── toolbar/      # Top toolbar, dialogs
+│   │   └── preview/      # Story preview/test mode
+│   ├── StoryReader/      # Story playback components
+│   ├── StoryLibrary/     # Story selection grid
+│   └── ...
+├── context/              # React contexts for state management
+├── hooks/                # Custom React hooks
+├── types/                # TypeScript type definitions
+└── styles/               # Global CSS and variables
+```
+
+## Styling Guidelines
+
+- Use CSS Modules for component-specific styles
+- Use CSS custom properties from `src/styles/variables.css`
+- Support both light and dark themes via `data-theme` attribute
+- Use the accent color `--color-accent` (golden/amber) for interactive elements
+
+## Story Format
+
+Stories are JSON files with `.adventure.json` extension. See `docs/story-format.md` for the full specification.
+
+Key structure:
+```json
+{
+  "id": "story-id",
+  "title": "Story Title",
+  "author": "Author Name",
+  "description": "Short description",
+  "version": "1.0",
+  "start": "first_passage_id",
+  "passages": {
+    "passage_id": {
+      "text": "Narrative text...",
+      "choices": [
+        { "text": "Choice text", "goto": "next_passage_id" }
+      ]
+    }
+  }
+}
+```
+
+## Environment Variables
+
+- `VITE_ADMIN_PASSWORD` - Password for admin panel access
+- `VITE_SUBMISSION_EMAIL` - Email address for story submissions
+
+Create a `.env.local` file for local development (not committed to git).
+
+## Common Patterns
+
+### Adding a new dialog/modal
+1. Create component in appropriate folder
+2. Add CSS module with `.overlay` and `.dialog` classes
+3. Use `onClick={e => e.stopPropagation()}` on dialog to prevent close on content click
+4. Add state in parent component to control visibility
+
+### Node connections in Story Builder
+- Connections flow left-to-right (input handles on left, output on right)
+- Dragging to empty space shows a menu to create a connected node
+- Each choice has its own output handle

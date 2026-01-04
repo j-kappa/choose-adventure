@@ -20,6 +20,7 @@ import { NodeMenu } from './toolbar/NodeMenu';
 import { ExportDialog } from './toolbar/ExportDialog';
 import { ImportDialog } from './toolbar/ImportDialog';
 import { RestoreDialog } from './toolbar/RestoreDialog';
+import { HelpDialog } from './toolbar/HelpDialog';
 import { StoryPreview } from './preview';
 import { PropertiesPanel } from './panels/PropertiesPanel';
 import { ConnectionMenu } from './panels/ConnectionMenu';
@@ -54,6 +55,7 @@ function StoryBuilderContent() {
   const [showExportDialog, setShowExportDialog] = useState(false);
   const [showImportDialog, setShowImportDialog] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
+  const [showHelpDialog, setShowHelpDialog] = useState(false);
   const [pendingConnection, setPendingConnection] = useState<PendingConnection | null>(null);
   const [showSavedIndicator, setShowSavedIndicator] = useState(false);
   const [isDraggingFile, setIsDraggingFile] = useState(false);
@@ -287,6 +289,7 @@ function StoryBuilderContent() {
         onExport={() => setShowExportDialog(true)}
         onImport={() => setShowImportDialog(true)}
         onTest={() => setShowPreview(true)}
+        onHelp={() => setShowHelpDialog(true)}
         hasErrors={hasErrors}
         canTest={!hasErrors && !!story}
         errors={errors}
@@ -404,6 +407,11 @@ function StoryBuilderContent() {
         isOpen={showImportDialog}
         onClose={() => setShowImportDialog(false)}
         onImport={importStory}
+      />
+      
+      <HelpDialog
+        isOpen={showHelpDialog}
+        onClose={() => setShowHelpDialog(false)}
       />
       
       {pendingDraft && (
