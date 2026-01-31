@@ -64,7 +64,7 @@ export function StoryLibrary() {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1 className={styles.title}>Choose Your Adventure</h1>
+        <h1 className={styles.title}>Adventure Engine</h1>
         <p className={styles.subtitle}>
           Select a story to begin your journey
         </p>
