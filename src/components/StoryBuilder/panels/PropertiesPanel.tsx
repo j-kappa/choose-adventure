@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import { Play, X, Plus, ChevronDown, ChevronRight, Eye, Zap, Variable } from 'lucide-react';
+import { Play, X, Plus, ChevronDown, ChevronRight, Eye, Zap, Variable, Smile } from 'lucide-react';
 import { useStoryBuilderContext, type PassageNodeData, type EndingNodeData, type StateNodeData, type ConditionNodeData, type BuilderChoice, type StartNodeData, type StateVariable } from '../../../context/StoryBuilderContext';
 import styles from '../StoryBuilder.module.css';
 
@@ -88,7 +88,7 @@ export function PropertiesPanel() {
 }
 
 interface MetadataEditorProps {
-  metadata: { id: string; title: string; author: string; description: string; version: string };
+  metadata: { id: string; title: string; author: string; description: string; version: string; childFriendly: boolean };
   setMetadata: (metadata: MetadataEditorProps['metadata']) => void;
 }
 
@@ -146,6 +146,26 @@ function MetadataEditor({ metadata, setMetadata }: MetadataEditorProps) {
           onChange={(e) => setMetadata({ ...metadata, version: e.target.value })}
           placeholder="1.0"
         />
+      </div>
+      
+      <div className={styles.formGroup}>
+        <label className={styles.formLabel}>
+          <Smile size={14} style={{ marginRight: '6px', verticalAlign: 'middle' }} />
+          Audience
+        </label>
+        <label className={styles.toggleLabel}>
+          <input
+            type="checkbox"
+            className={styles.toggleInput}
+            checked={metadata.childFriendly}
+            onChange={(e) => setMetadata({ ...metadata, childFriendly: e.target.checked })}
+          />
+          <span className={styles.toggleSwitch} />
+          <span className={styles.toggleText}>Child Friendly</span>
+        </label>
+        <p className={styles.formHint}>
+          Mark if suitable for children (no violence, horror, or mature themes)
+        </p>
       </div>
     </>
   );

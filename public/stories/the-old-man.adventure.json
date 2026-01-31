@@ -4,6 +4,7 @@
   "author": "Adventure Engine",
   "description": "A chance encounter with a kind old man in the park. But some people aren't what they seem.",
   "version": "1.0",
+  "childFriendly": false,
   "initialState": {
     "acceptedCandy": false,
     "sawPhoto": false,

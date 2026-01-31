@@ -4,6 +4,7 @@
   "author": "Adventure Engine",
   "description": "You wake up to find every device in your home locked. A message appears: 'We've been watching. We know what you did.'",
   "version": "1.0",
+  "childFriendly": false,
   "initialState": {
     "discoveredCameras": false,
     "foundOldFiles": false,

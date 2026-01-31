@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Smile } from 'lucide-react';
 import type { StoryManifestEntry } from '../../types/story';
 import styles from './StoryLibrary.module.css';
 
@@ -22,7 +23,15 @@ export function StoryCard({ story, index = 0 }: StoryCardProps) {
         )}
         
         <div className={styles.cardBody}>
-          <h2 className={styles.cardTitle}>{story.title}</h2>
+          <div className={styles.cardTitleRow}>
+            <h2 className={styles.cardTitle}>{story.title}</h2>
+            {story.childFriendly && (
+              <span className={styles.childFriendlyBadge}>
+                <Smile size={16} />
+                <span className={styles.childFriendlyTooltip}>Child Friendly</span>
+              </span>
+            )}
+          </div>
           <p className={styles.cardAuthor}>by {story.author}</p>
           <p className={styles.cardDescription}>{story.description}</p>
           {story.tags && story.tags.length > 0 && (

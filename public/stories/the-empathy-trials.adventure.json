@@ -4,6 +4,7 @@
   "author": "Adventure Engine",
   "description": "Society mandates 'perspective therapy' for criminals. When the technology malfunctions and a perpetrator becomes their victim, you must decide: judge who they were, who they are, or challenge the system itself.",
   "version": "1.0",
+  "childFriendly": false,
   "initialState": {
     "heardVictimFamily": false,
     "heardDefendant": false,

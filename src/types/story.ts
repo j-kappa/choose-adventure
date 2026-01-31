@@ -78,6 +78,8 @@ export interface Story {
   version: string;
   /** Optional cover image path */
   cover?: string;
+  /** Whether the story is suitable for children */
+  childFriendly?: boolean;
   /** Initial state variables */
   initialState?: StoryState;
   /** ID of the starting passage */
@@ -97,6 +99,8 @@ export interface StoryManifestEntry {
   cover?: string;
   file: string;
   tags?: string[];
+  /** Whether the story is suitable for children */
+  childFriendly?: boolean;
 }
 
 /**

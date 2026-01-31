@@ -4,6 +4,7 @@
   "author": "Adventure Engine",
   "description": "Viktor Lenkov is the world's greatest chess player. But his real game is played in the shadows—where every move could be his last.",
   "version": "1.0",
+  "childFriendly": false,
   "initialState": {
     "hasCodebook": false,
     "trustsNadia": false,

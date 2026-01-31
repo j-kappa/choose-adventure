@@ -118,6 +118,7 @@ export function useExport(): ExportResult {
       author: metadata.author || 'Anonymous',
       description: metadata.description || '',
       version: metadata.version || '1.0',
+      childFriendly: metadata.childFriendly || false,
       ...(Object.keys(initialState).length > 0 ? { initialState } : {}),
       start: startPassageId,
       passages,

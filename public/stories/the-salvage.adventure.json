@@ -4,6 +4,7 @@
   "author": "Adventure Engine",
   "description": "Ty's salvage crew boards a derelict passenger liner that's been drifting for forty years. The ship's AI is still running—but it's been alone so long it's forgotten the difference between caring and keeping.",
   "version": "1.0",
+  "childFriendly": false,
   "initialState": {
     "implantExposed": false,
     "crewScattered": false,

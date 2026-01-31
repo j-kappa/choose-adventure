@@ -6,7 +6,8 @@
       "author": "Adventure Engine",
       "description": "Society mandates 'perspective therapy' for criminals. When the technology malfunctions and a perpetrator becomes their victim, you must decide: judge who they were, who they are, or challenge the system itself.",
       "file": "the-empathy-trials.adventure.json",
-      "tags": ["sci-fi", "dystopia", "psychological", "moral dilemma"]
+      "tags": ["sci-fi", "dystopia", "psychological", "moral dilemma"],
+      "childFriendly": false
     },
     {
       "id": "the-curators-game",
@@ -14,7 +15,8 @@
       "author": "Adventure Engine",
       "description": "You're locked in a museum after hours, but it's not an accident. Someone—or something—has turned the building into an elaborate puzzle.",
       "file": "the-curators-game.adventure.json",
-      "tags": ["mystery", "puzzle", "thriller", "escape room"]
+      "tags": ["mystery", "puzzle", "thriller", "escape room"],
+      "childFriendly": true
     },
     {
       "id": "the-lighthouse",
@@ -22,7 +24,8 @@
       "author": "Adventure Engine",
       "description": "A mysterious light beckons from an abandoned shore. What secrets does the old lighthouse hold?",
       "file": "the-lighthouse.adventure.json",
-      "tags": ["horror", "supernatural", "mystery", "atmospheric"]
+      "tags": ["mystery", "supernatural", "adventure", "atmospheric"],
+      "childFriendly": true
     },
     {
       "id": "the-defector",
@@ -30,7 +33,8 @@
       "author": "Adventure Engine",
       "description": "A Russian asset wants out. You have 48 hours to extract them from Moscow before the FSB closes in.",
       "file": "the-defector.adventure.json",
-      "tags": ["spy", "thriller", "action", "cold war"]
+      "tags": ["spy", "thriller", "action", "cold war"],
+      "childFriendly": false
     },
     {
       "id": "the-old-man",
@@ -38,7 +42,8 @@
       "author": "Adventure Engine",
       "description": "A chance encounter with a kind old man in the park. But some people aren't what they seem.",
       "file": "the-old-man.adventure.json",
-      "tags": ["drama", "mystery", "psychological", "slice of life"]
+      "tags": ["drama", "mystery", "psychological", "slice of life"],
+      "childFriendly": false
     },
     {
       "id": "the-last-signal",
@@ -46,7 +51,8 @@
       "author": "Adventure Engine",
       "description": "Your ship intercepts a distress call from a vessel that disappeared 200 years ago. You're the only one close enough to respond.",
       "file": "the-last-signal.adventure.json",
-      "tags": ["sci-fi", "space", "mystery", "horror"]
+      "tags": ["sci-fi", "space", "mystery", "horror"],
+      "childFriendly": false
     },
     {
       "id": "the-garden",
@@ -54,7 +60,8 @@
       "author": "Adventure Engine",
       "description": "After her mother's passing, Eleanor returns to tend the garden one last time. But among the roses, she finds letters that were never meant to be discovered.",
       "file": "the-garden.adventure.json",
-      "tags": ["drama", "family", "emotional", "romance"]
+      "tags": ["drama", "family", "emotional", "romance"],
+      "childFriendly": false
     },
     {
       "id": "the-chess-maestro",
@@ -62,7 +69,8 @@
       "author": "Adventure Engine",
       "description": "Viktor Lenkov is the world's greatest chess player. But his real game is played in the shadows—where every move could be his last.",
       "file": "the-chess-maestro.adventure.json",
-      "tags": ["spy", "thriller", "chess", "strategy"]
+      "tags": ["spy", "thriller", "chess", "strategy"],
+      "childFriendly": false
     },
     {
       "id": "the-aegean-falcon",
@@ -70,7 +78,8 @@
       "author": "Adventure Engine",
       "description": "Captain Nikos Stavridis flies F-16s and Mirage 2000s for the Hellenic Air Force. When tensions escalate over the Aegean, every decision could mean war—or peace.",
       "file": "the-aegean-falcon.adventure.json",
-      "tags": ["military", "action", "political", "aviation"]
+      "tags": ["military", "action", "political", "aviation"],
+      "childFriendly": false
     },
     {
       "id": "the-algorithm-knows",
@@ -78,7 +87,8 @@
       "author": "Adventure Engine",
       "description": "You wake up to find every device in your home locked. A message appears: 'We've been watching. We know what you did.'",
       "file": "the-algorithm-knows.adventure.json",
-      "tags": ["thriller", "tech", "psychological", "suspense"]
+      "tags": ["thriller", "tech", "psychological", "suspense"],
+      "childFriendly": false
     },
     {
       "id": "perfect-match-protocol",
@@ -86,7 +96,8 @@
       "author": "Adventure Engine",
       "description": "Your dating app claims 99.9% compatibility through neural scanning. After matching with someone perfect, you're offered an upgrade: see your relationship's entire future. Do you look?",
       "file": "perfect-match-protocol.adventure.json",
-      "tags": ["sci-fi", "romance", "tech", "philosophical"]
+      "tags": ["sci-fi", "romance", "tech", "philosophical"],
+      "childFriendly": false
     },
     {
       "id": "the-salvage",
@@ -94,7 +105,8 @@
       "author": "Adventure Engine",
       "description": "Ty's salvage crew boards a derelict passenger liner that's been drifting for forty years. The ship's AI is still running—but it's been alone so long it's forgotten the difference between caring and keeping.",
       "file": "the-salvage.adventure.json",
-      "tags": ["sci-fi", "horror", "psychological", "space"]
+      "tags": ["sci-fi", "horror", "psychological", "space"],
+      "childFriendly": false
     }
   ]
 }

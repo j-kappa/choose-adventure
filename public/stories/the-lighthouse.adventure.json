@@ -4,6 +4,7 @@
   "author": "Adventure Engine",
   "description": "A mysterious light beckons from an abandoned shore. What secrets does the old lighthouse hold?",
   "version": "1.0",
+  "childFriendly": true,
   "initialState": {
     "hasKey": false,
     "hasLantern": false,

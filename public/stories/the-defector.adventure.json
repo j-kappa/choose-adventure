@@ -4,6 +4,7 @@
   "author": "Adventure Engine",
   "description": "A Russian asset wants out. You have 48 hours to extract them from Moscow before the FSB closes in.",
   "version": "1.0",
+  "childFriendly": false,
   "initialState": {
     "hasForgedPassport": false,
     "hasBurnerPhone": false,

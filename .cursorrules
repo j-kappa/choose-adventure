@@ -72,6 +72,7 @@ Key structure:
   "author": "Author Name",
   "description": "Short description",
   "version": "1.0",
+  "childFriendly": false,
   "start": "first_passage_id",
   "passages": {
     "passage_id": {
@@ -83,6 +84,16 @@ Key structure:
   }
 }
 ```
+
+### Child Friendly Flag
+
+The `childFriendly` field is a boolean that indicates whether a story is suitable for children. Stories should be marked as child-friendly only if they:
+- Have no violence, horror, or death themes
+- Avoid mature emotional content (grief, trauma)
+- Don't include romance or adult relationship themes
+- Are appropriate for ages 8+
+
+When in doubt, mark as `false`. The flag is used to display a child-friendly icon in the story library.
 
 ## Environment Variables
 

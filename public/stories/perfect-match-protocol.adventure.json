@@ -4,6 +4,7 @@
   "author": "Adventure Engine",
   "description": "Your dating app claims 99.9% compatibility through neural scanning. After matching with someone perfect, you're offered an upgrade: see your relationship's entire future. Do you look?",
   "version": "1.0",
+  "childFriendly": false,
   "initialState": {
     "sawTheFuture": false,
     "paidForIntervention": false,

@@ -4,6 +4,7 @@
   "author": "Adventure Engine",
   "description": "You're locked in a museum after hours, but it's not an accident. Someone—or something—has turned the building into an elaborate puzzle.",
   "version": "1.0",
+  "childFriendly": true,
   "initialState": {
     "hasFlashlight": false,
     "hasScarabKey": false,

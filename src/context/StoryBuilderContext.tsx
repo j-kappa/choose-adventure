@@ -86,6 +86,7 @@ export interface StoryMetadata {
   author: string;
   description: string;
   version: string;
+  childFriendly: boolean;
 }
 
 /**
@@ -227,6 +228,7 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
     author: '',
     description: '',
     version: '1.0',
+    childFriendly: false,
   });
   
   // Dirty state for unsaved changes
@@ -706,6 +708,7 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
       author: story.author,
       description: story.description || '',
       version: story.version || '1.0',
+      childFriendly: story.childFriendly || false,
     });
     setSelectedNodeId(null);
     setIsDirty(true);

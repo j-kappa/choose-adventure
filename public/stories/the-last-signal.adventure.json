@@ -4,6 +4,7 @@
   "author": "Adventure Engine",
   "description": "Your ship intercepts a distress call from a vessel that disappeared 200 years ago. You're the only one close enough to respond.",
   "version": "1.0",
+  "childFriendly": false,
   "initialState": {
     "hasWeapon": false,
     "foundCaptainsLog": false,

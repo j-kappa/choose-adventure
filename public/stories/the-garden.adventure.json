@@ -4,6 +4,7 @@
   "author": "Adventure Engine",
   "description": "After her mother's passing, Eleanor returns to tend the garden one last time. But among the roses, she finds letters that were never meant to be discovered.",
   "version": "1.0",
+  "childFriendly": false,
   "initialState": {
     "foundFirstLetter": false,
     "foundSecondLetter": false,
