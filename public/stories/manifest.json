@@ -87,6 +87,14 @@
       "description": "Your dating app claims 99.9% compatibility through neural scanning. After matching with someone perfect, you're offered an upgrade: see your relationship's entire future. Do you look?",
       "file": "perfect-match-protocol.adventure.json",
       "tags": ["sci-fi", "romance", "tech", "philosophical"]
+    },
+    {
+      "id": "the-salvage",
+      "title": "The Salvage",
+      "author": "Adventure Engine",
+      "description": "Ty's salvage crew boards a derelict passenger liner that's been drifting for forty years. The ship's AI is still running—but it's been alone so long it's forgotten the difference between caring and keeping.",
+      "file": "the-salvage.adventure.json",
+      "tags": ["sci-fi", "horror", "psychological", "space"]
     }
   ]
 }
