@@ -412,6 +412,7 @@ export function StoryBuilderProvider({ children }: StoryBuilderProviderProps) {
       author: '',
       description: '',
       version: '1.0',
+      childFriendly: false,
     });
     setIsDirty(false);
     nodeIdCounter = 0;
